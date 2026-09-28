@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+@source "./app";
+@source "./components";
+@source "./content";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 4%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 6%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 9%;
+  --card-foreground: 0 0% 98%;
+  --primary: 24 95% 53%;
+  --primary-foreground: 0 0% 6%;
+  --secondary: 0 0% 13%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 24 95% 53%;
+  --accent-foreground: 0 0% 6%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --ring: 24 95% 53%;
+  --chart-1: 24 95% 53%;
+  --chart-2: 200 80% 55%;
+  --chart-3: 142 71% 45%;
+  --chart-4: 45 93% 58%;
+  --chart-5: 280 65% 60%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  overflow-x: hidden;
+  selection-background-color: hsl(var(--primary));
+  selection-color: hsl(var(--primary-foreground));
+}
+
+/* ==========================================================================
+   INTERACTIVE & CARD HOVER ANIMATIONS
+   ========================================================================== */
+
+/* Universal Card Base Transitions */
+[data-slot="card"],
+div[class*="bg-card"],
+div[data-index].group {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease !important;
+  will-change: transform, box-shadow;
+}
+
+/* Facility & Content Cards Hover */
+[data-slot="card"]:hover,
+div[class*="bg-card"]:not([class*="p-2"]):hover {
+  transform: translateY(-7px) scale(1.008);
+  border-color: rgba(249, 115, 22, 0.5) !important;
+  box-shadow: 0 22px 35px -10px rgba(0, 0, 0, 0.75),
+              0 0 25px -4px rgba(249, 115, 22, 0.25) !important;
+}
+
+/* Top Accent Bar Glow & Expansion on Card Hover */
+[data-slot="card"] > div[class*="bg-primary"]:first-child,
+[data-slot="card"] .h-\[3px\].bg-primary,
+[data-slot="card"] .h-1.bg-primary {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-slot="card"]:hover > div[class*="bg-primary"]:first-child,
+[data-slot="card"]:hover .h-\[3px\].bg-primary,
+[data-slot="card"]:hover .h-1.bg-primary {
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.9);
+  height: 4px;
+}
+
+/* Smooth Image Zoom on Card Hover */
+[data-slot="card"] img,
+div[class*="aspect-"] img,
+.group img {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.4s ease !important;
+}
+
+[data-slot="card"]:hover img,
+.group:hover img {
+  transform: scale(1.07);
+}
+
+/* Event List Card Items Hover */
+div[data-index].group:hover {
+  transform: translateY(-4px) translateX(3px);
+  border-color: rgba(249, 115, 22, 0.55) !important;
+  background-color: hsl(var(--card)) !important;
+  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.7),
+              0 0 18px -2px rgba(249, 115, 22, 0.25) !important;
+}
+
+/* Event Date Badge on Hover */
+div[data-index].group:hover [class*="bg-secondary"] {
+  border-color: rgba(249, 115, 22, 0.6) !important;
+  background-color: rgba(249, 115, 22, 0.1) !important;
+  transform: scale(1.05);
+  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+/* Event Arrow Button & Icons on Hover */
+div[data-index].group:hover .lucide-arrow-right,
+[data-slot="card"]:hover .lucide-arrow-right,
+[data-slot="card"]:hover .lucide-arrow-up-right,
+a:hover .lucide-arrow-right,
+a:hover .lucide-arrow-up-right {
+  transform: translateX(4px) translateY(-1px);
+  color: hsl(var(--primary)) !important;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Arrow Circle Container in Event Cards */
+div[data-index].group:hover div[class*="rounded-full"] {
+  border-color: rgba(249, 115, 22, 0.6) !important;
+  background-color: rgba(249, 115, 22, 0.15) !important;
+  color: hsl(var(--primary)) !important;
+  transform: scale(1.1);
+  transition: all 0.25s ease;
+}
+
+/* ==========================================================================
+   BUTTONS & CTAs HOVER ANIMATIONS
+   ========================================================================== */
+
+/* Primary CTA Buttons */
+a[data-slot="button"],
+button[data-slot="button"],
+a[class*="bg-primary"],
+button[class*="bg-primary"] {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease !important;
+  will-change: transform, box-shadow;
+}
+
+a[data-slot="button"]:hover,
+button[data-slot="button"]:hover,
+a[class*="bg-primary"]:hover,
+button[class*="bg-primary"]:hover {
+  transform: translateY(-2.5px) scale(1.025);
+  box-shadow: 0 12px 24px -5px rgba(249, 115, 22, 0.45),
+              0 0 20px rgba(249, 115, 22, 0.35) !important;
+}
+
+a[data-slot="button"]:active,
+button[data-slot="button"]:active,
+a[class*="bg-primary"]:active,
+button[class*="bg-primary"]:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Secondary / Outline Buttons */
+a[class*="bg-secondary"],
+button[class*="bg-secondary"] {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease !important;
+}
+
+a[class*="bg-secondary"]:hover,
+button[class*="bg-secondary"]:hover {
+  transform: translateY(-2px);
+  border-color: rgba(249, 115, 22, 0.5) !important;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.6),
+              0 0 14px rgba(249, 115, 22, 0.2) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* ==========================================================================
+   MICRO-INTERACTIONS & DETAILS
+   ========================================================================== */
+
+/* Zone tags & Badges inside cards */
+div[class*="backdrop-blur"] span[class*="font-mono"],
+span[class*="bg-primary/10"] {
+  transition: all 0.25s ease;
+}
+
+[data-slot="card"]:hover div[class*="backdrop-blur"] {
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  border-color: rgba(249, 115, 22, 0.6) !important;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+}
+
+/* Form Inputs Focus & Hover */
+input, textarea, select {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input:hover, textarea:hover, select:hover {
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25) !important;
+  outline: none;
+}
