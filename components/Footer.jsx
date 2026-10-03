@@ -3,10 +3,11 @@ import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, Instagram, Youtube, Facebook, ArrowRight } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/about", label: "About" },
-  { href: "/facilities", label: "Facilities" },
-  { href: "/events", label: "Events" },
-  { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About Us" },
+  { href: "/#training-centers", label: "Training Centers" },
+  { href: "/#merchandise", label: "Products / Merchandise" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export default function Footer() {
@@ -22,24 +23,33 @@ export default function Footer() {
           <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-6">
             <Link
               href="/"
-              className="group inline-block mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md transition-transform duration-300 hover:scale-105"
+              className="group inline-flex items-center gap-3 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md transition-transform duration-300 hover:scale-105"
             >
-              <Image
-                src="https://destined-weevil.10web.cloud/wp-content/uploads/2026/09/curbtrick.svg"
-                alt="CURBTRICK"
-                width={140}
-                height={32}
-                className="h-8 w-auto transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_0_10px_rgba(249,115,22,0.2)]"
-                unoptimized
-              />
+              <div className="relative size-10 overflow-hidden rounded-full border border-primary/40 bg-card p-0.5 shadow-[0_0_10px_rgba(249,115,22,0.3)]">
+                <Image
+                  src="/images/logo.png"
+                  alt="Dehiya Roller Skating Academy"
+                  width={40}
+                  height={40}
+                  className="size-full object-cover rounded-full"
+                />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="font-serif text-lg font-extrabold uppercase tracking-tight text-foreground group-hover:text-primary transition-colors">
+                  D.R.S.A
+                </span>
+                <span className="text-[10px] font-mono font-medium tracking-widest text-muted-foreground uppercase -mt-1">
+                  Skating Academy
+                </span>
+              </div>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
-              Roller skating rink and indoor skatepark built for concrete lines, street obstacles, vert ramps, and community sessions for every skater.
+              Dehiya Roller Skating Academy (D.R.S.A) — 36 years of excellence in transforming beginners into State and National Champions across Mumbai and Thane.
             </p>
             <div className="mt-6 flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-card border border-border/60 w-fit">
               <span className="size-2 rounded-full bg-chart-3 animate-pulse shadow-[0_0_8px_#22c55e]" />
               <span className="text-xs font-mono uppercase tracking-wider text-foreground/90 font-medium">
-                Park open for open skate &amp; lessons
+                6 Active Centers Across Thane &amp; Mumbai
               </span>
             </div>
           </div>
@@ -66,23 +76,35 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-5 flex items-center gap-2">
               <span className="h-1 w-2.5 bg-primary rounded-xs shadow-[0_0_6px_rgba(249,115,22,0.6)]" />
-              Location &amp; Contact
+              Coaches &amp; Contact
             </h3>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-start gap-3 group">
                 <MapPin className="size-4 text-primary shrink-0 mt-0.5 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
-                <span className="group-hover:text-foreground transition-colors">123 Skatepark Avenue, Cityville, State, ZIP</span>
+                <span className="group-hover:text-foreground transition-colors">Thane West &amp; Bhandup, Mumbai, Maharashtra</span>
               </li>
-              <li className="flex items-center gap-3 group">
-                <Phone className="size-4 text-primary shrink-0 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
-                <a href="tel:5559876543" className="hover:text-primary transition-all duration-200 hover:translate-x-1 focus-visible:outline-none focus-visible:text-primary">
-                  (555) 987-6543
-                </a>
+              <li className="flex flex-col gap-1 group">
+                <div className="flex items-center gap-3">
+                  <Phone className="size-4 text-primary shrink-0 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
+                  <a href="tel:9323861266" className="hover:text-primary transition-all duration-200 hover:translate-x-1 font-medium text-foreground">
+                    +91 93238 61266
+                  </a>
+                </div>
+                <span className="text-xs text-muted-foreground pl-7">Mr. Rajinder Singh Dehiya (Head Coach)</span>
+              </li>
+              <li className="flex flex-col gap-1 group">
+                <div className="flex items-center gap-3">
+                  <Phone className="size-4 text-primary shrink-0 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
+                  <a href="tel:8693817112" className="hover:text-primary transition-all duration-200 hover:translate-x-1 font-medium text-foreground">
+                    +91 86938 17112
+                  </a>
+                </div>
+                <span className="text-xs text-muted-foreground pl-7">Mr. Navjeet Singh Dehiya (Head Coach)</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Mail className="size-4 text-primary shrink-0 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
-                <a href="mailto:contact@curbtrick.com" className="hover:text-primary transition-all duration-200 hover:translate-x-1 focus-visible:outline-none focus-visible:text-primary">
-                  contact@curbtrick.com
+                <a href="mailto:rajinderdehiya@gmail.com" className="hover:text-primary transition-all duration-200 hover:translate-x-1 focus-visible:outline-none focus-visible:text-primary">
+                  rajinderdehiya@gmail.com
                 </a>
               </li>
             </ul>
@@ -91,27 +113,19 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-5 flex items-center gap-2">
               <span className="h-1 w-2.5 bg-primary rounded-xs shadow-[0_0_6px_rgba(249,115,22,0.6)]" />
-              Operating Hours
+              Training Centers
             </h3>
-            <div className="space-y-2.5 text-sm text-muted-foreground mb-6">
-              <div className="flex items-start gap-2.5 p-2 rounded-md hover:bg-card transition-colors">
-                <Clock className="size-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <p className="text-foreground font-medium">Monday – Friday</p>
-                  <p className="text-xs text-muted-foreground font-mono">3:00 PM – 10:00 PM</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5 p-2 rounded-md hover:bg-card transition-colors">
-                <Clock className="size-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <p className="text-foreground font-medium">Saturday – Sunday</p>
-                  <p className="text-xs text-muted-foreground font-mono">12:00 PM – 8:00 PM</p>
-                </div>
-              </div>
+            <div className="space-y-2 text-xs text-muted-foreground mb-6">
+              <p className="hover:text-foreground transition-colors">• Amber International School, Thane</p>
+              <p className="hover:text-foreground transition-colors">• Siddeshwar Garden, Thane (20 yrs)</p>
+              <p className="hover:text-foreground transition-colors">• Shreerang Vidyalaya, Thane</p>
+              <p className="hover:text-foreground transition-colors">• Sports Foundry, Bhandup West</p>
+              <p className="hover:text-foreground transition-colors">• Pratap Sarnaik School, Thane</p>
+              <p className="hover:text-foreground transition-colors">• Piramal Vaikunth, Thane</p>
             </div>
             <div className="pt-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-foreground block mb-3">
-                Follow The Park
+                Connect With D.R.S.A
               </span>
               <div className="flex items-center gap-3">
                 <a
@@ -150,12 +164,12 @@ export default function Footer() {
 
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p className="text-center md:text-left">
-            © {new Date().getFullYear()} CURBTRICK. All rights reserved. Built for roller skaters, inline, and street riders.
+            © {new Date().getFullYear()} Dehiya Roller Skating Academy (D.R.S.A). All rights reserved. 36 Years of Excellence.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/contact" className="hover:text-primary hover:underline underline-offset-4 transition-colors">Session Inquiries</Link>
-            <Link href="/facilities" className="hover:text-primary hover:underline underline-offset-4 transition-colors">Safety Rules &amp; Pads</Link>
-            <Link href="/events" className="hover:text-primary hover:underline underline-offset-4 transition-colors">Community Calendar</Link>
+            <Link href="/contact" className="hover:text-primary hover:underline underline-offset-4 transition-colors">Send an Inquiry</Link>
+            <Link href="/#training-centers" className="hover:text-primary hover:underline underline-offset-4 transition-colors">Training Centers</Link>
+            <Link href="/about" className="hover:text-primary hover:underline underline-offset-4 transition-colors">About Us</Link>
           </div>
         </div>
       </div>

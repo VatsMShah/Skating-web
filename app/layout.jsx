@@ -3,11 +3,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "CURBTRICK — Roller Skating Rink & Skatepark",
+  title: "Dehiya Roller Skating Academy (D.R.S.A) — Excellence in Roller Skating",
   description:
-    "Roller skating rink and indoor skatepark built for concrete lines, street obstacles, vert ramps, and community sessions for every skater.",
+    "Dehiya Roller Skating Academy (D.R.S.A) — 36 years of excellence in roller and inline skating coaching across Mumbai and Thane under Head Coaches Rajinder Singh Dehiya and Navjeet Singh Dehiya.",
   icons: {
-    icon: "https://destined-weevil.10web.cloud/wp-content/uploads/2026/09/favicon-dark.png",
+    icon: "/images/logo.png",
   },
 };
 

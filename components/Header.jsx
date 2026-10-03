@@ -7,10 +7,11 @@ import { usePathname } from "next/navigation";
 import { MapPin, Menu, X, ArrowUpRight } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/about", label: "About" },
-  { href: "/facilities", label: "Facilities" },
-  { href: "/events", label: "Events" },
-  { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About Us" },
+  { href: "/#training-centers", label: "Training Centers" },
+  { href: "/#merchandise", label: "Products / Merchandise" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export default function Header() {
@@ -41,16 +42,26 @@ export default function Header() {
         <div className="flex items-center">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md transition-transform duration-300 hover:scale-105"
+            className="group inline-flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md transition-transform duration-300 hover:scale-105"
           >
-            <Image
-              src="https://destined-weevil.10web.cloud/wp-content/uploads/2026/09/curbtrick.svg"
-              alt="CURBTRICK"
-              width={140}
-              height={32}
-              className="h-8 w-auto transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_0_12px_rgba(249,115,22,0.25)]"
-              unoptimized
-            />
+            <div className="relative size-10 sm:size-11 overflow-hidden rounded-full border border-primary/40 bg-card p-0.5 shadow-[0_0_12px_rgba(249,115,22,0.3)]">
+              <Image
+                src="/images/logo.png"
+                alt="Dehiya Roller Skating Academy"
+                width={44}
+                height={44}
+                className="size-full object-cover rounded-full"
+                priority
+              />
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="font-serif text-lg sm:text-xl font-extrabold uppercase tracking-tight text-foreground group-hover:text-primary transition-colors">
+                D.R.S.A
+              </span>
+              <span className="text-[10px] sm:text-xs font-mono font-medium tracking-widest text-muted-foreground uppercase -mt-1">
+                Skating Academy
+              </span>
+            </div>
           </Link>
         </div>
 
