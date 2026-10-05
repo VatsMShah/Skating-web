@@ -7,34 +7,34 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 4%;
-  --radius: 0.5rem;
-}
-
-.dark {
-  --background: 0 0% 6%;
-  --foreground: 0 0% 98%;
-  --card: 0 0% 9%;
-  --card-foreground: 0 0% 98%;
-  --primary: 24 95% 53%;
-  --primary-foreground: 0 0% 6%;
-  --secondary: 0 0% 13%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 14%;
-  --muted-foreground: 0 0% 65%;
-  --accent: 24 95% 53%;
-  --accent-foreground: 0 0% 6%;
+  /* Eye-soothing Light Mode Palette (Deep Navy Blue & Champion Yellow) */
+  --background: 216 33% 98%;       /* #F8FAFC - Soft eye-soothing off-white */
+  --foreground: 222 47% 11%;       /* #0F172A - Deep Slate/Navy text */
+  --card: 0 0% 100%;               /* #FFFFFF - Pure white elevated cards */
+  --card-foreground: 222 47% 11%;  /* #0F172A */
+  --primary: 218 78% 18%;          /* #0A1931 - Deep Brand Navy Blue from Logo */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF - Crisp white on navy */
+  --secondary: 214 32% 94%;        /* #E9EEF5 - Soft Ice Slate */
+  --secondary-foreground: 218 78% 18%;
+  --muted: 214 32% 95%;            /* #EDF2F7 */
+  --muted-foreground: 215 19% 42%; /* #556987 - Muted slate text */
+  --accent: 43 96% 48%;            /* #F59E0B - Champion Gold / Yellow from Logo */
+  --accent-foreground: 222 47% 11%;
+  --gold: 43 96% 48%;              /* #F59E0B */
+  --gold-light: 45 93% 94%;        /* #FEF9C3 - Soft yellow badge bg */
+  --navy: 218 78% 18%;             /* #0A1931 */
+  --navy-light: 217 91% 24%;       /* #0E2954 */
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 18%;
-  --input: 0 0% 18%;
-  --ring: 24 95% 53%;
-  --chart-1: 24 95% 53%;
-  --chart-2: 200 80% 55%;
+  --border: 214 32% 88%;           /* #DCE4EE - Soft subtle border */
+  --input: 214 32% 88%;
+  --ring: 43 96% 48%;              /* Gold focus ring */
+  --chart-1: 218 78% 18%;
+  --chart-2: 43 96% 48%;
   --chart-3: 142 71% 45%;
-  --chart-4: 45 93% 58%;
-  --chart-5: 280 65% 60%;
+  --chart-4: 217 91% 35%;
+  --chart-5: 38 92% 50%;
+  --radius: 0.5rem;
 }
 
 @theme inline {
@@ -73,45 +73,51 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   overflow-x: hidden;
-  selection-background-color: hsl(var(--primary));
-  selection-color: hsl(var(--primary-foreground));
+  selection-background-color: #F59E0B;
+  selection-color: #0A1931;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
 }
 
 /* ==========================================================================
-   INTERACTIVE & CARD HOVER ANIMATIONS
+   INTERACTIVE & CARD HOVER ANIMATIONS (EYE-SOOTHING LIGHT THEME)
    ========================================================================== */
 
 /* Universal Card Base Transitions */
 [data-slot="card"],
 div[class*="bg-card"],
 div[data-index].group {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.25s ease !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background-color 0.2s ease !important;
   will-change: transform, box-shadow;
 }
 
 /* Facility & Content Cards Hover */
 [data-slot="card"]:hover,
 div[class*="bg-card"]:not([class*="p-2"]):hover {
-  transform: translateY(-7px) scale(1.008);
-  border-color: rgba(249, 115, 22, 0.5) !important;
-  box-shadow: 0 22px 35px -10px rgba(0, 0, 0, 0.75),
-              0 0 25px -4px rgba(249, 115, 22, 0.25) !important;
+  transform: translateY(-5px);
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  box-shadow: 0 16px 30px -8px rgba(10, 25, 49, 0.12),
+              0 0 16px -2px rgba(245, 158, 11, 0.18) !important;
 }
 
-/* Top Accent Bar Glow & Expansion on Card Hover */
+/* Top Accent Bar Gold Glow on Card Hover */
+[data-slot="card"] > div[class*="bg-amber"]:first-child,
 [data-slot="card"] > div[class*="bg-primary"]:first-child,
-[data-slot="card"] .h-\[3px\].bg-primary,
-[data-slot="card"] .h-1.bg-primary {
+[data-slot="card"] .h-\[3px\] {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+[data-slot="card"]:hover > div[class*="bg-amber"]:first-child,
 [data-slot="card"]:hover > div[class*="bg-primary"]:first-child,
-[data-slot="card"]:hover .h-\[3px\].bg-primary,
-[data-slot="card"]:hover .h-1.bg-primary {
-  box-shadow: 0 0 16px rgba(249, 115, 22, 0.9);
+[data-slot="card"]:hover .h-\[3px\] {
+  background-color: #F59E0B !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
   height: 4px;
 }
 
@@ -119,50 +125,24 @@ div[class*="bg-card"]:not([class*="p-2"]):hover {
 [data-slot="card"] img,
 div[class*="aspect-"] img,
 .group img {
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.4s ease !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.3s ease !important;
 }
 
 [data-slot="card"]:hover img,
 .group:hover img {
-  transform: scale(1.07);
-}
-
-/* Event List Card Items Hover */
-div[data-index].group:hover {
-  transform: translateY(-4px) translateX(3px);
-  border-color: rgba(249, 115, 22, 0.55) !important;
-  background-color: hsl(var(--card)) !important;
-  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.7),
-              0 0 18px -2px rgba(249, 115, 22, 0.25) !important;
-}
-
-/* Event Date Badge on Hover */
-div[data-index].group:hover [class*="bg-secondary"] {
-  border-color: rgba(249, 115, 22, 0.6) !important;
-  background-color: rgba(249, 115, 22, 0.1) !important;
   transform: scale(1.05);
-  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
-/* Event Arrow Button & Icons on Hover */
+/* Arrow Button & Icons on Hover */
 div[data-index].group:hover .lucide-arrow-right,
 [data-slot="card"]:hover .lucide-arrow-right,
 [data-slot="card"]:hover .lucide-arrow-up-right,
 a:hover .lucide-arrow-right,
 a:hover .lucide-arrow-up-right {
-  transform: translateX(4px) translateY(-1px);
-  color: hsl(var(--primary)) !important;
-  transition: transform 0.25s ease, color 0.25s ease;
-}
-
-/* Arrow Circle Container in Event Cards */
-div[data-index].group:hover div[class*="rounded-full"] {
-  border-color: rgba(249, 115, 22, 0.6) !important;
-  background-color: rgba(249, 115, 22, 0.15) !important;
-  color: hsl(var(--primary)) !important;
-  transform: scale(1.1);
-  transition: all 0.25s ease;
+  transform: translateX(3px) translateY(-1px);
+  color: #D97706 !important;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 /* ==========================================================================
@@ -174,8 +154,8 @@ a[data-slot="button"],
 button[data-slot="button"],
 a[class*="bg-primary"],
 button[class*="bg-primary"] {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.2s ease,
               border-color 0.2s ease !important;
   will-change: transform, box-shadow;
@@ -185,50 +165,33 @@ a[data-slot="button"]:hover,
 button[data-slot="button"]:hover,
 a[class*="bg-primary"]:hover,
 button[class*="bg-primary"]:hover {
-  transform: translateY(-2.5px) scale(1.025);
-  box-shadow: 0 12px 24px -5px rgba(249, 115, 22, 0.45),
-              0 0 20px rgba(249, 115, 22, 0.35) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -4px rgba(10, 25, 49, 0.2),
+              0 0 12px rgba(245, 158, 11, 0.25) !important;
 }
 
 a[data-slot="button"]:active,
 button[data-slot="button"]:active,
 a[class*="bg-primary"]:active,
 button[class*="bg-primary"]:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0);
 }
 
 /* Secondary / Outline Buttons */
 a[class*="bg-secondary"],
 button[class*="bg-secondary"] {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.2s ease,
               background-color 0.2s ease !important;
 }
 
 a[class*="bg-secondary"]:hover,
 button[class*="bg-secondary"]:hover {
-  transform: translateY(-2px);
-  border-color: rgba(249, 115, 22, 0.5) !important;
-  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.6),
-              0 0 14px rgba(249, 115, 22, 0.2) !important;
-  color: hsl(var(--foreground)) !important;
-}
-
-/* ==========================================================================
-   MICRO-INTERACTIONS & DETAILS
-   ========================================================================== */
-
-/* Zone tags & Badges inside cards */
-div[class*="backdrop-blur"] span[class*="font-mono"],
-span[class*="bg-primary/10"] {
-  transition: all 0.25s ease;
-}
-
-[data-slot="card"]:hover div[class*="backdrop-blur"] {
-  background-color: rgba(0, 0, 0, 0.95) !important;
-  border-color: rgba(249, 115, 22, 0.6) !important;
-  box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+  transform: translateY(-1.5px);
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  background-color: #FEF9C3 !important;
+  color: #0A1931 !important;
 }
 
 /* Form Inputs Focus & Hover */
@@ -237,11 +200,11 @@ input, textarea, select {
 }
 
 input:hover, textarea:hover, select:hover {
-  border-color: rgba(249, 115, 22, 0.4) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: hsl(var(--primary)) !important;
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25) !important;
+  border-color: #0A1931 !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25) !important;
   outline: none;
 }
