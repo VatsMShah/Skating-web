@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -13,9 +16,45 @@ import {
   Phone,
   Mail,
   Sparkles,
+  Video,
+  Play,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function HomePage() {
+  const [activeMobileVideo, setActiveMobileVideo] = useState(0);
+  const [isMobileAutoPlay, setIsMobileAutoPlay] = useState(true);
+
+  const option4Videos = [
+    {
+      id: "creates-champions",
+      src: "/videos/creates-champions.mp4",
+      badge: "🥇 1. RACE SPEED",
+      caption: "Creates Champions — National Championship Speed Racing",
+    },
+    {
+      id: "psis-curriculum",
+      src: "/videos/psis-curriculum.mp4",
+      badge: "📋 2. ACADEMY DRILLS",
+      caption: "PSIS Academy — Systematic Foundation Drills & Posture",
+    },
+    {
+      id: "khopoli-camp",
+      src: "/videos/khopoli-camp.mp4",
+      badge: "⛺ 3. TRAINING CAMP",
+      caption: "Khopoli Camp — Outdoor Stamina & Endurance Conditioning",
+    },
+  ];
+
+  // Continuous loop auto-slider for mobile screens
+  useEffect(() => {
+    if (!isMobileAutoPlay) return;
+    const timer = setInterval(() => {
+      setActiveMobileVideo((prev) => (prev + 1) % option4Videos.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isMobileAutoPlay, option4Videos.length]);
   return (
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
       {/* =====================================================================
@@ -384,7 +423,195 @@ export default function HomePage() {
       </section>
 
       {/* =====================================================================
-          SECTION 4: TRAINING CENTERS (ALL 6 LOCATIONS WITH DIRECT MAPS)
+          SECTION 4: CHAMPIONS IN ACTION (ACADEMY FOOTAGE SHOWCASE)
+          ===================================================================== */}
+      <section
+        id="video-showcase"
+        className="py-16 md:py-24 bg-[#0A1931] text-white relative overflow-hidden border-t border-slate-800"
+      >
+        {/* Ambient subtle glow overlay */}
+        <div className="absolute top-0 right-1/4 size-96 bg-[#F59E0B]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/3 left-1/4 size-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-12 relative z-10 space-y-12">
+          
+          {/* Main Showcase Section Title */}
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FEF3C7]/15 border border-[#F59E0B]/60 text-[#FBBF24] text-xs font-bold font-mono uppercase tracking-widest mb-3">
+              <Video className="w-3.5 h-3.5 text-[#F59E0B]" aria-hidden="true" />
+              <span>Official Academy Video Footage</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
+              Champions in Action
+            </h2>
+            <div className="flex items-center justify-center my-3.5">
+              <div className="h-1 w-14 bg-[#F59E0B] rounded-full shadow-[0_0_10px_rgba(245,158,11,0.8)]" />
+            </div>
+            <p className="mt-2 text-slate-300 text-sm sm:text-base md:text-lg font-sans leading-relaxed">
+              Watch real race victories, structured curriculum drills, and conditioning camps led by our Head Coaches.
+            </p>
+          </div>
+
+          {/* -------------------------------------------------------------
+              DESKTOP VIEW (md:flex): 3 Joined Slanted Video Holders
+              ------------------------------------------------------------- */}
+          <div className="hidden md:flex w-full max-w-[1200px] mx-auto flex-row items-stretch justify-center gap-0 md:scale-[1.03] transform md:-skew-x-6 transition-transform duration-300 py-4">
+            
+            {/* Video 1: Creates Champions */}
+            <div className="group relative flex-1 w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] shadow-2xl overflow-hidden md:rounded-l-2xl hover:z-20 hover:border-[#FBBF24] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all duration-300">
+              <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
+
+              <video
+                controls
+                preload="metadata"
+                className="w-full h-full object-cover scale-[1.08]"
+                src="/videos/creates-champions.mp4"
+              />
+              
+              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
+                🥇 1. RACE SPEED
+              </span>
+
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3.5 z-10 pointer-events-none">
+                <p className="text-xs sm:text-sm font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
+                  Creates Champions — National Championship Speed Racing
+                </p>
+              </div>
+            </div>
+
+            {/* Video 2: PSIS Curriculum */}
+            <div className="group relative flex-1 w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] shadow-2xl overflow-hidden hover:z-20 hover:border-[#FBBF24] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all duration-300">
+              <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
+
+              <video
+                controls
+                preload="metadata"
+                className="w-full h-full object-cover scale-[1.08]"
+                src="/videos/psis-curriculum.mp4"
+              />
+              
+              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
+                📋 2. ACADEMY DRILLS
+              </span>
+
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3.5 z-10 pointer-events-none">
+                <p className="text-xs sm:text-sm font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
+                  PSIS Academy — Systematic Foundation Drills &amp; Posture
+                </p>
+              </div>
+            </div>
+
+            {/* Video 3: Khopoli Camp */}
+            <div className="group relative flex-1 w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] shadow-2xl overflow-hidden md:rounded-r-2xl hover:z-20 hover:border-[#FBBF24] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all duration-300">
+              <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
+
+              <video
+                controls
+                preload="metadata"
+                className="w-full h-full object-cover scale-[1.08]"
+                src="/videos/khopoli-camp.mp4"
+              />
+              
+              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
+                ⛺ 3. TRAINING CAMP
+              </span>
+
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3.5 z-10 pointer-events-none">
+                <p className="text-xs sm:text-sm font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
+                  Khopoli Camp — Outdoor Stamina &amp; Endurance Conditioning
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* -------------------------------------------------------------
+              MOBILE VIEW (block md:hidden): Clean Video Carousel
+              ------------------------------------------------------------- */}
+          <div className="block md:hidden w-full max-w-[340px] sm:max-w-[380px] mx-auto py-2">
+            {/* Active Video Player */}
+            <div className="relative w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] rounded-2xl shadow-2xl overflow-hidden">
+              <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
+              <span className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
+
+              <video
+                key={option4Videos[activeMobileVideo].id}
+                controls
+                preload="metadata"
+                className="w-full h-full object-cover animate-in fade-in duration-300"
+                src={option4Videos[activeMobileVideo].src}
+                onPlay={() => setIsMobileAutoPlay(false)}
+                onPause={() => setIsMobileAutoPlay(true)}
+                onEnded={() => {
+                  setIsMobileAutoPlay(true);
+                  setActiveMobileVideo((prev) => (prev + 1) % option4Videos.length);
+                }}
+              />
+
+              {/* Top Badge */}
+              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
+                {option4Videos[activeMobileVideo].badge}
+              </span>
+
+              {/* Bottom One-Liner Caption */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3 z-10 pointer-events-none">
+                <p className="text-xs font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
+                  {option4Videos[activeMobileVideo].caption}
+                </p>
+              </div>
+
+              {/* Slider Arrow Controls */}
+              <button
+                onClick={() => {
+                  setIsMobileAutoPlay(false);
+                  setActiveMobileVideo((prev) => (prev - 1 + option4Videos.length) % option4Videos.length);
+                }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 size-9 rounded-full bg-[#0A1931]/80 backdrop-blur-md border border-[#F59E0B]/60 text-white flex items-center justify-center shadow-lg hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all z-20"
+                aria-label="Previous Video"
+              >
+                <ChevronLeft className="size-5" />
+              </button>
+
+              <button
+                onClick={() => {
+                  setIsMobileAutoPlay(false);
+                  setActiveMobileVideo((prev) => (prev + 1) % option4Videos.length);
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 size-9 rounded-full bg-[#0A1931]/80 backdrop-blur-md border border-[#F59E0B]/60 text-white flex items-center justify-center shadow-lg hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all z-20"
+                aria-label="Next Video"
+              >
+                <ChevronRight className="size-5" />
+              </button>
+            </div>
+
+            {/* Navigation Indicators */}
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {option4Videos.map((video, idx) => (
+                <button
+                  key={video.id}
+                  onClick={() => {
+                    setIsMobileAutoPlay(false);
+                    setActiveMobileVideo(idx);
+                  }}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activeMobileVideo === idx
+                      ? "w-8 bg-[#F59E0B] shadow-[0_0_8px_rgba(245,158,11,0.8)]"
+                      : "w-2 bg-slate-700 hover:bg-slate-500"
+                  }`}
+                  aria-label={`Video ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =====================================================================
+          SECTION 5: TRAINING CENTERS (ALL 6 LOCATIONS WITH DIRECT MAPS)
           ===================================================================== */}
       <section
         id="training-centers"
@@ -628,7 +855,7 @@ export default function HomePage() {
       </section>
 
       {/* =====================================================================
-          SECTION 5: OFFICIAL PRO GEAR & MERCHANDISE PREVIEW
+          SECTION 6: OFFICIAL PRO GEAR & MERCHANDISE PREVIEW
           ===================================================================== */}
       <section
         id="merchandise"
@@ -803,7 +1030,7 @@ export default function HomePage() {
       </section>
 
       {/* =====================================================================
-          SECTION 6: TESTIMONIALS & REVIEWS
+          SECTION 7: TESTIMONIALS & REVIEWS
           ===================================================================== */}
       <section
         id="testimonials"
@@ -905,7 +1132,7 @@ export default function HomePage() {
       </section>
 
       {/* =====================================================================
-          SECTION 7: FINAL CALL-TO-ACTION (EYE-SOOTHING NAVY & GOLD HEROIC BANNER)
+          SECTION 8: FINAL CALL-TO-ACTION (EYE-SOOTHING NAVY & GOLD HEROIC BANNER)
           ===================================================================== */}
       <section
         id="cta-section"
