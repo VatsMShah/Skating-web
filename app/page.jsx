@@ -1086,7 +1086,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-slate-700 italic leading-relaxed">
-                  &ldquo;Rajinder Sir and Navjeet Sir are amazing coaches! Despite the age, they gave me immense confidence to roll on skates in a few minutes and I was able to skate in just 3 sessions. The techniques and exercises are very helpful. Watching the father-son duo on skates is a beauty — looks so effortless!&rdquo;
+                  &ldquo;Rajinder Singh and Navjeet Singh are amazing coaches! Despite the age, they gave me immense confidence to roll on skates in a few minutes and I was able to skate in just 3 sessions. The techniques and exercises are very helpful. Watching the father-son duo on skates is a beauty — looks so effortless!&rdquo;
                 </p>
               </div>
               <div className="pt-6 mt-6 border-t border-slate-100 flex items-center gap-3">
@@ -1163,14 +1163,14 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
               >
                 <Phone className="size-4 text-[#F59E0B]" />
-                <span>Rajinder Sir: +91 93238 61266</span>
+                <span>Rajinder Singh: +91 93238 61266</span>
               </a>
               <a
                 href="tel:8693817112"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
               >
                 <Phone className="size-4 text-[#F59E0B]" />
-                <span>Navjeet Sir: +91 86938 17112</span>
+                <span>Navjeet Singh: +91 86938 17112</span>
               </a>
               <a
                 href="mailto:rajinderdehiya@gmail.com"

@@ -382,7 +382,7 @@ export default function AboutPage() {
 
                 <div className="space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
                   <p>
-                    A revered pioneer of roller skating in Mumbai and Thane, Rajinder Sir has personally guided over 5,000 skaters from their very first steps to state and national championship podiums.
+                    A revered pioneer of roller skating in Mumbai and Thane, Rajinder Singh has personally guided over 5,000 skaters from their very first steps to state and national championship podiums.
                   </p>
                   <p>
                     Renowned for his patience and master techniques, he specializes in building unshakeable confidence in young beginners, quad skating footwork, posture alignment, and competitive mindset.
@@ -438,7 +438,7 @@ export default function AboutPage() {
 
                 <div className="space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
                   <p>
-                    A decorated National and State medalist, Navjeet Sir brings elite racing mechanics, aerodynamic posture conditioning, and contemporary speed training methodologies to D.R.S.A.
+                    A decorated National and State medalist, Navjeet Singh brings elite racing mechanics, aerodynamic posture conditioning, and contemporary speed training methodologies to D.R.S.A.
                   </p>
                   <p>
                     He directs the PSIS speed skating curriculum, tactical cornering techniques, 110mm inline speed training, and the academy&apos;s renowned high-altitude outdoor conditioning camps in Khopoli.
@@ -645,14 +645,14 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all font-semibold"
               >
                 <Phone className="size-4 text-[#FBBF24]" />
-                <span>Rajinder Sir: +91 93238 61266</span>
+                <span>Rajinder Singh: +91 93238 61266</span>
               </a>
               <a
                 href="tel:8693817112"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all font-semibold"
               >
                 <Phone className="size-4 text-[#FBBF24]" />
-                <span>Navjeet Sir: +91 86938 17112</span>
+                <span>Navjeet Singh: +91 86938 17112</span>
               </a>
             </div>
 
