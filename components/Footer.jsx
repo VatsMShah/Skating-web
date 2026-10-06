@@ -105,11 +105,16 @@ export default function Footer() {
                 </div>
                 <span className="text-xs text-slate-400 pl-7 font-mono">Mr. Navjeet Singh Dehiya (Head Coach)</span>
               </li>
-              <li className="flex items-center gap-3 group">
-                <Mail className="size-4 text-[#F59E0B] shrink-0" aria-hidden="true" />
-                <a href="mailto:rajinderdehiya@gmail.com" className="hover:text-[#FBBF24] transition-all duration-200 text-slate-300">
-                  rajinderdehiya@gmail.com
-                </a>
+              <li className="flex items-start gap-3 group">
+                <Mail className="size-4 text-[#F59E0B] shrink-0 mt-1" aria-hidden="true" />
+                <div className="flex flex-col gap-1 text-sm">
+                  <a href="mailto:rajinderdehiya@gmail.com" className="hover:text-[#FBBF24] transition-all duration-200 text-slate-300">
+                    rajinderdehiya@gmail.com
+                  </a>
+                  <a href="mailto:navjeetdehiya@gmail.com" className="hover:text-[#FBBF24] transition-all duration-200 text-slate-300">
+                    navjeetdehiya@gmail.com
+                  </a>
+                </div>
               </li>
             </ul>
           </div>

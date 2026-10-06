@@ -11,6 +11,7 @@ import {
   Star,
   Quote,
   Phone,
+  Mail,
   Sparkles,
 } from "lucide-react";
 
@@ -928,8 +929,8 @@ export default function HomePage() {
               Connect directly with Head Coaches <strong className="text-[#FBBF24]">Mr. Rajinder Singh Dehiya</strong> and <strong className="text-[#FBBF24]">Mr. Navjeet Singh Dehiya</strong> to find the right batch, equipment, and schedule at your nearest training center.
             </p>
 
-            {/* Direct Contact Numbers Pill */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm font-mono">
+            {/* Direct Contact Numbers & Emails Pill */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-sm font-mono">
               <a
                 href="tel:9323861266"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
@@ -943,6 +944,20 @@ export default function HomePage() {
               >
                 <Phone className="size-4 text-[#F59E0B]" />
                 <span>Navjeet Sir: +91 86938 17112</span>
+              </a>
+              <a
+                href="mailto:rajinderdehiya@gmail.com"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
+              >
+                <Mail className="size-4 text-[#F59E0B]" />
+                <span>rajinderdehiya@gmail.com</span>
+              </a>
+              <a
+                href="mailto:navjeetdehiya@gmail.com"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
+              >
+                <Mail className="size-4 text-[#F59E0B]" />
+                <span>navjeetdehiya@gmail.com</span>
               </a>
             </div>
 
