@@ -70,11 +70,11 @@ export default function HomePage() {
             src="/images/unnamed-1.webp"
             alt="Dehiya Roller Skating Academy Champions & Coaches"
             fill
-            className="size-full object-cover object-center opacity-35 mix-blend-luminosity"
+            className="size-full object-cover object-center opacity-65 brightness-90 contrast-105"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1931]/90 via-[#0A1931]/75 to-[#0A1931]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1931] via-transparent to-[#0A1931]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1931]/80 via-[#0A1931]/60 to-[#0A1931]/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1931]/75 via-transparent to-[#0A1931]/75" />
         </div>
 
         {/* Decorative Gold Framing Accents */}
