@@ -1,4 +1,4 @@
-# CURBTRICK — React/Next.js rebuild
+# DEHIYA — React/Next.js rebuild
 
 This is a Next.js 14 (App Router) conversion of the site originally built on
 10Web (WordPress), generated from the WordPress export
