@@ -712,7 +712,7 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
                   <Image
-                    src="/images/dav-thane.jpg"
+                    src="/images/shreerang-vidyalaya.jpg"
                     alt="Shreerang Vidyalaya, Thane"
                     fill
                     className="size-full object-cover"
@@ -748,7 +748,7 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
                   <Image
-                    src="/images/the-chembur-gymkhana-chembur-east-mumbai-gyms-mys60cxzjg.avif"
+                    src="/images/tsf.jpg"
                     alt="Sports Foundry, Bhandup West"
                     fill
                     className="size-full object-cover"
@@ -784,7 +784,7 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
                   <Image
-                    src="/images/dav-airoli.jpg"
+                    src="/images/pratap-sarnaik-school.jpg"
                     alt="Pratap Sarnaik International School, Thane"
                     fill
                     className="size-full object-cover"
@@ -820,7 +820,7 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
                   <Image
-                    src="/images/matunga-gymkhana-matunga-east-mumbai-gyms-43t5rl6.avif"
+                    src="/images/piramal-vaikunth.webp"
                     alt="Piramal Vaikunth, Balkum Naka"
                     fill
                     className="size-full object-cover"
@@ -1067,8 +1067,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="pt-6 mt-6 border-t border-slate-100 flex items-center gap-3">
-                <div className="size-11 rounded-full bg-[#FEF3C7] border border-[#F59E0B]/50 flex items-center justify-center text-[#0A1931] font-bold font-serif shadow-xs">
-                  TS
+                <div className="relative size-11 rounded-full overflow-hidden border-2 border-[#F59E0B] shadow-xs">
+                  <Image
+                    src="/images/mintu-mama.png"
+                    alt="Terjinder Singh"
+                    fill
+                    className="size-full object-cover"
+                  />
                 </div>
                 <div>
                   <h4 className="font-serif text-sm font-bold uppercase text-[#0A1931]">Terjinder Singh</h4>
@@ -1118,8 +1123,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="pt-6 mt-6 border-t border-slate-100 flex items-center gap-3">
-                <div className="size-11 rounded-full bg-[#FEF3C7] border border-[#F59E0B]/50 flex items-center justify-center text-[#0A1931] font-bold font-serif shadow-xs">
-                  AG
+                <div className="relative size-11 rounded-full overflow-hidden border-2 border-[#F59E0B] shadow-xs">
+                  <Image
+                    src="/images/dore.png"
+                    alt="Amol Gowda"
+                    fill
+                    className="size-full object-cover"
+                  />
                 </div>
                 <div>
                   <h4 className="font-serif text-sm font-bold uppercase text-[#0A1931]">Amol Gowda</h4>

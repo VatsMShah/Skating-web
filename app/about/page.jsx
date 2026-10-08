@@ -135,7 +135,7 @@ export default function AboutPage() {
       name: "Sports Foundry & PSIS",
       location: "Bhandup & Kasarvadavali",
       badge: "ACTIVE HUBS",
-      image: "/images/pes-new-english-school-jr-college.jpg",
+      image: "/images/tsf.jpg",
       highlight: "Indoor speed training & drills",
       description: "State-of-the-art indoor and banked tracks for high-velocity speed drills.",
       tenure: "Current active centers",
