@@ -4,9 +4,9 @@ import { MapPin, Phone, Mail, Clock, Instagram, Youtube, Facebook, ArrowRight } 
 
 const NAV_LINKS = [
   { href: "/about", label: "About Us" },
-  { href: "/#training-centers", label: "Training Centers" },
-  { href: "/#merchandise", label: "Products / Merchandise" },
-  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/facilities", label: "Training Centers" },
+  { href: "/merchandise", label: "Products" },
+  { href: "/testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact Us" },
 ];
 
@@ -178,7 +178,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <Link href="/contact" className="hover:text-[#FBBF24] hover:underline underline-offset-4 transition-colors">Send an Inquiry</Link>
-            <Link href="/#training-centers" className="hover:text-[#FBBF24] hover:underline underline-offset-4 transition-colors">Training Centers</Link>
+            <Link href="/facilities" className="hover:text-[#FBBF24] hover:underline underline-offset-4 transition-colors">Training Centers</Link>
             <Link href="/about" className="hover:text-[#FBBF24] hover:underline underline-offset-4 transition-colors">About Us</Link>
           </div>
         </div>

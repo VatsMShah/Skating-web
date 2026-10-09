@@ -8,9 +8,9 @@ import { MapPin, Menu, X, ArrowUpRight } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/about", label: "About Us" },
-  { href: "/#training-centers", label: "Training Centers" },
-  { href: "/#merchandise", label: "Products / Merchandise" },
-  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/facilities", label: "Training Centers" },
+  { href: "/merchandise", label: "Products" },
+  { href: "/testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact Us" },
 ];
 

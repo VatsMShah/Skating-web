@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,45 +16,12 @@ import {
   Phone,
   Mail,
   Sparkles,
-  Video,
   Play,
-  ChevronLeft,
-  ChevronRight,
+  ShoppingBag,
 } from "lucide-react";
+import VideoGallery from "@/components/VideoGallery";
 
 export default function HomePage() {
-  const [activeMobileVideo, setActiveMobileVideo] = useState(0);
-  const [isMobileAutoPlay, setIsMobileAutoPlay] = useState(true);
-
-  const option4Videos = [
-    {
-      id: "creates-champions",
-      src: "/videos/creates-champions.mp4",
-      badge: "🥇 1. RACE SPEED",
-      caption: "Creates Champions — National Championship Speed Racing",
-    },
-    {
-      id: "psis-curriculum",
-      src: "/videos/psis-curriculum.mp4",
-      badge: "📋 2. ACADEMY DRILLS",
-      caption: "PSIS Academy — Systematic Foundation Drills & Posture",
-    },
-    {
-      id: "khopoli-camp",
-      src: "/videos/khopoli-camp.mp4",
-      badge: "⛺ 3. TRAINING CAMP",
-      caption: "Khopoli Camp — Outdoor Stamina & Endurance Conditioning",
-    },
-  ];
-
-  // Continuous loop auto-slider for mobile screens
-  useEffect(() => {
-    if (!isMobileAutoPlay) return;
-    const timer = setInterval(() => {
-      setActiveMobileVideo((prev) => (prev + 1) % option4Videos.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [isMobileAutoPlay, option4Videos.length]);
   return (
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
       {/* =====================================================================
@@ -291,7 +258,7 @@ export default function HomePage() {
                   />
                   <div className="absolute top-3 left-3 rounded-md bg-[#0A1931]/90 backdrop-blur-xs px-2.5 py-1 border border-[#F59E0B]/40">
                     <span className="text-xs font-mono font-bold tracking-wider text-[#FBBF24] uppercase">
-                      AGES 3+ // FOUNDATION
+                      AGES 4+ // FOUNDATION
                     </span>
                   </div>
                 </div>
@@ -423,195 +390,12 @@ export default function HomePage() {
       </section>
 
       {/* =====================================================================
-          SECTION 4: CHAMPIONS IN ACTION (ACADEMY FOOTAGE SHOWCASE)
+          SECTION 4: CHAMPIONS IN ACTION (5 VIDEOS SLIDING WINDOW GALLERY)
           ===================================================================== */}
-      <section
-        id="video-showcase"
-        className="py-16 md:py-24 bg-[#0A1931] text-white relative overflow-hidden border-t border-slate-800"
-      >
-        {/* Ambient subtle glow overlay */}
-        <div className="absolute top-0 right-1/4 size-96 bg-[#F59E0B]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/3 left-1/4 size-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-12 relative z-10 space-y-12">
-          
-          {/* Main Showcase Section Title */}
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FEF3C7]/15 border border-[#F59E0B]/60 text-[#FBBF24] text-xs font-bold font-mono uppercase tracking-widest mb-3">
-              <Video className="w-3.5 h-3.5 text-[#F59E0B]" aria-hidden="true" />
-              <span>Official Academy Video Footage</span>
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
-              Champions in Action
-            </h2>
-            <div className="flex items-center justify-center my-3.5">
-              <div className="h-1 w-14 bg-[#F59E0B] rounded-full shadow-[0_0_10px_rgba(245,158,11,0.8)]" />
-            </div>
-            <p className="mt-2 text-slate-300 text-sm sm:text-base md:text-lg font-sans leading-relaxed">
-              Watch real race victories, structured curriculum drills, and conditioning camps led by our Head Coaches.
-            </p>
-          </div>
-
-          {/* -------------------------------------------------------------
-              DESKTOP VIEW (md:flex): 3 Joined Slanted Video Holders
-              ------------------------------------------------------------- */}
-          <div className="hidden md:flex w-full max-w-[1200px] mx-auto flex-row items-stretch justify-center gap-0 md:scale-[1.03] transform md:-skew-x-6 transition-transform duration-300 py-4">
-            
-            {/* Video 1: Creates Champions */}
-            <div className="group relative flex-1 w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] shadow-2xl overflow-hidden md:rounded-l-2xl hover:z-20 hover:border-[#FBBF24] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all duration-300">
-              <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
-
-              <video
-                controls
-                preload="metadata"
-                className="w-full h-full object-cover scale-[1.08]"
-                src="/videos/creates-champions.mp4"
-              />
-              
-              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
-                🥇 1. RACE SPEED
-              </span>
-
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3.5 z-10 pointer-events-none">
-                <p className="text-xs sm:text-sm font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
-                  Creates Champions — National Championship Speed Racing
-                </p>
-              </div>
-            </div>
-
-            {/* Video 2: PSIS Curriculum */}
-            <div className="group relative flex-1 w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] shadow-2xl overflow-hidden hover:z-20 hover:border-[#FBBF24] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all duration-300">
-              <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
-
-              <video
-                controls
-                preload="metadata"
-                className="w-full h-full object-cover scale-[1.08]"
-                src="/videos/psis-curriculum.mp4"
-              />
-              
-              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
-                📋 2. ACADEMY DRILLS
-              </span>
-
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3.5 z-10 pointer-events-none">
-                <p className="text-xs sm:text-sm font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
-                  PSIS Academy — Systematic Foundation Drills &amp; Posture
-                </p>
-              </div>
-            </div>
-
-            {/* Video 3: Khopoli Camp */}
-            <div className="group relative flex-1 w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] shadow-2xl overflow-hidden md:rounded-r-2xl hover:z-20 hover:border-[#FBBF24] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all duration-300">
-              <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
-
-              <video
-                controls
-                preload="metadata"
-                className="w-full h-full object-cover scale-[1.08]"
-                src="/videos/khopoli-camp.mp4"
-              />
-              
-              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
-                ⛺ 3. TRAINING CAMP
-              </span>
-
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3.5 z-10 pointer-events-none">
-                <p className="text-xs sm:text-sm font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
-                  Khopoli Camp — Outdoor Stamina &amp; Endurance Conditioning
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-          {/* -------------------------------------------------------------
-              MOBILE VIEW (block md:hidden): Clean Video Carousel
-              ------------------------------------------------------------- */}
-          <div className="block md:hidden w-full max-w-[340px] sm:max-w-[380px] mx-auto py-2">
-            {/* Active Video Player */}
-            <div className="relative w-full aspect-[9/16] bg-black border-2 border-[#F59E0B] rounded-2xl shadow-2xl overflow-hidden">
-              <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
-              <span className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
-
-              <video
-                key={option4Videos[activeMobileVideo].id}
-                controls
-                preload="metadata"
-                className="w-full h-full object-cover animate-in fade-in duration-300"
-                src={option4Videos[activeMobileVideo].src}
-                onPlay={() => setIsMobileAutoPlay(false)}
-                onPause={() => setIsMobileAutoPlay(true)}
-                onEnded={() => {
-                  setIsMobileAutoPlay(true);
-                  setActiveMobileVideo((prev) => (prev + 1) % option4Videos.length);
-                }}
-              />
-
-              {/* Top Badge */}
-              <span className="absolute top-3 left-3 bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider z-10 shadow-lg">
-                {option4Videos[activeMobileVideo].badge}
-              </span>
-
-              {/* Bottom One-Liner Caption */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/80 to-transparent pt-12 pb-4 px-3 z-10 pointer-events-none">
-                <p className="text-xs font-serif font-bold uppercase text-white tracking-wide drop-shadow-md">
-                  {option4Videos[activeMobileVideo].caption}
-                </p>
-              </div>
-
-              {/* Slider Arrow Controls */}
-              <button
-                onClick={() => {
-                  setIsMobileAutoPlay(false);
-                  setActiveMobileVideo((prev) => (prev - 1 + option4Videos.length) % option4Videos.length);
-                }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 size-9 rounded-full bg-[#0A1931]/80 backdrop-blur-md border border-[#F59E0B]/60 text-white flex items-center justify-center shadow-lg hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all z-20"
-                aria-label="Previous Video"
-              >
-                <ChevronLeft className="size-5" />
-              </button>
-
-              <button
-                onClick={() => {
-                  setIsMobileAutoPlay(false);
-                  setActiveMobileVideo((prev) => (prev + 1) % option4Videos.length);
-                }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 size-9 rounded-full bg-[#0A1931]/80 backdrop-blur-md border border-[#F59E0B]/60 text-white flex items-center justify-center shadow-lg hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all z-20"
-                aria-label="Next Video"
-              >
-                <ChevronRight className="size-5" />
-              </button>
-            </div>
-
-            {/* Navigation Indicators */}
-            <div className="mt-4 flex items-center justify-center gap-2">
-              {option4Videos.map((video, idx) => (
-                <button
-                  key={video.id}
-                  onClick={() => {
-                    setIsMobileAutoPlay(false);
-                    setActiveMobileVideo(idx);
-                  }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    activeMobileVideo === idx
-                      ? "w-8 bg-[#F59E0B] shadow-[0_0_8px_rgba(245,158,11,0.8)]"
-                      : "w-2 bg-slate-700 hover:bg-slate-500"
-                  }`}
-                  aria-label={`Video ${idx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
+      <VideoGallery />
 
       {/* =====================================================================
-          SECTION 5: TRAINING CENTERS (ALL 6 LOCATIONS WITH DIRECT MAPS)
+          SECTION 5: TRAINING CENTERS (6 FEATURED LOCATIONS WITH DIRECT MAPS)
           ===================================================================== */}
       <section
         id="training-centers"
@@ -634,222 +418,443 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Center 1: Amber International School */}
-            <div data-slot="card" className="flex flex-col justify-between bg-white border border-slate-200 rounded-xl overflow-hidden p-6 hover:border-[#F59E0B] transition-all duration-200 shadow-md">
-              <div className="space-y-4">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
-                  <Image
-                    src="/images/amber-international-school-7-years-till-present.jpg"
-                    alt="Amber International School, Thane"
-                    fill
-                    className="size-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-[#0A1931] text-[#FBBF24] border border-[#F59E0B]/50 px-2.5 py-0.5 rounded shadow-sm">
-                    7+ YEARS LEGACY
-                  </span>
+            <div className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1">
+              <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+              <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                  <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                    <Image
+                      src="/images/places/amber-international-school-7-years-till-present.jpg"
+                      alt="Amber International School, Thane"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                    {/* Center Legacy Badge Floating in Middle */}
+                    <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                      <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        7+ YEARS LEGACY
+                      </span>
+                    </div>
+
+                    {/* Bottom Tagline on Scrim */}
+                    <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                      <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                        Flagship Speed Rink &amp; Drills Arena
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Zone Header */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5 text-[#D97706]" />
+                        Dhokali, Thane West
+                      </span>
+                      <span className="text-slate-400 uppercase tracking-wider">Thane</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                      Amber International School
+                    </h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                    Near Highland Park, near TMC Tank West, Dhokali, Thane West 400607.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold uppercase text-[#0A1931]">Amber International School</h3>
-                  <p className="text-xs text-[#D97706] font-mono font-bold mt-0.5">Kolshet Road, Dhokali, Thane West</p>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    href="/contact"
+                    className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Inquire Batch</span>
+                    <ArrowRight className="size-3.5 text-[#D97706]" />
+                  </Link>
+                  <a
+                    href="https://maps.app.goo.gl/iPuRK5ZCttr5KGbE7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                  >
+                    <span>Google Map</span>
+                    <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Near Highland Park, near TMC Tank West, Dhokali, Thane West 400607.
-                </p>
-              </div>
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-500">Morning &amp; Evening</span>
-                <a
-                  href="https://maps.app.goo.gl/iPuRK5ZCttr5KGbE7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A1931] hover:text-[#D97706] transition-colors"
-                >
-                  <span>Google Map</span>
-                  <ArrowUpRight className="size-3.5 text-[#F59E0B]" />
-                </a>
               </div>
             </div>
 
-            {/* Center 2: Siddeshwar Garden */}
-            <div data-slot="card" className="flex flex-col justify-between bg-white border border-slate-200 rounded-xl overflow-hidden p-6 hover:border-[#F59E0B] transition-all duration-200 shadow-md">
-              <div className="space-y-4">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
-                  <Image
-                    src="/images/siddeshwar-garden-complex-thane-20-yrs-till-present.jpg"
-                    alt="Siddeshwar Garden, Thane"
-                    fill
-                    className="size-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-[#0A1931] text-[#FBBF24] border border-[#F59E0B]/50 px-2.5 py-0.5 rounded shadow-sm">
-                    20+ YEARS RUNNING
-                  </span>
+            {/* Center 2: Siddheshwar Garden */}
+            <div className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1">
+              <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+              <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                  <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                    <Image
+                      src="/images/places/siddeshwar-garden-complex-thane-20-yrs-till-present.jpg"
+                      alt="Siddheshwar Garden Complex, Thane"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                    {/* Center Legacy Badge Floating in Middle */}
+                    <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                      <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        20+ YEARS RUNNING
+                      </span>
+                    </div>
+
+                    {/* Bottom Tagline on Scrim */}
+                    <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                      <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                        Podium Tennis &amp; Dedicated Roller Rink
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Zone Header */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5 text-[#D97706]" />
+                        Dhokali Naka, Thane West
+                      </span>
+                      <span className="text-slate-400 uppercase tracking-wider">Thane</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                      Siddheshwar Garden
+                    </h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                    Podium Court, Siddheshwar Garden, Kolshet Road, Dhokali Naka, Thane West 400607.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold uppercase text-[#0A1931]">Siddeshwar Garden</h3>
-                  <p className="text-xs text-[#D97706] font-mono font-bold mt-0.5">Dhokali Naka, Thane West</p>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    href="/contact"
+                    className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Inquire Batch</span>
+                    <ArrowRight className="size-3.5 text-[#D97706]" />
+                  </Link>
+                  <a
+                    href="https://maps.app.goo.gl/8Wii7PcMc8Vk2Fgz5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                  >
+                    <span>Google Map</span>
+                    <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Podium Tennis &amp; Skating Court, Siddeshwar Garden, Kolshet Road, Dhokali Naka 400607.
-                </p>
-              </div>
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-500">All Skill Levels</span>
-                <a
-                  href="https://maps.app.goo.gl/8Wii7PcMc8Vk2Fgz5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A1931] hover:text-[#D97706] transition-colors"
-                >
-                  <span>Google Map</span>
-                  <ArrowUpRight className="size-3.5 text-[#F59E0B]" />
-                </a>
               </div>
             </div>
 
             {/* Center 3: Shreerang Vidyalaya */}
-            <div data-slot="card" className="flex flex-col justify-between bg-white border border-slate-200 rounded-xl overflow-hidden p-6 hover:border-[#F59E0B] transition-all duration-200 shadow-md">
-              <div className="space-y-4">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
-                  <Image
-                    src="/images/shreerang-vidyalaya.jpg"
-                    alt="Shreerang Vidyalaya, Thane"
-                    fill
-                    className="size-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-[#0A1931] text-[#FBBF24] border border-[#F59E0B]/50 px-2.5 py-0.5 rounded shadow-sm">
-                    THANE WEST
-                  </span>
+            <div className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1">
+              <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+              <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                  <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                    <Image
+                      src="/images/places/shreerang-vidyalaya.jpg"
+                      alt="Shreerang Vidyalaya, Thane"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                    {/* Center Legacy Badge Floating in Middle */}
+                    <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                      <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        CENTRAL THANE HUB
+                      </span>
+                    </div>
+
+                    {/* Bottom Tagline on Scrim */}
+                    <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                      <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                        Central Thane Foundation &amp; Junior Development
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Zone Header */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5 text-[#D97706]" />
+                        Shrirang Society, Thane West
+                      </span>
+                      <span className="text-slate-400 uppercase tracking-wider">Thane</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                      Shreerang Vidyalaya
+                    </h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                    P.P. Hathyogi Nikam Guruji Marg, Shrirang Society, Thane West 400601.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold uppercase text-[#0A1931]">Shreerang Vidyalaya</h3>
-                  <p className="text-xs text-[#D97706] font-mono font-bold mt-0.5">Shrirang Society, Thane West</p>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    href="/contact"
+                    className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Inquire Batch</span>
+                    <ArrowRight className="size-3.5 text-[#D97706]" />
+                  </Link>
+                  <a
+                    href="https://maps.app.goo.gl/o8e5RXjS1vwGPw6DA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                  >
+                    <span>Google Map</span>
+                    <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  P.P, Hathyogi Nikam Guruji Marg, Shrirang Society, Thane West 400601.
-                </p>
-              </div>
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-500">Junior &amp; Senior</span>
-                <a
-                  href="https://maps.app.goo.gl/o8e5RXjS1vwGPw6DA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A1931] hover:text-[#D97706] transition-colors"
-                >
-                  <span>Google Map</span>
-                  <ArrowUpRight className="size-3.5 text-[#F59E0B]" />
-                </a>
               </div>
             </div>
 
             {/* Center 4: Sports Foundry, Bhandup */}
-            <div data-slot="card" className="flex flex-col justify-between bg-white border border-slate-200 rounded-xl overflow-hidden p-6 hover:border-[#F59E0B] transition-all duration-200 shadow-md">
-              <div className="space-y-4">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
-                  <Image
-                    src="/images/tsf.jpg"
-                    alt="Sports Foundry, Bhandup West"
-                    fill
-                    className="size-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-[#0A1931] text-[#FBBF24] border border-[#F59E0B]/50 px-2.5 py-0.5 rounded shadow-sm">
-                    BHANDUP // MUMBAI
-                  </span>
+            <div className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1">
+              <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+              <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                  <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                    <Image
+                      src="/images/places/tsf.jpg"
+                      alt="Sports Foundry, Bhandup West, Mumbai"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                    {/* Center Legacy Badge Floating in Middle */}
+                    <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                      <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        OLYMPIC SPEED TRACK
+                      </span>
+                    </div>
+
+                    {/* Bottom Tagline on Scrim */}
+                    <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                      <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                        High-Performance Speed Track &amp; Conditioning
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Zone Header */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5 text-[#D97706]" />
+                        LBS Marg, Bhandup West
+                      </span>
+                      <span className="text-slate-400 uppercase tracking-wider">Mumbai</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                      The Sports Foundry (TSF)
+                    </h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                    Rolex Metal Industries Compound, Village Road, LBS Marg, Bhandup West 400078.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold uppercase text-[#0A1931]">Sports Foundry</h3>
-                  <p className="text-xs text-[#D97706] font-mono font-bold mt-0.5">LBS Marg, Bhandup West, Mumbai</p>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    href="/contact"
+                    className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Inquire Batch</span>
+                    <ArrowRight className="size-3.5 text-[#D97706]" />
+                  </Link>
+                  <a
+                    href="https://maps.app.goo.gl/brq8GMmmJL3Dvq8F7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                  >
+                    <span>Google Map</span>
+                    <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Rolex Metal Industries Compound, Village Road, LBS Marg, Bhandup West 400078.
-                </p>
-              </div>
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-500">Speed Rink</span>
-                <a
-                  href="https://maps.app.goo.gl/brq8GMmmJL3Dvq8F7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A1931] hover:text-[#D97706] transition-colors"
-                >
-                  <span>Google Map</span>
-                  <ArrowUpRight className="size-3.5 text-[#F59E0B]" />
-                </a>
               </div>
             </div>
 
             {/* Center 5: Pratap Sarnaik International School */}
-            <div data-slot="card" className="flex flex-col justify-between bg-white border border-slate-200 rounded-xl overflow-hidden p-6 hover:border-[#F59E0B] transition-all duration-200 shadow-md">
-              <div className="space-y-4">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
-                  <Image
-                    src="/images/pratap-sarnaik-school.jpg"
-                    alt="Pratap Sarnaik International School, Thane"
-                    fill
-                    className="size-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-[#0A1931] text-[#FBBF24] border border-[#F59E0B]/50 px-2.5 py-0.5 rounded shadow-sm">
-                    KASARVADAVALI
-                  </span>
+            <div className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1">
+              <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+              <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                  <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                    <Image
+                      src="/images/places/pratap-sarnaik-school.jpg"
+                      alt="Pratap Sarnaik International School, Thane"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                    {/* Center Legacy Badge Floating in Middle */}
+                    <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                      <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        GB ROAD HUB
+                      </span>
+                    </div>
+
+                    {/* Bottom Tagline on Scrim */}
+                    <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                      <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                        Ghodbunder Corridor In-School &amp; Open Academy
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Zone Header */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5 text-[#D97706]" />
+                        Empress Park, Kasarvadavali
+                      </span>
+                      <span className="text-slate-400 uppercase tracking-wider">Thane</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                      Pratap Sarnaik Int. School
+                    </h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                    Plot No. 7/13 &amp; 7/19, near Children Traffic Park, Kasarvadavali 400615.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold uppercase text-[#0A1931]">Pratap Sarnaik Int. School</h3>
-                  <p className="text-xs text-[#D97706] font-mono font-bold mt-0.5">Empress Park, Kasarvadavali</p>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    href="/contact"
+                    className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Inquire Batch</span>
+                    <ArrowRight className="size-3.5 text-[#D97706]" />
+                  </Link>
+                  <a
+                    href="https://maps.app.goo.gl/iem4cdkthKAtbV9r7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                  >
+                    <span>Google Map</span>
+                    <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Plot No. 7/13 &amp; 7/19, near Children Traffic Park, Kasarvadavali 400615.
-                </p>
-              </div>
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-500">Academy Sessions</span>
-                <a
-                  href="https://maps.app.goo.gl/iem4cdkthKAtbV9r7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A1931] hover:text-[#D97706] transition-colors"
-                >
-                  <span>Google Map</span>
-                  <ArrowUpRight className="size-3.5 text-[#F59E0B]" />
-                </a>
               </div>
             </div>
 
             {/* Center 6: Piramal Vaikunth */}
-            <div data-slot="card" className="flex flex-col justify-between bg-white border border-slate-200 rounded-xl overflow-hidden p-6 hover:border-[#F59E0B] transition-all duration-200 shadow-md">
-              <div className="space-y-4">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
-                  <Image
-                    src="/images/piramal-vaikunth.webp"
-                    alt="Piramal Vaikunth, Balkum Naka"
-                    fill
-                    className="size-full object-cover"
-                  />
-                  <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-[#0A1931] text-[#FBBF24] border border-[#F59E0B]/50 px-2.5 py-0.5 rounded shadow-sm">
-                    BALKUM NAKA
-                  </span>
+            <div className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1">
+              <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+              <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                  <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                    <Image
+                      src="/images/places/piramal-vaikunth.webp"
+                      alt="Piramal Vaikunth, Balkum Naka, Thane"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                    {/* Center Legacy Badge Floating in Middle */}
+                    <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                      <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        BALKUM CORRIDOR
+                      </span>
+                    </div>
+
+                    {/* Bottom Tagline on Scrim */}
+                    <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                      <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                        Premium Residential Sports Arena
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Zone Header */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5 text-[#D97706]" />
+                        Old Mumbai-Agra Road, Balkum
+                      </span>
+                      <span className="text-slate-400 uppercase tracking-wider">Thane</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                      Piramal Vaikunth
+                    </h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                    Bayer Near Shivaji Nagar Ram Maruti Nagar, Balkum Naka, Thane West 400607.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold uppercase text-[#0A1931]">Piramal Vaikunth</h3>
-                  <p className="text-xs text-[#D97706] font-mono font-bold mt-0.5">Old Mumbai-Agra Road, Balkum</p>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    href="/contact"
+                    className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Inquire Batch</span>
+                    <ArrowRight className="size-3.5 text-[#D97706]" />
+                  </Link>
+                  <a
+                    href="https://maps.app.goo.gl/ytQovR2huQ4Phpfi7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                  >
+                    <span>Google Map</span>
+                    <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Bayer Near Shivaji Nagar Ram Maruti Nagar, Balkum Naka, Thane West 400607.
-                </p>
-              </div>
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-500">Weekend Batches</span>
-                <a
-                  href="https://maps.app.goo.gl/ytQovR2huQ4Phpfi7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A1931] hover:text-[#D97706] transition-colors"
-                >
-                  <span>Google Map</span>
-                  <ArrowUpRight className="size-3.5 text-[#F59E0B]" />
-                </a>
               </div>
             </div>
+          </div>
+
+          {/* Quick jump to see all 20 centers */}
+          <div className="mt-10 text-center">
+            <Link
+              href="/facilities"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A1931] text-[#FBBF24] hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <span>Explore All 20 Training Centers with Maps &amp; Schedules</span>
+              <ArrowRight className="size-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -879,12 +884,12 @@ export default function HomePage() {
             </div>
             <div className="shrink-0">
               <Link
-                href="/contact"
+                href="/merchandise"
                 data-slot="button"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-slate-100 text-[#0A1931] hover:bg-[#FEF3C7] border border-slate-300 font-sans font-bold uppercase tracking-wider text-xs md:text-sm px-6 py-3 rounded-md transition-all duration-200 hover:border-[#F59E0B]"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-[#0A1931] text-white hover:bg-[#F59E0B] hover:text-[#0A1931] border border-[#F59E0B]/50 font-sans font-bold uppercase tracking-wider text-xs md:text-sm px-6 py-3 rounded-md transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
-                <span>Inquire About Equipment</span>
-                <ArrowRight className="size-4 text-[#D97706]" />
+                <span>Explore Full Equipment Catalogue</span>
+                <ArrowRight className="size-4 text-[#FBBF24] group-hover:text-[#0A1931]" />
               </Link>
             </div>
           </div>
@@ -1026,6 +1031,26 @@ export default function HomePage() {
               <span className="text-[11px] font-mono text-[#D97706] font-bold mt-3 block">Travel Gear</span>
             </div>
           </div>
+
+          {/* Quick jump to full catalogue with filter tabs */}
+          <div className="mt-10 p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div className="flex items-center gap-3">
+              <div className="size-10 rounded-xl bg-[#F59E0B]/20 border border-[#F59E0B] flex items-center justify-center text-[#D97706] shrink-0">
+                <ShoppingBag className="size-5" />
+              </div>
+              <div>
+                <h4 className="font-serif text-base font-bold uppercase text-[#0A1931]">Need custom sizing or speed quad &amp; inline setups?</h4>
+                <p className="text-xs text-slate-500">Filter all equipment by category, view technical specs, and check the coach sizing guide.</p>
+              </div>
+            </div>
+            <Link
+              href="/merchandise"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A1931] text-[#FBBF24] hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 shrink-0 shadow-xs"
+            >
+              <span>View Filter Tabs &amp; Sizing Guide</span>
+              <ArrowRight className="size-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -1138,6 +1163,17 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
+          {/* Quick jump to full testimonials */}
+          <div className="mt-10 text-center">
+            <Link
+              href="/testimonials"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A1931] text-[#FBBF24] hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <span>Read All Parent &amp; Champion Stories</span>
+              <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -1199,14 +1235,14 @@ export default function HomePage() {
             </div>
 
             {/* Single CTA Action Button */}
-            <div className="mt-10 flex justify-center">
+            <div className="mt-8 sm:mt-10 flex justify-center">
               <Link
                 href="/contact"
                 data-slot="button"
-                className="inline-flex items-center justify-center gap-2.5 whitespace-nowrap text-base font-serif font-extrabold uppercase tracking-wider outline-none bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] h-13 px-10 rounded-md transition-all duration-200 shadow-2xl shadow-[#F59E0B]/40 hover:shadow-[#F59E0B]/60 hover:-translate-y-0.5"
+                className="w-full sm:w-auto sm:min-w-[280px] max-w-sm inline-flex items-center justify-center gap-2.5 py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] font-serif text-xs sm:text-sm md:text-base font-extrabold uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#F59E0B]/30 hover:shadow-[#F59E0B]/50 hover:-translate-y-0.5 active:translate-y-0 text-center"
               >
                 <span>Send an Inquiry</span>
-                <ArrowRight className="size-5 text-[#0A1931]" aria-hidden="true" />
+                <ArrowRight className="size-4 sm:size-5 text-[#0A1931] shrink-0" aria-hidden="true" />
               </Link>
             </div>
           </div>

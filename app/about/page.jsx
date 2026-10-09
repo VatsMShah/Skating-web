@@ -72,73 +72,89 @@ export default function AboutPage() {
       name: "Siddheshwar Garden Complex",
       location: "Kolshet Road, Thane West",
       badge: "20+ YEARS RUNNING",
-      image: "/images/siddeshwar-garden-complex-thane-20-yrs-till-present.jpg",
+      tagline: "Podium Tennis & Dedicated Roller Rink",
+      image: "/images/places/siddeshwar-garden-complex-thane-20-yrs-till-present.jpg",
       highlight: "Longest continuous academy center",
-      description: "Podium Tennis & Skating Court, Siddheshwar Garden, Kolshet Road, Dhokali Naka.",
+      description: "Podium Court, Siddheshwar Garden, Kolshet Road, Dhokali Naka, Thane West 400607.",
       tenure: "20+ Years till present",
+      mapUrl: "https://maps.app.goo.gl/8Wii7PcMc8Vk2Fgz5",
     },
     {
       name: "Amber International School",
       location: "Dhokali, Thane West",
       badge: "7+ YEARS LEGACY",
-      image: "/images/amber-international-school-7-years-till-present.jpg",
+      tagline: "In-School Certified Skating Curriculum",
+      image: "/images/places/amber-international-school-7-years-till-present.jpg",
       highlight: "In-school certified skating curriculum",
       description: "Near Highland Park, near TMC Tank West, Dhokali, Thane West 400607.",
       tenure: "7+ Years till present",
+      mapUrl: "https://maps.app.goo.gl/iPuRK5ZCttr5KGbE7",
     },
     {
       name: "TMC Mini Stadium",
-      location: "Thane",
+      location: "Thane Municipal Sports Area",
       badge: "2+ YEARS RUNNING",
-      image: "/images/tmc-mini-stadium-thane-2-years-till-present.avif",
+      tagline: "Municipal Championship Speed Track",
+      image: "/images/places/tmc-mini-stadium-thane-2-years-till-present.jpg",
       highlight: "Municipal sports complex speed track",
-      description: "Thane Municipal Corporation certified speed training track.",
+      description: "Thane Municipal Corporation official speed training banked track.",
       tenure: "2+ Years till present",
+      mapUrl: "https://maps.google.com/?q=Thane+Municipal+Corporation+Stadium",
     },
     {
       name: "DAV Public Schools",
       location: "Airoli, Nerul & Thane",
       badge: "MULTI-YEAR TIE-UP",
-      image: "/images/dav-airoli.jpg",
+      tagline: "Accredited In-School Skating Academy",
+      image: "/images/places/dav-airoli.jpg",
       highlight: "Hundreds of school skaters trained",
       description: "Annual accredited skating coaching programs across DAV branches.",
       tenure: "Multi-year partnership",
+      mapUrl: "https://maps.google.com/?q=DAV+Public+School+Airoli",
     },
     {
       name: "Matunga Gymkhana",
       location: "Matunga East, Mumbai",
       badge: "PREMIER CLUB",
-      image: "/images/matunga-gymkhana-matunga-east-mumbai-gyms-43t5rl6.avif",
+      tagline: "Historic Heritage Sports Club",
+      image: "/images/places/matunga-gymkhana-matunga-east-mumbai-gyms-43t5rl6.avif",
       highlight: "Weekend club coaching batches",
       description: "Premier sports club coaching batches for juniors and advanced athletes.",
       tenure: "Club coaching batch",
+      mapUrl: "https://maps.google.com/?q=Matunga+Gymkhana+Mumbai",
     },
     {
       name: "The Chembur Gymkhana",
       location: "Chembur East, Mumbai",
       badge: "PRESTIGIOUS CLUB",
-      image: "/images/the-chembur-gymkhana-chembur-east-mumbai-gyms-mys60cxzjg.avif",
+      tagline: "Enclosed Roller Skating Rink",
+      image: "/images/places/the-chembur-gymkhana-chembur-east-mumbai-gyms-mys60cxzjg.avif",
       highlight: "Junior roller & inline programs",
       description: "Dedicated junior roller and inline training program batches.",
       tenure: "Club coaching batch",
+      mapUrl: "https://maps.google.com/?q=The+Chembur+Gymkhana+Mumbai",
     },
     {
       name: "YMCA Bombay, Ghatkopar & CBD",
       location: "Mumbai & Navi Mumbai",
       badge: "HISTORIC VENUE",
-      image: "/images/ymca-bombay.png",
+      tagline: "Multi-Decade Youth Sports Partner",
+      image: "/images/places/ymca-bombay.png",
       highlight: "Decades of grassroots youth camps",
       description: "Historic coaching centers where generations of skaters learned their basics.",
       tenure: "Legacy institutional centers",
+      mapUrl: "https://maps.google.com/?q=Bombay+YMCA+Mumbai",
     },
     {
-      name: "Sports Foundry & PSIS",
+      name: "The Sports Foundry & PSIS",
       location: "Bhandup & Kasarvadavali",
       badge: "ACTIVE HUBS",
-      image: "/images/tsf.jpg",
+      tagline: "Olympic Grade High-Velocity Track",
+      image: "/images/places/tsf.jpg",
       highlight: "Indoor speed training & drills",
       description: "State-of-the-art indoor and banked tracks for high-velocity speed drills.",
       tenure: "Current active centers",
+      mapUrl: "https://maps.app.goo.gl/brq8GMmmJL3Dvq8F7",
     },
   ];
 
@@ -560,116 +576,164 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {institutions.map((inst, index) => (
               <div
                 key={index}
-                data-slot="card"
-                className="flex flex-col justify-between bg-white border border-slate-200 rounded-xl overflow-hidden p-6 hover:border-[#F59E0B] transition-all duration-200 shadow-md"
+                className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1"
               >
-                <div className="space-y-4">
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-100">
-                    <Image
-                      src={inst.image}
-                      alt={`${inst.name}, Mumbai & Thane`}
-                      fill
-                      className="size-full object-cover"
-                    />
-                    <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-[#0A1931] text-[#FBBF24] border border-[#F59E0B]/50 px-2.5 py-0.5 rounded shadow-sm">
-                      {inst.badge}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-lg font-bold uppercase text-[#0A1931] leading-snug">
-                      {inst.name}
-                    </h3>
-                    <p className="text-xs text-[#D97706] font-mono font-bold mt-0.5">
-                      {inst.location}
+                {/* Top Accent Strip */}
+                <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+
+                <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                    <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                      <Image
+                        src={inst.image}
+                        alt={`${inst.name}, Mumbai & Thane`}
+                        fill
+                        className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                      <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                      {/* Center Legacy Badge Floating in Middle */}
+                      <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                        <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                          {inst.badge}
+                        </span>
+                      </div>
+
+                      {/* Bottom Tagline on Scrim */}
+                      <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                        <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                          {inst.tagline}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Title & Location Header */}
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                        <span className="inline-flex items-center gap-1">
+                          <MapPin className="size-3.5 text-[#D97706]" />
+                          {inst.location}
+                        </span>
+                        <span className="text-slate-400 uppercase tracking-wider text-[11px]">{inst.tenure}</span>
+                      </div>
+                      <h3 className="font-serif text-lg sm:text-xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                        {inst.name}
+                      </h3>
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                      {inst.description}
                     </p>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {inst.description}
-                  </p>
-                </div>
-                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs font-mono text-slate-500">{inst.tenure}</span>
-                  <span className="text-xs font-mono font-bold text-[#D97706] uppercase tracking-wider">
-                    D.R.S.A Partner
-                  </span>
+
+                  {/* Card Footer: Action Links */}
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                    <Link
+                      href="/facilities"
+                      className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                    >
+                      <span>View Center</span>
+                      <ArrowRight className="size-3.5 text-[#D97706]" />
+                    </Link>
+                    <a
+                      href={inst.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                    >
+                      <span>Google Map</span>
+                      <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Additional Places Mention Ribbon */}
-          <div className="mt-12 rounded-xl border border-slate-200 bg-white p-6 text-center shadow-xs">
+          <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 text-center shadow-xs">
             <p className="text-xs uppercase font-mono tracking-wider text-[#D97706] font-bold mb-2">
               Additional Past &amp; Present Training Centers
             </p>
-            <p className="font-serif text-sm sm:text-base font-bold uppercase text-[#0A1931] tracking-wide">
-              Little Flower High School • Marble Arch School • SMT Naupada • PES New English School &amp; Jr College • North Point School • CBD YMCA • Ghatkopar YMCA
+            <p className="font-serif text-sm sm:text-base font-bold uppercase text-[#0A1931] tracking-wide max-w-3xl mx-auto leading-relaxed">
+              Little Flower High School • Marble Arch School • SMT Naupada • PES New English School &amp; Jr College • North Point School • CBD Belapur YMCA • Ghatkopar YMCA
             </p>
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          SECTION 6: FINAL CALL TO ACTION (JOIN D.R.S.A)
+          SECTION 6: FINAL CALL-TO-ACTION (WHITE BACKGROUND & BLUE CTA CARD)
           ===================================================================== */}
       <section
         id="about-cta"
-        className="py-20 md:py-28 bg-[#0A1931] text-white relative overflow-hidden"
+        className="py-20 md:py-28 bg-white border-t border-slate-200"
       >
-        <div className="mx-auto max-w-[1320px] px-6 md:px-8 lg:px-12 relative z-10">
-          <div className="relative rounded-3xl border border-[#F59E0B]/30 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md p-8 sm:p-12 md:p-16 shadow-2xl overflow-hidden text-center max-w-4xl mx-auto">
-            {/* Top Accent Line */}
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-[#F59E0B]" />
+        <div className="mx-auto max-w-[1320px] px-6 md:px-8 lg:px-12">
+          <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#0A1931] via-[#0E2954] to-[#1E3A8A] text-white p-6 sm:p-10 md:p-14 shadow-2xl overflow-hidden text-center max-w-4xl mx-auto border border-[#F59E0B]/30">
+            {/* Decorative Top Accent Bar */}
+            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-transparent" />
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FEF3C7]/15 border border-[#F59E0B]/50 text-[#FBBF24] text-xs font-bold uppercase tracking-widest mb-6">
-              <Sparkles className="size-4 text-[#F59E0B]" />
-              <span>Enroll Today at D.R.S.A</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-[#F59E0B]/40 text-[#FBBF24] text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-xs">
+              <Sparkles className="size-3.5 text-[#F59E0B]" />
+              <span>Join The D.R.S.A Family</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
-              Ready to Roll with the Champions?
+              Ready to Start Your Skating Journey?
             </h2>
 
-            <p className="mt-6 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Whether you are a 4-year-old beginner stepping onto skates for the first time or an ambitious athlete aiming for the National podium, our master coaches are ready to welcome you.
+            <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
+              Connect directly with Head Coaches <strong className="text-[#FBBF24]">Mr. Rajinder Singh Dehiya</strong> and <strong className="text-[#FBBF24]">Mr. Navjeet Singh Dehiya</strong> to find the right batch, equipment, and schedule at your nearest training center.
             </p>
 
-            {/* Direct Contact Numbers Pill */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm font-mono">
+            {/* Direct Contact Numbers & Emails Pill */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-sm font-mono">
               <a
                 href="tel:9323861266"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all font-semibold"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
               >
-                <Phone className="size-4 text-[#FBBF24]" />
+                <Phone className="size-4 text-[#F59E0B]" />
                 <span>Rajinder Singh: +91 93238 61266</span>
               </a>
               <a
                 href="tel:8693817112"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all font-semibold"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
               >
-                <Phone className="size-4 text-[#FBBF24]" />
+                <Phone className="size-4 text-[#F59E0B]" />
                 <span>Navjeet Singh: +91 86938 17112</span>
+              </a>
+              <a
+                href="mailto:rajinderdehiya@gmail.com"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
+              >
+                <Mail className="size-4 text-[#F59E0B]" />
+                <span>rajinderdehiya@gmail.com</span>
+              </a>
+              <a
+                href="mailto:navjeetdehiya@gmail.com"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white hover:text-[#FBBF24] hover:border-[#F59E0B]/60 transition-colors"
+              >
+                <Mail className="size-4 text-[#F59E0B]" />
+                <span>navjeetdehiya@gmail.com</span>
               </a>
             </div>
 
-            {/* Action Buttons */}
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/#training-centers"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-base font-extrabold uppercase tracking-wider bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] h-13 px-9 rounded-md transition-all duration-200 shadow-xl shadow-[#F59E0B]/30 hover:-translate-y-0.5 w-full sm:w-auto"
-              >
-                <span>Explore 6 Training Centers</span>
-                <ArrowRight className="size-5 text-[#0A1931]" aria-hidden="true" />
-              </Link>
+            {/* Single CTA Action Button */}
+            <div className="mt-8 sm:mt-10 flex justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-base font-bold uppercase tracking-wider border-2 border-white/30 text-white hover:border-[#F59E0B] hover:text-[#FBBF24] h-13 px-9 rounded-md transition-all duration-200 w-full sm:w-auto"
+                data-slot="button"
+                className="w-full sm:w-auto sm:min-w-[280px] max-w-sm inline-flex items-center justify-center gap-2.5 py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] font-serif text-xs sm:text-sm md:text-base font-extrabold uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#F59E0B]/30 hover:shadow-[#F59E0B]/50 hover:-translate-y-0.5 active:translate-y-0 text-center"
               >
                 <span>Send an Inquiry</span>
+                <ArrowRight className="size-4 sm:size-5 text-[#0A1931] shrink-0" aria-hidden="true" />
               </Link>
             </div>
           </div>

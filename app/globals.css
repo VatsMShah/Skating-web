@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-@source "./app";
-@source "./components";
-@source "./content";
+@source "../app";
+@source "../components";
+@source "../content";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -73,9 +73,12 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   overflow-x: hidden;
-  selection-background-color: #F59E0B;
-  selection-color: #0A1931;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background-color: #F59E0B;
+  color: #0A1931;
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif {
