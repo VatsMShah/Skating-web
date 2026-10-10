@@ -173,6 +173,7 @@ export default function AboutPage() {
             src="/images/gallery/2024-02-11-2.jpg"
             alt="Dehiya Roller Skating Academy Speed Skaters on Track"
             fill
+            sizes="100vw"
             className="size-full object-cover object-center opacity-65 brightness-90 contrast-105"
             priority
           />
@@ -259,6 +260,8 @@ export default function AboutPage() {
                     src="/images/gallery/2024-02-11.jpg"
                     alt="Head Coaches Mr. Rajinder Singh Dehiya and Mr. Navjeet Singh Dehiya with D.R.S.A Trophy Winners"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading="lazy"
                     className="size-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1931] via-transparent to-transparent opacity-85" />
@@ -279,6 +282,8 @@ export default function AboutPage() {
                       src="/images/logo.png"
                       alt="D.R.S.A Emblem"
                       fill
+                      sizes="48px"
+                      loading="lazy"
                       className="object-contain"
                     />
                   </div>
@@ -379,6 +384,8 @@ export default function AboutPage() {
                       src="/images/rajinder-singh-dehiya.jpg"
                       alt="Mr. Rajinder Singh Dehiya - Owner & Head Coach"
                       fill
+                      sizes="(max-width: 640px) 128px, 144px"
+                      loading="lazy"
                       className="size-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -435,6 +442,8 @@ export default function AboutPage() {
                       src="/images/navjeet-singh-dehiya.jpg"
                       alt="Mr. Navjeet Singh Dehiya - Co-founder & Head Coach"
                       fill
+                      sizes="(max-width: 640px) 128px, 144px"
+                      loading="lazy"
                       className="size-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -593,6 +602,8 @@ export default function AboutPage() {
                         src={inst.image}
                         alt={`${inst.name}, Mumbai & Thane`}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        loading="lazy"
                         className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />

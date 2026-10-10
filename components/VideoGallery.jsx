@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Video,
@@ -12,6 +13,7 @@ export const ACADEMY_VIDEOS = [
   {
     id: "champion",
     src: "/videos/champion.mp4",
+    poster: "/images/gallery/2026-09-28.jpg",
     badge: "🥇 1. CHAMPIONSHIP GLORY",
     title: "National Champions & Medalists",
     description: "Podium finishes & elite speed milestones from our gold-winning academy skaters.",
@@ -19,6 +21,7 @@ export const ACADEMY_VIDEOS = [
   {
     id: "creates-champions",
     src: "/videos/creates-champions.mp4",
+    poster: "/images/unnamed-1.webp",
     badge: "⚡ 2. RACE SPEED & POWER",
     title: "Creates Champions — Speed Racing",
     description: "High-velocity straightaways, crossover mastery, and track dominance at full speed.",
@@ -26,6 +29,7 @@ export const ACADEMY_VIDEOS = [
   {
     id: "psis-curriculum",
     src: "/videos/psis-curriculum.mp4",
+    poster: "/images/gallery/2025-05-17.jpg",
     badge: "📋 3. ACADEMY DRILLS",
     title: "PSIS Academy — Form & Posture",
     description: "Systematic foundation drills, knee-bend techniques, and body balance coaching.",
@@ -33,6 +37,7 @@ export const ACADEMY_VIDEOS = [
   {
     id: "khopoli-camp",
     src: "/videos/khopoli-camp.mp4",
+    poster: "/images/gallery/2024-08-18.jpg",
     badge: "⛺ 4. TRAINING CAMP",
     title: "Khopoli Camp — Endurance Bootcamp",
     description: "Intensive stamina building, outdoor incline training, and mental endurance conditioning.",
@@ -40,6 +45,7 @@ export const ACADEMY_VIDEOS = [
   {
     id: "sports-foundry",
     src: "/videos/sports-foundry.mp4",
+    poster: "/images/gallery/2026-02-10.jpg",
     badge: "🏋️ 5. ATHLETIC FOUNDRY",
     title: "Sports Foundry — Strength & Agility",
     description: "Core strengthening, plyometrics, and athletic functional training tailored for skaters.",
@@ -112,7 +118,7 @@ export default function VideoGallery() {
     }
   };
 
-  // Automatic slide interval - ONLY pauses when a video is clicked/playing (hover does NOT stop it)
+  // Automatic slide interval - ONLY pauses when a video is clicked/playing
   useEffect(() => {
     if (activePlayingId !== null) return;
 
@@ -157,24 +163,14 @@ export default function VideoGallery() {
     }
   };
 
-  const toggleVideoPlayback = (uniqueKey) => {
-    const videoEl = videoRefs.current[uniqueKey];
-    if (!videoEl) return;
-
-    // Pause all other videos immediately
-    Object.entries(videoRefs.current).forEach(([key, otherEl]) => {
-      if (key !== uniqueKey && otherEl && !otherEl.paused) {
-        otherEl.pause();
+  const startPlaying = (uniqueKey) => {
+    setActivePlayingId(uniqueKey);
+    setTimeout(() => {
+      const videoEl = videoRefs.current[uniqueKey];
+      if (videoEl) {
+        videoEl.play().catch(() => {});
       }
-    });
-
-    if (videoEl.paused) {
-      videoEl.play();
-      setActivePlayingId(uniqueKey);
-    } else {
-      videoEl.pause();
-      setActivePlayingId(null);
-    }
+    }, 50);
   };
 
   // Active original video index (0-4)
@@ -290,23 +286,37 @@ export default function VideoGallery() {
                       <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
                       <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
 
-                      {/* HTML5 Video Element */}
-                      <video
-                        ref={(el) => {
-                          videoRefs.current[uniqueKey] = el;
-                        }}
-                        controls={isCurrentlyPlaying}
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover"
-                        src={video.src}
-                        onPlay={() => handlePlayVideo(uniqueKey)}
-                        onPause={() => handlePauseVideo(uniqueKey)}
-                        onEnded={() => {
-                          handlePauseVideo(uniqueKey);
-                          handleNext();
-                        }}
-                      />
+                      {/* Video or High-res Poster Display */}
+                      {isCurrentlyPlaying ? (
+                        <video
+                          ref={(el) => {
+                            videoRefs.current[uniqueKey] = el;
+                          }}
+                          controls
+                          autoPlay
+                          playsInline
+                          preload="auto"
+                          className="w-full h-full object-cover"
+                          src={video.src}
+                          onPlay={() => handlePlayVideo(uniqueKey)}
+                          onPause={() => handlePauseVideo(uniqueKey)}
+                          onEnded={() => {
+                            handlePauseVideo(uniqueKey);
+                            handleNext();
+                          }}
+                        />
+                      ) : (
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={video.poster}
+                            alt={video.title}
+                            fill
+                            sizes="(max-width: 640px) 84vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
 
                       {/* Top Floating Badge */}
                       <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10 pointer-events-none">
@@ -315,10 +325,10 @@ export default function VideoGallery() {
                         </span>
                       </div>
 
-                      {/* Play Center Button Overlay (Clicking starts this video and pauses all others) */}
+                      {/* Play Center Button Overlay */}
                       {!isCurrentlyPlaying && (
                         <button
-                          onClick={() => toggleVideoPlayback(uniqueKey)}
+                          onClick={() => startPlaying(uniqueKey)}
                           className="absolute inset-0 z-15 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors cursor-pointer"
                           aria-label={`Play ${video.title}`}
                         >

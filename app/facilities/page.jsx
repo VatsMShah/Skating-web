@@ -194,6 +194,7 @@ export default function FacilitiesPage() {
             src="/images/gallery/2026-09-28.jpg"
             alt="Dehiya Roller Skating Academy Speed Skaters Training"
             fill
+            sizes="100vw"
             className="size-full object-cover object-center opacity-60 brightness-90 contrast-105"
             priority
           />
@@ -541,6 +542,8 @@ function CenterBentoCard({ center }) {
               src={center.image}
               alt={center.name}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
               className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
             />
 

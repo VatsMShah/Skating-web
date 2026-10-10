@@ -37,6 +37,7 @@ export default function HomePage() {
             src="/images/unnamed-1.webp"
             alt="Dehiya Roller Skating Academy Champions & Coaches"
             fill
+            sizes="100vw"
             className="size-full object-cover object-center opacity-65 brightness-90 contrast-105"
             priority
           />
@@ -133,6 +134,7 @@ export default function HomePage() {
                       src="/images/rajinder-singh-dehiya.jpg"
                       alt="Mr. Rajinder Singh Dehiya - Owner & Head Coach"
                       fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 300px"
                       className="size-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/75 to-transparent p-3">
@@ -146,6 +148,7 @@ export default function HomePage() {
                       src="/images/navjeet-singh-dehiya.jpg"
                       alt="Mr. Navjeet Singh Dehiya - Co-founder & Head Coach"
                       fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 300px"
                       className="size-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/95 via-[#0A1931]/75 to-transparent p-3">
@@ -254,6 +257,7 @@ export default function HomePage() {
                     src="/images/basic-adjustable-skates.png"
                     alt="Beginner Foundation Skating"
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="size-full object-contain"
                   />
                   <div className="absolute top-3 left-3 rounded-md bg-[#0A1931]/90 backdrop-blur-xs px-2.5 py-1 border border-[#F59E0B]/40">
@@ -290,6 +294,7 @@ export default function HomePage() {
                     src="/images/speed-quad-skates.png"
                     alt="Speed Quad Skating"
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="size-full object-contain"
                   />
                   <div className="absolute top-3 left-3 rounded-md bg-[#0A1931]/90 backdrop-blur-xs px-2.5 py-1 border border-[#F59E0B]/40">
@@ -326,6 +331,7 @@ export default function HomePage() {
                     src="/images/professional-speed-inline-skates.png"
                     alt="Professional Speed Inline Skating"
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="size-full object-contain"
                   />
                   <div className="absolute top-3 left-3 rounded-md bg-[#0A1931]/90 backdrop-blur-xs px-2.5 py-1 border border-[#F59E0B]/40">
@@ -362,6 +368,7 @@ export default function HomePage() {
                     src="/images/club-bodysuits.jpg"
                     alt="National Championship Prep"
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="size-full object-contain"
                   />
                   <div className="absolute top-3 left-3 rounded-md bg-[#0A1931]/90 backdrop-blur-xs px-2.5 py-1 border border-[#F59E0B]/40">
@@ -430,6 +437,8 @@ export default function HomePage() {
                       src="/images/places/amber-international-school-7-years-till-present.jpg"
                       alt="Amber International School, Thane"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
                       className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -501,6 +510,8 @@ export default function HomePage() {
                       src="/images/places/siddeshwar-garden-complex-thane-20-yrs-till-present.jpg"
                       alt="Siddheshwar Garden Complex, Thane"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
                       className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -572,6 +583,8 @@ export default function HomePage() {
                       src="/images/places/shreerang-vidyalaya.jpg"
                       alt="Shreerang Vidyalaya, Thane"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
                       className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -643,6 +656,8 @@ export default function HomePage() {
                       src="/images/places/tsf.jpg"
                       alt="Sports Foundry, Bhandup West, Mumbai"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
                       className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -714,6 +729,8 @@ export default function HomePage() {
                       src="/images/places/pratap-sarnaik-school.jpg"
                       alt="Pratap Sarnaik International School, Thane"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
                       className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -785,6 +802,8 @@ export default function HomePage() {
                       src="/images/places/piramal-vaikunth.webp"
                       alt="Piramal Vaikunth, Balkum Naka, Thane"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
                       className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -856,6 +875,8 @@ export default function HomePage() {
                       src="/images/places/tmc-mini-stadium-thane-2-years-till-present.jpg"
                       alt="TMC Mini Stadium, Thane"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
                       className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -974,6 +995,8 @@ export default function HomePage() {
                     src="/images/basic-adjustable-skates.png"
                     alt="Basic Adjustable Skates"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -991,6 +1014,8 @@ export default function HomePage() {
                     src="/images/basic-safety-gear.png"
                     alt="Basic Safety Gear"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -1008,6 +1033,8 @@ export default function HomePage() {
                     src="/images/club-bodysuits.jpg"
                     alt="Club Bodysuits"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -1025,6 +1052,8 @@ export default function HomePage() {
                     src="/images/hard-helmets.jpg"
                     alt="Hard Helmets"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -1042,6 +1071,8 @@ export default function HomePage() {
                     src="/images/speed-quad-skates.png"
                     alt="Speed Quad Skates"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -1059,6 +1090,8 @@ export default function HomePage() {
                     src="/images/professional-speed-inline-skates.png"
                     alt="Professional Speed Inline Skates"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -1076,6 +1109,8 @@ export default function HomePage() {
                     src="/images/wheels-bearings-and-spare-parts.jpg"
                     alt="Wheels, Bearings & Spare Parts"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -1093,6 +1128,8 @@ export default function HomePage() {
                     src="/images/skate-bags.jpg"
                     alt="Official Skate Bags"
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 250px"
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>
@@ -1168,6 +1205,8 @@ export default function HomePage() {
                     src="/images/mintu-mama.png"
                     alt="Terjinder Singh"
                     fill
+                    sizes="44px"
+                    loading="lazy"
                     className="size-full object-cover"
                   />
                 </div>
@@ -1196,6 +1235,8 @@ export default function HomePage() {
                     src="/images/ivaturi.webp"
                     alt="Gayatri Ivaturi"
                     fill
+                    sizes="44px"
+                    loading="lazy"
                     className="size-full object-cover"
                   />
                 </div>
@@ -1224,6 +1265,8 @@ export default function HomePage() {
                     src="/images/dore.png"
                     alt="Amol Gowda"
                     fill
+                    sizes="44px"
+                    loading="lazy"
                     className="size-full object-cover"
                   />
                 </div>

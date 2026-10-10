@@ -262,6 +262,7 @@ export default function MerchandisePage() {
             src="/images/gallery/2025-10-18.jpg"
             alt="Dehiya Roller Skating Academy Skaters with Quad & Inline Gear"
             fill
+            sizes="100vw"
             className="size-full object-cover object-[center_60%] opacity-55 brightness-90 contrast-105"
             priority
           />
@@ -430,6 +431,8 @@ export default function MerchandisePage() {
                           src={product.image}
                           alt={product.name}
                           fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                          loading="lazy"
                           className="object-contain p-3 group-hover:scale-105 transition-transform duration-300 ease-out"
                         />
                       </div>

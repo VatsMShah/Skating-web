@@ -61,6 +61,7 @@ export default function ContactPage() {
             src="/images/siddeshwar-garden-complex-thane-20-yrs-till-present.jpg"
             alt="Dehiya Roller Skating Academy Rink Practice Center"
             fill
+            sizes="100vw"
             className="size-full object-cover object-center opacity-55 brightness-90 contrast-105"
             priority
           />
@@ -155,6 +156,8 @@ export default function ContactPage() {
                         src="/images/rajinder-singh-dehiya.jpg"
                         alt="Mr. Rajinder Singh Dehiya"
                         fill
+                        sizes="56px"
+                        loading="lazy"
                         className="size-full object-cover"
                       />
                     </div>
@@ -193,6 +196,8 @@ export default function ContactPage() {
                         src="/images/navjeet-singh-dehiya.jpg"
                         alt="Mr. Navjeet Singh Dehiya"
                         fill
+                        sizes="56px"
+                        loading="lazy"
                         className="size-full object-cover"
                       />
                     </div>

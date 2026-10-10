@@ -201,6 +201,7 @@ export default function TestimonialsPage() {
             src="/images/gallery/2024-02-11.jpg"
             alt="Dehiya Roller Skating Academy Champions & Coaches Podium Celebration"
             fill
+            sizes="100vw"
             className="size-full object-cover object-[center_35%] opacity-55 brightness-90 contrast-105"
             priority
           />
@@ -383,6 +384,8 @@ export default function TestimonialsPage() {
                           src={item.avatar}
                           alt={item.name}
                           fill
+                          sizes="44px"
+                          loading="lazy"
                           className="size-full object-cover"
                         />
                       </div>
