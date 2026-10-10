@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SkateIntroLoader from "@/components/SkateIntroLoader";
 
 export const metadata = {
   title: "Dehiya Roller Skating Academy (D.R.S.A) — Excellence in Roller Skating",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
+        <SkateIntroLoader />
         <Header />
         {children}
         <Footer />
@@ -30,3 +32,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

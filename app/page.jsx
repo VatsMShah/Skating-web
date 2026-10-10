@@ -20,6 +20,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import VideoGallery from "@/components/VideoGallery";
+import PhotoCarousel3D from "@/components/PhotoCarousel3D";
 
 export default function HomePage() {
   return (
@@ -1161,6 +1162,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* =====================================================================
+          SECTION 6.5: 3D CYLINDRICAL PHOTO GALLERY CAROUSEL
+          ===================================================================== */}
+      <PhotoCarousel3D />
 
       {/* =====================================================================
           SECTION 7: TESTIMONIALS & REVIEWS

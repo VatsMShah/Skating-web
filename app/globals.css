@@ -67,13 +67,23 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Universal Image and Media Containment Safeguards */
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
 }
 
 ::selection {
@@ -211,3 +221,77 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25) !important;
   outline: none;
 }
+
+/* ==========================================================================
+   STRAIGHT-LINE GOLDEN ARTISTIC SKATE GLIDER & SPINNING WHEELS (7.2s)
+   ========================================================================== */
+@keyframes wheelRotateRapid {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-wheel-roll {
+  animation: wheelRotateRapid 0.28s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes skateGliderStraight {
+  0% {
+    transform: translate3d(-35vw, 0, 0);
+    opacity: 0;
+  }
+  5% {
+    transform: translate3d(-10vw, 0, 0);
+    opacity: 1;
+  }
+  92% {
+    transform: translate3d(108vw, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(132vw, 0, 0);
+    opacity: 0;
+  }
+}
+
+.skate-hero-chariot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -120px;
+  animation: skateGliderStraight 4.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skate-trail-glow {
+  position: absolute;
+  right: 68%;
+  bottom: 18%;
+  width: 180px;
+  height: 6px;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.85), #FDE047);
+  border-radius: 9999px;
+  box-shadow: 0 0 20px #F59E0B, 0 0 40px #FDE047;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+@media (min-width: 640px) {
+  .skate-trail-glow {
+    width: 260px;
+    height: 8px;
+  }
+}
+
+
