@@ -16,16 +16,14 @@ import {
   Trophy,
   Activity,
   Layers,
-  CheckCircle2,
   ChevronRight,
-  School,
-  Building2,
   Medal,
+  CheckCircle2,
 } from "lucide-react";
 
 export const TRAINING_CENTERS = [
   // =========================================================================
-  // ZONE 1: THANE WEST & CENTRAL HEADQUARTERS (10 Centers)
+  // ZONE 1: THANE WEST & CENTRAL (6 Active Centers)
   // =========================================================================
   {
     id: "amber-international",
@@ -62,40 +60,6 @@ export const TRAINING_CENTERS = [
     highlights: ["20+ Yrs Academy Legacy", "Dedicated Enclosed Arena", "Weekend Intensive Batches"],
   },
   {
-    id: "shreerang-vidyalaya",
-    name: "Shreerang Vidyalaya",
-    zone: "Thane",
-    zoneLabel: "Shrirang Society, Thane West",
-    tagline: "Central Thane Foundation & Junior Development",
-    landmark: "Shrirang Society, Thane West - 400601",
-    fullAddress: "P.P. Hathyogi Nikam Guruji Marg, Shrirang Society, Thane West, Maharashtra 400601",
-    image: "/images/places/shreerang-vidyalaya.jpg",
-    badge: "CENTRAL THANE HUB",
-    isHero: false,
-    timings: "Evening (5:00 PM – 7:30 PM) & Weekend Batches",
-    surface: "Level Sports Ground & Hard-surface Practice Court",
-    skillLevels: "Junior Foundations, Kids Beginner & Intermediate",
-    mapUrl: "https://maps.app.goo.gl/o8e5RXjS1vwGPw6DA",
-    highlights: ["School Team Coaching", "Posture Alignment", "Quad & Inline Drills"],
-  },
-  {
-    id: "pratap-sarnaik",
-    name: "Pratap Sarnaik International School",
-    zone: "Thane",
-    zoneLabel: "Kasarvadavali, Thane West",
-    tagline: "Ghodbunder Corridor In-School & Open Academy",
-    landmark: "Empress Park, Kasarvadavali - 400615",
-    fullAddress: "Plot No. 7/13 & 7/19, near Children Traffic Park, Kasarvadavali, Thane West, Maharashtra 400615",
-    image: "/images/places/pratap-sarnaik-school.jpg",
-    badge: "GB ROAD HUB",
-    isHero: false,
-    timings: "Morning (6:30 AM – 8:00 AM) & Evening (5:00 PM – 7:00 PM)",
-    surface: "Spacious Multi-sport Surface with Banked Track Drills",
-    skillLevels: "Beginner (Ages 4+) to Advanced School Competitors",
-    mapUrl: "https://maps.app.goo.gl/iem4cdkthKAtbV9r7",
-    highlights: ["Extensive Track Space", "Curriculum Drills", "Evening Batches"],
-  },
-  {
     id: "piramal-vaikunth",
     name: "Piramal Vaikunth",
     zone: "Thane",
@@ -130,76 +94,42 @@ export const TRAINING_CENTERS = [
     highlights: ["Official Speed Dimensions", "Banked Curves", "Time Trial Testing"],
   },
   {
-    id: "dav-thane",
-    name: "D.A.V. Public School, Thane",
+    id: "shreerang-vidyalaya",
+    name: "Shreerang Vidyalaya",
     zone: "Thane",
-    zoneLabel: "Tulsidham, Thane West",
-    tagline: "Institutional Partner & Trophy-Winning Squad",
-    landmark: "Tulsidham, Thane West - 400610",
-    fullAddress: "D.A.V. Public School, Tulsidham, Thane West, Maharashtra 400610",
-    image: "/images/places/dav-thane.jpg",
-    badge: "PREMIER SCHOOL",
+    zoneLabel: "Shrirang Society, Thane West",
+    tagline: "Central Thane Foundation & Junior Development",
+    landmark: "Shrirang Society, Thane West - 400601",
+    fullAddress: "P.P. Hathyogi Nikam Guruji Marg, Shrirang Society, Thane West, Maharashtra 400601",
+    image: "/images/places/shreerang-vidyalaya.jpg",
+    badge: "CENTRAL THANE HUB",
     isHero: false,
-    timings: "After-school Training & Weekend Intensives",
-    surface: "Paved Enclosed School Sports Court",
-    skillLevels: "School Tournament Players & Intermediate Racers",
-    mapUrl: "https://maps.google.com/?q=DAV+Public+School+Thane",
-    highlights: ["Inter-School Champions", "Stamina Training", "Balance Drills"],
+    timings: "Evening (5:00 PM – 7:30 PM) & Weekend Batches",
+    surface: "Level Sports Ground & Hard-surface Practice Court",
+    skillLevels: "Junior Foundations, Kids Beginner & Intermediate",
+    mapUrl: "https://maps.app.goo.gl/o8e5RXjS1vwGPw6DA",
+    highlights: ["School Team Coaching", "Posture Alignment", "Quad & Inline Drills"],
   },
   {
-    id: "little-flower",
-    name: "Little Flower High School",
+    id: "pratap-sarnaik",
+    name: "Pratap Sarnaik International School",
     zone: "Thane",
-    zoneLabel: "Upvan / Pokharan, Thane West",
-    tagline: "Grassroots Foundation & Youth Starter Center",
-    landmark: "Pokharan Road No. 1, Upvan, Thane West - 400606",
-    fullAddress: "Pokharan Road No. 1, Upvan, Thane West, Maharashtra 400606",
-    image: "/images/places/little-flower-high-school-1495092299-1.jpg",
-    badge: "UPVAN HUB",
+    zoneLabel: "Kasarvadavali, Thane West",
+    tagline: "Ghodbunder Corridor In-School & Open Academy",
+    landmark: "Empress Park, Kasarvadavali - 400615",
+    fullAddress: "Plot No. 7/13 & 7/19, near Children Traffic Park, Kasarvadavali, Thane West, Maharashtra 400615",
+    image: "/images/places/pratap-sarnaik-school.jpg",
+    badge: "GB ROAD HUB",
     isHero: false,
-    timings: "Evening Sessions & Summer Bootcamps",
-    surface: "Protected Level Ground Flooring",
-    skillLevels: "Starter Quad & Inline Skating Basics",
-    mapUrl: "https://maps.google.com/?q=Little+Flower+High+School+Thane",
-    highlights: ["Confidence Building", "Braking & Turning Drills", "Safe Padded Sessions"],
-  },
-  {
-    id: "pes-new-english",
-    name: "PES New English School & Jr. College",
-    zone: "Thane",
-    zoneLabel: "Ram Maruti Road, Naupada",
-    tagline: "Historic Sports Partnership & Core Training",
-    landmark: "Naupada, Thane West - 400602",
-    fullAddress: "Ram Maruti Road, Naupada, Thane West, Maharashtra 400602",
-    image: "/images/places/pes-new-english-school-jr-college.jpg",
-    badge: "HERITAGE PARTNER",
-    isHero: false,
-    timings: "Evening Batches & Weekend Workouts",
-    surface: "Hard-court Practice Area",
-    skillLevels: "Novice to Intermediate Skating Athletes",
-    mapUrl: "https://maps.google.com/?q=PES+New+English+School+Thane",
-    highlights: ["Core Strengthening", "Foundational Pumping", "Certified Coaches"],
-  },
-  {
-    id: "smt-naupada",
-    name: "SMT School, Naupada",
-    zone: "Thane",
-    zoneLabel: "Naupada, Thane Central",
-    tagline: "Community Starter Program & Novice Skating",
-    landmark: "Naupada, Thane Central - 400602",
-    fullAddress: "SMT School Campus, Naupada, Thane West, Maharashtra 400602",
-    image: "/images/places/smt-naupada.png",
-    badge: "NAUPADA CENTER",
-    isHero: false,
-    timings: "Weekend Morning Sessions",
-    surface: "Protected Court with Coach Supervised Stations",
-    skillLevels: "Young Starters (Ages 4-10) & Quad Basics",
-    mapUrl: "https://maps.google.com/?q=SMT+School+Naupada+Thane",
-    highlights: ["Low Coach-to-Skater Ratio", "Agility Cones", "Fun Skill Games"],
+    timings: "Morning (6:30 AM – 8:00 AM) & Evening (5:00 PM – 7:00 PM)",
+    surface: "Spacious Multi-sport Surface with Banked Track Drills",
+    skillLevels: "Beginner (Ages 4+) to Advanced School Competitors",
+    mapUrl: "https://maps.app.goo.gl/iem4cdkthKAtbV9r7",
+    highlights: ["Extensive Track Space", "Curriculum Drills", "Evening Batches"],
   },
 
   // =========================================================================
-  // ZONE 2: MUMBAI CITY & SUBURBS (6 Centers)
+  // ZONE 2: MUMBAI (1 Active Center)
   // =========================================================================
   {
     id: "sports-foundry",
@@ -217,163 +147,6 @@ export const TRAINING_CENTERS = [
     skillLevels: "National Speed Squad, Inline Racers & Athletic Conditioning",
     mapUrl: "https://maps.app.goo.gl/brq8GMmmJL3Dvq8F7",
     highlights: ["Speed Track Sprints", "Plyometrics Conditioning", "Strength & Core Workouts"],
-  },
-  {
-    id: "matunga-gymkhana",
-    name: "Matunga Gymkhana",
-    zone: "Mumbai",
-    zoneLabel: "Matunga East, South/Central Mumbai",
-    tagline: "Premier Heritage Sports Club & Roller Rink",
-    landmark: "Lakhamshi Napoo Road, Matunga East - 400019",
-    fullAddress: "Matunga Gymkhana, Lakhamshi Napoo Road, Matunga East, Mumbai, Maharashtra 400019",
-    image: "/images/places/matunga-gymkhana-matunga-east-mumbai-gyms-43t5rl6.avif",
-    badge: "PREMIER CLUB",
-    isHero: false,
-    timings: "Morning (7:00 AM – 9:00 AM) & Evening Member Batches",
-    surface: "Smooth Polished Hard-court Roller Rink",
-    skillLevels: "Club Members, Open Batches & Speed Training",
-    mapUrl: "https://maps.google.com/?q=Matunga+Gymkhana+Mumbai",
-    highlights: ["Club Class Amenities", "Floodlit Evening Sessions", "State Team Mentorship"],
-  },
-  {
-    id: "chembur-gymkhana",
-    name: "The Chembur Gymkhana",
-    zone: "Mumbai",
-    zoneLabel: "Chembur East, Eastern Suburbs",
-    tagline: "Dedicated Club Roller Skating Arena",
-    landmark: "16th Road, Chembur East, Mumbai - 400071",
-    fullAddress: "The Chembur Gymkhana, 16th Road, Chembur East, Mumbai, Maharashtra 400071",
-    image: "/images/places/the-chembur-gymkhana-chembur-east-mumbai-gyms-mys60cxzjg.avif",
-    badge: "EASTERN MUMBAI ARENA",
-    isHero: false,
-    timings: "Evening Sessions (5:00 PM – 8:00 PM) & Weekends",
-    surface: "Enclosed Roller Skating Rink with Perimeter Railings",
-    skillLevels: "All Ages • Recreational, Freestyle & Speed Quad",
-    mapUrl: "https://maps.google.com/?q=The+Chembur+Gymkhana+Mumbai",
-    highlights: ["Dedicated Rink Space", "Beginner Handrail Support", "Championship Coaching"],
-  },
-  {
-    id: "ghatkopar-ymca",
-    name: "Ghatkopar YMCA",
-    zone: "Mumbai",
-    zoneLabel: "Ghatkopar East, Central Suburbs",
-    tagline: "Community Sports Arena & Youth Coaching",
-    landmark: "Pant Nagar, Ghatkopar East - 400075",
-    fullAddress: "Ghatkopar YMCA Branch, Pant Nagar, Ghatkopar East, Mumbai, Maharashtra 400075",
-    image: "/images/places/ghatkopar-ymca.jpeg",
-    badge: "YMCA HUB",
-    isHero: false,
-    timings: "Regular Evening Batches (5:30 PM – 7:30 PM)",
-    surface: "Level Outdoor Sports Court",
-    skillLevels: "Beginners, Intermediate Racers & Fitness Enthusiasts",
-    mapUrl: "https://maps.google.com/?q=YMCA+Ghatkopar+Mumbai",
-    highlights: ["Affordable Training", "Structured Levels", "Physical Fitness Drills"],
-  },
-  {
-    id: "bombay-ymca",
-    name: "Bombay YMCA",
-    zone: "Mumbai",
-    zoneLabel: "Mumbai Central & Greater Network",
-    tagline: "Long-standing Sports Partner with Multi-city Legacy",
-    landmark: "Mumbai Central Regional Campus",
-    fullAddress: "Bombay YMCA Head Center, Mumbai, Maharashtra",
-    image: "/images/places/ymca-bombay.png",
-    badge: "HERITAGE YMCA",
-    isHero: false,
-    timings: "Seasonal Camps & Weekend Academy Programs",
-    surface: "Multi-purpose Indoor & Outdoor Facilities",
-    skillLevels: "Youth Foundation, Beginner Skaters & Camps",
-    mapUrl: "https://maps.google.com/?q=Bombay+YMCA+Mumbai",
-    highlights: ["Multi-decade Partnership", "Summer Sports Camps", "Certified Instructors"],
-  },
-  {
-    id: "marble-arch",
-    name: "Marble Arch School",
-    zone: "Mumbai",
-    zoneLabel: "Oshiwara / Andheri West, Mumbai",
-    tagline: "Western Suburbs Foundation Center",
-    landmark: "Oshiwara, Andheri West, Mumbai",
-    fullAddress: "Marble Arch School Campus, Oshiwara, Andheri West, Mumbai, Maharashtra",
-    image: "/images/places/marble-arch.jpg",
-    badge: "WESTERN SUBURBS",
-    isHero: false,
-    timings: "After-school Training & Saturday Batches",
-    surface: "Smooth Protected School Ground",
-    skillLevels: "Early Childhood (Ages 4+) to Junior Quad Speed",
-    mapUrl: "https://maps.google.com/?q=Marble+Arch+School+Mumbai",
-    highlights: ["Early Age Balance", "Safe Impact Mats", "Crossover Drills"],
-  },
-
-  // =========================================================================
-  // ZONE 3: NAVI MUMBAI EDUCATIONAL ARENAS (4 Centers)
-  // =========================================================================
-  {
-    id: "dav-airoli",
-    name: "D.A.V. Public School, Airoli",
-    zone: "Navi Mumbai",
-    zoneLabel: "Sector 10, Airoli, Navi Mumbai",
-    tagline: "Navi Mumbai North Championship Wing",
-    landmark: "Sector 10, Airoli, Navi Mumbai - 400708",
-    fullAddress: "Plot No. 11, Sector 10, Airoli, Navi Mumbai, Maharashtra 400708",
-    image: "/images/places/dav-airoli.jpg",
-    badge: "AIROLI HUB",
-    isHero: false,
-    timings: "Morning (6:30 AM – 8:30 AM) & Evening (5:00 PM – 7:30 PM)",
-    surface: "Expansive Hard-court Skating Track",
-    skillLevels: "School District, State Medalists & Speed Squad",
-    mapUrl: "https://maps.google.com/?q=DAV+Public+School+Airoli",
-    highlights: ["High Medal Output", "Speed Endurance", "National Qualification Prep"],
-  },
-  {
-    id: "dav-nerul",
-    name: "D.A.V. Public School, Nerul",
-    zone: "Navi Mumbai",
-    zoneLabel: "Sector 48, Seawoods / Nerul",
-    tagline: "Seawoods & Nerul Competitive Skating Center",
-    landmark: "Sector 48, Nerul / Seawoods, Navi Mumbai - 400706",
-    fullAddress: "Plot No. 34, Sector 48, Nerul, Navi Mumbai, Maharashtra 400706",
-    image: "/images/places/dav-nerul.jpg",
-    badge: "SEAWOODS HUB",
-    isHero: false,
-    timings: "Evening Sessions (5:00 PM – 7:30 PM)",
-    surface: "Level Outdoor Sports Court with Fenced Boundary",
-    skillLevels: "Junior to Senior Inline & Quad Racers",
-    mapUrl: "https://maps.google.com/?q=DAV+Public+School+Nerul",
-    highlights: ["District Medalists", "Speed Drills", "Knee Bend Posture Training"],
-  },
-  {
-    id: "cbd-ymca",
-    name: "CBD Belapur YMCA",
-    zone: "Navi Mumbai",
-    zoneLabel: "Sector 8, CBD Belapur, Navi Mumbai",
-    tagline: "Central Navi Mumbai Sports & Conditioning Rink",
-    landmark: "Sector 8, CBD Belapur - 400614",
-    fullAddress: "YMCA Complex, Sector 8, CBD Belapur, Navi Mumbai, Maharashtra 400614",
-    image: "/images/places/cbd-ymca.jpg",
-    badge: "BELAPUR ARENA",
-    isHero: false,
-    timings: "Morning & Evening Weekend Batches",
-    surface: "Dedicated Outdoor YMCA Skating & Multi-court",
-    skillLevels: "All Skill Levels • Novice to Fitness Racers",
-    mapUrl: "https://maps.google.com/?q=YMCA+CBD+Belapur",
-    highlights: ["Open Air Rink", "Adult & Kids Batches", "Stamina Building"],
-  },
-  {
-    id: "north-point",
-    name: "North Point School",
-    zone: "Navi Mumbai",
-    zoneLabel: "Sector 6, Kopar Khairane",
-    tagline: "Kopar Khairane Foundation & Speed Training",
-    landmark: "Sector 6, Kopar Khairane, Navi Mumbai - 400709",
-    fullAddress: "North Point School, Sector 6, Kopar Khairane, Navi Mumbai, Maharashtra 400709",
-    image: "/images/places/north-point-board.jpeg",
-    badge: "KOPAR KHAIRANE",
-    isHero: false,
-    timings: "Regular After-school Batches",
-    surface: "Paved Enclosed School Sports Ground",
-    skillLevels: "Foundations, Balance & Inter-school Team",
-    mapUrl: "https://maps.google.com/?q=North+Point+School+Kopar+Khairane",
-    highlights: ["Step-by-step Progression", "Safe Braking", "School Tournament Prep"],
   },
 ];
 
@@ -406,18 +179,6 @@ export default function FacilitiesPage() {
     () => filteredCenters.filter((c) => c.zone === "Mumbai"),
     [filteredCenters]
   );
-  const naviMumbaiCenters = useMemo(
-    () => filteredCenters.filter((c) => c.zone === "Navi Mumbai"),
-    [filteredCenters]
-  );
-
-  const scrollToZone = (zoneId) => {
-    setActiveZone("all");
-    const el = document.getElementById(zoneId);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
@@ -444,7 +205,7 @@ export default function FacilitiesPage() {
         <div className="absolute top-0 right-1/4 size-[500px] bg-[#F59E0B]/12 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-1/4 size-[450px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Decorative Gold Framing Square Accents (From Home & About Us) */}
+        {/* Decorative Gold Framing Square Accents */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-6 inset-y-8 md:inset-x-12 md:inset-y-12 z-10 border border-[#F59E0B]/20 hidden sm:block"
@@ -469,7 +230,7 @@ export default function FacilitiesPage() {
           {/* Gold Badge */}
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#FEF3C7]/15 border border-[#F59E0B]/60 text-[#FBBF24] text-xs font-mono font-bold uppercase tracking-widest shadow-lg backdrop-blur-md mb-6">
             <MapPin className="size-4 text-[#F59E0B]" />
-            <span>20+ Training Centers &amp; Professional Rinks</span>
+            <span>7 Premier Training Centers &amp; Professional Rinks</span>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-6">
@@ -481,7 +242,7 @@ export default function FacilitiesPage() {
 
             {/* Subtitle */}
             <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-sans leading-relaxed">
-              Explore 20 premier skating hubs across <strong>Thane, Mumbai, and Navi Mumbai</strong> — equipped with precision speed courts, certified coach ratios, and flexible morning/evening batch schedules.
+              Explore 7 active skating hubs across <strong>Thane and Mumbai</strong> — equipped with precision speed courts, certified coach ratios, and flexible morning/evening batch schedules.
             </p>
 
             {/* Instant Locality Search Bar */}
@@ -490,7 +251,7 @@ export default function FacilitiesPage() {
                 <Search className="absolute left-4 size-5 text-[#F59E0B]" />
                 <input
                   type="text"
-                  placeholder="Search by center name, neighborhood (e.g. Dhokali, Bhandup, Airoli...)"
+                  placeholder="Search by center name, neighborhood (e.g. Dhokali, Kolshet, Bhandup...)"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 text-sm md:text-base focus:outline-none focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/40 transition-all shadow-xl"
@@ -498,7 +259,7 @@ export default function FacilitiesPage() {
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-3.5 text-xs text-slate-400 hover:text-white bg-white/10 px-2 py-1 rounded-md"
+                    className="absolute right-3.5 text-xs text-slate-400 hover:text-white bg-white/10 px-2 py-1 rounded-md cursor-pointer"
                   >
                     Clear
                   </button>
@@ -509,20 +270,20 @@ export default function FacilitiesPage() {
             {/* Quick stats ribbon */}
             <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs text-center">
-                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">20+</span>
+                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">7</span>
                 <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">Active Centers</span>
               </div>
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs text-center">
-                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">30+</span>
+                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">36+</span>
                 <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">Years Legacy</span>
               </div>
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs text-center">
-                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">600+</span>
-                <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">Medalists</span>
+                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">100+</span>
+                <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">State &amp; National Medals</span>
               </div>
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs text-center">
-                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">3</span>
-                <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">City Regions</span>
+                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">2</span>
+                <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">Hubs (Thane &amp; Mumbai)</span>
               </div>
             </div>
 
@@ -533,7 +294,7 @@ export default function FacilitiesPage() {
       {/* =====================================================================
           TRAINING CENTERS BENTO SHOWCASE
           ===================================================================== */}
-      <div className="container mx-auto max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-12 py-12 md:py-16 space-y-20">
+      <div className="container mx-auto max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-12 py-12 md:py-16 space-y-16 sm:space-y-20">
 
         {/* -------------------------------------------------------------------
             ZONE 1: THANE WEST & CENTRAL HEADQUARTERS
@@ -546,18 +307,18 @@ export default function FacilitiesPage() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#FEF3C7] border border-[#F59E0B]/60 text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider mb-2">
                   <Trophy className="size-3.5 text-[#D97706]" />
-                  <span>Academy Headquarters &amp; Flagship Hub</span>
+                  <span>Academy Flagship Centers &amp; Rinks</span>
                 </div>
                 <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase text-[#0A1931] tracking-tight">
-                  Thane West &amp; Central Centers <span className="text-[#D97706]">({thaneCenters.length})</span>
+                  Thane Active Centers <span className="text-[#D97706]">({thaneCenters.length})</span>
                 </h2>
               </div>
               <p className="text-xs sm:text-sm text-slate-500 font-mono">
-                Dhokali &bull; Kolshet &bull; Balkum &bull; Naupada &bull; Upvan &bull; Kasarvadavali
+                Dhokali &bull; Kolshet &bull; Balkum &bull; Castle Mill &bull; Kasarvadavali
               </p>
             </div>
 
-            {/* Bento Grid: 2 Hero Spotlight Cards + Regular Bento Cards */}
+            {/* Bento Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {thaneCenters.map((center) => (
                 <CenterBentoCard key={center.id} center={center} />
@@ -578,52 +339,20 @@ export default function FacilitiesPage() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 border border-blue-300 text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider mb-2">
                   <Activity className="size-3.5 text-blue-600" />
-                  <span>Olympic Speed Track &amp; Premier Gymkhanas</span>
+                  <span>Olympic Speed Track &amp; Athletic Arena</span>
                 </div>
                 <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase text-[#0A1931] tracking-tight">
-                  Mumbai City &amp; Suburbs <span className="text-blue-700">({mumbaiCenters.length})</span>
+                  Mumbai Active Center <span className="text-blue-700">({mumbaiCenters.length})</span>
                 </h2>
               </div>
               <p className="text-xs sm:text-sm text-slate-500 font-mono">
-                Bhandup &bull; Matunga &bull; Chembur &bull; Ghatkopar &bull; Andheri
+                Bhandup West &bull; LBS Marg Corridor
               </p>
             </div>
 
             {/* Bento Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {mumbaiCenters.map((center) => (
-                <CenterBentoCard key={center.id} center={center} />
-              ))}
-            </div>
-
-          </section>
-        )}
-
-        {/* -------------------------------------------------------------------
-            ZONE 3: NAVI MUMBAI EDUCATIONAL ARENAS
-            ------------------------------------------------------------------- */}
-        {naviMumbaiCenters.length > 0 && (
-          <section id="zone-navimumbai" className="scroll-mt-28 space-y-8">
-            
-            {/* Zone Section Title */}
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b-2 border-slate-200">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-50 border border-emerald-300 text-emerald-950 text-xs font-mono font-bold uppercase tracking-wider mb-2">
-                  <School className="size-3.5 text-emerald-600" />
-                  <span>Institutional Campuses &amp; Sports Complex</span>
-                </div>
-                <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase text-[#0A1931] tracking-tight">
-                  Navi Mumbai Centers <span className="text-emerald-700">({naviMumbaiCenters.length})</span>
-                </h2>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-500 font-mono">
-                Airoli &bull; Nerul / Seawoods &bull; CBD Belapur &bull; Kopar Khairane
-              </p>
-            </div>
-
-            {/* Bento Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {naviMumbaiCenters.map((center) => (
                 <CenterBentoCard key={center.id} center={center} />
               ))}
             </div>
@@ -639,13 +368,13 @@ export default function FacilitiesPage() {
             </div>
             <h3 className="font-serif text-xl font-bold uppercase text-[#0A1931]">No centers found</h3>
             <p className="text-sm text-slate-600">
-              We couldn’t find any location matching &ldquo;{searchQuery}&rdquo;. Try searching for a neighborhood like &ldquo;Thane&rdquo;, &ldquo;Bhandup&rdquo;, or &ldquo;Airoli&rdquo;.
+              We couldn’t find any location matching &ldquo;{searchQuery}&rdquo;. Try searching for &ldquo;Amber&rdquo;, &ldquo;Siddheshwar&rdquo;, &ldquo;Piramal&rdquo;, or &ldquo;Sports Foundry&rdquo;.
             </p>
             <button
               onClick={() => setSearchQuery("")}
-              className="px-5 py-2 rounded-lg bg-[#0A1931] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all"
+              className="px-5 py-2 rounded-lg bg-[#0A1931] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#F59E0B] hover:text-[#0A1931] transition-all cursor-pointer"
             >
-              Show All 20 Centers
+              Show All 7 Centers
             </button>
           </div>
         )}
@@ -715,7 +444,7 @@ export default function FacilitiesPage() {
         </section>
 
         {/* ===================================================================
-            CALL TO ACTION: FINAL BLUE CARD ON WHITE BACKGROUND (MATCHES HOME)
+            CALL TO ACTION: FINAL BLUE CARD ON WHITE BACKGROUND
             =================================================================== */}
         <section
           id="facilities-cta"
@@ -785,8 +514,6 @@ export default function FacilitiesPage() {
         </section>
 
       </div>
-
-
 
     </main>
   );

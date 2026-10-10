@@ -51,7 +51,7 @@ export default function Footer() {
             <div className="mt-6 flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0E2954] border border-[#F59E0B]/30 w-fit shadow-xs">
               <span className="size-2 rounded-full bg-[#F59E0B] animate-pulse shadow-[0_0_8px_#F59E0B]" />
               <span className="text-xs font-mono uppercase tracking-wider text-slate-200 font-medium">
-                6 Active Centers Across Thane &amp; Mumbai
+                7 Active Centers Across Thane &amp; Mumbai
               </span>
             </div>
           </div>
@@ -123,15 +123,16 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-5 flex items-center gap-2">
               <span className="h-1 w-2.5 bg-[#F59E0B] rounded-xs shadow-[0_0_6px_rgba(245,158,11,0.8)]" />
-              Training Centers
+              7 Active Centers
             </h3>
             <div className="space-y-2 text-xs text-slate-300 mb-6">
               <p className="hover:text-[#FBBF24] transition-colors">• Amber International School, Thane</p>
-              <p className="hover:text-[#FBBF24] transition-colors">• Siddeshwar Garden, Thane (20 yrs)</p>
+              <p className="hover:text-[#FBBF24] transition-colors">• Siddeshwar Garden, Thane (20+ yrs)</p>
               <p className="hover:text-[#FBBF24] transition-colors">• Shreerang Vidyalaya, Thane</p>
-              <p className="hover:text-[#FBBF24] transition-colors">• Sports Foundry, Bhandup West</p>
+              <p className="hover:text-[#FBBF24] transition-colors">• Sports Foundry, Bhandup (Mumbai)</p>
               <p className="hover:text-[#FBBF24] transition-colors">• Pratap Sarnaik School, Thane</p>
               <p className="hover:text-[#FBBF24] transition-colors">• Piramal Vaikunth, Thane</p>
+              <p className="hover:text-[#FBBF24] transition-colors">• TMC Mini Stadium, Thane</p>
             </div>
             <div className="pt-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-white block mb-3">
@@ -139,28 +140,28 @@ export default function Footer() {
               </span>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/legendary_sikh_skater?srtk=MTVhOXpxN2N1ejZ0dA=="
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram"
+                  aria-label="Instagram @legendary_sikh_skater"
                   className="inline-flex items-center justify-center bg-[#0E2954] text-[#F59E0B] size-10 rounded-lg border border-slate-700 hover:border-[#F59E0B] hover:bg-[#F59E0B] hover:text-[#0A1931] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] hover:-translate-y-1 transition-all duration-200"
                 >
                   <Instagram className="size-4.5" aria-hidden="true" />
                 </a>
                 <a
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/@legendarysikhskater"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="YouTube"
+                  aria-label="YouTube @legendarysikhskater"
                   className="inline-flex items-center justify-center bg-[#0E2954] text-[#F59E0B] size-10 rounded-lg border border-slate-700 hover:border-[#F59E0B] hover:bg-[#F59E0B] hover:text-[#0A1931] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] hover:-translate-y-1 transition-all duration-200"
                 >
                   <Youtube className="size-4.5" aria-hidden="true" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/share/1SGZk3ctTx/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Facebook"
+                  aria-label="Facebook Page"
                   className="inline-flex items-center justify-center bg-[#0E2954] text-[#F59E0B] size-10 rounded-lg border border-slate-700 hover:border-[#F59E0B] hover:bg-[#F59E0B] hover:text-[#0A1931] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] hover:-translate-y-1 transition-all duration-200"
                 >
                   <Facebook className="size-4.5" aria-hidden="true" />

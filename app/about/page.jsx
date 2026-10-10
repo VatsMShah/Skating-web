@@ -63,7 +63,7 @@ export default function AboutPage() {
   const milestones = [
     { value: "36+", label: "Years of Legacy", sub: "Coaching since 1988" },
     { value: "100+", label: "State & National Medals", sub: "Podium finishes" },
-    { value: "6", label: "Active Centers", sub: "Across Mumbai & Thane" },
+    { value: "7", label: "Active Centers", sub: "Across Mumbai & Thane" },
     { value: "15+", label: "Partner Institutions", sub: "Top schools & gymkhanas" },
   ];
 
@@ -316,7 +316,7 @@ export default function AboutPage() {
                   What started as an energetic local coaching batch quickly blossomed into one of the region&apos;s most respected sports institutions. Driven by the philosophy of <strong className="text-[#D97706] font-semibold">&ldquo;Dance on Wheels&rdquo;</strong>, D.R.S.A treats roller skating not merely as recreation, but as a discipline that refines coordination, explosive leg power, balance, and unyielding character.
                 </p>
                 <p>
-                  Together with Co-founder and National Gold Medalist <strong className="text-slate-900 font-semibold">Mr. Navjeet Singh Dehiya</strong>, the academy has expanded to <strong className="text-slate-900 font-semibold">6 active training centers</strong> and long-standing partnerships with prestigious educational institutions like Amber International School, Siddheshwar Garden, and the YMCA.
+                  Together with Co-founder and National Gold Medalist <strong className="text-slate-900 font-semibold">Mr. Navjeet Singh Dehiya</strong>, the academy has expanded to <strong className="text-slate-900 font-semibold">7 active training centers</strong> and long-standing partnerships with prestigious educational institutions like Amber International School, Siddheshwar Garden, and the YMCA.
                 </p>
               </div>
 

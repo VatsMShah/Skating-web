@@ -97,7 +97,7 @@ export default function ContactPage() {
           {/* Gold Badge */}
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#FEF3C7]/15 border border-[#F59E0B]/60 text-[#FBBF24] text-xs font-mono font-bold uppercase tracking-widest shadow-lg backdrop-blur-md mb-6">
             <MapPin className="size-4 text-[#F59E0B]" />
-            <span>20+ Training Centers Across Thane, Mumbai &amp; Navi Mumbai</span>
+            <span>7 Training Centers Across Thane &amp; Mumbai</span>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-6">
@@ -116,7 +116,7 @@ export default function ContactPage() {
                 <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">Inquiry Response</span>
               </div>
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs text-center">
-                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">20+</span>
+                <span className="block font-serif text-2xl sm:text-3xl font-black text-[#FBBF24]">7</span>
                 <span className="text-[11px] font-mono uppercase text-slate-300 tracking-wider">Active Centers</span>
               </div>
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs text-center">
@@ -360,31 +360,16 @@ export default function ContactPage() {
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#0A1931] text-sm focus:outline-none focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/30 transition-all"
                       >
-                        <optgroup label="Thane Centers (10)">
-                          <option>Siddheshwar Garden, Kolshet Road, Thane West</option>
+                        <optgroup label="Thane Centers (6)">
                           <option>Amber International School, Dhokali, Thane West</option>
+                          <option>Siddheshwar Garden, Kolshet Road, Thane West</option>
+                          <option>Piramal Vaikunth, Balkum Naka, Thane West</option>
                           <option>TMC Mini Stadium, Thane Central</option>
-                          <option>Shreerang Vidyalaya, Castle Mill, Thane</option>
-                          <option>Pratap Sarnaik International School, Thane</option>
-                          <option>Piramal Vaikunth, Balkum, Thane</option>
-                          <option>DAV Public School, Thane West</option>
-                          <option>Little Flower High School, Upvan, Thane</option>
-                          <option>PES New English School, Naupada, Thane</option>
-                          <option>SMT School, Naupada, Thane</option>
+                          <option>Shreerang Vidyalaya, Shrirang Society, Thane West</option>
+                          <option>Pratap Sarnaik International School, Kasarvadavali, Thane</option>
                         </optgroup>
-                        <optgroup label="Mumbai City & Suburbs (6)">
-                          <option>The Sports Foundry (TSF), Bhandup West</option>
-                          <option>Matunga Gymkhana, Matunga East, Mumbai</option>
-                          <option>The Chembur Gymkhana, Chembur East</option>
-                          <option>Ghatkopar YMCA, Ghatkopar East</option>
-                          <option>YMCA Bombay Central, Mumbai</option>
-                          <option>Marble Arch School, Oshiwara, Andheri West</option>
-                        </optgroup>
-                        <optgroup label="Navi Mumbai (4)">
-                          <option>DAV Public School, Sector 10, Airoli</option>
-                          <option>DAV Public School, Sector 48, Nerul</option>
-                          <option>CBD Belapur YMCA, Sector 8, Navi Mumbai</option>
-                          <option>North Point School, Kopar Khairane</option>
+                        <optgroup label="Mumbai Center (1)">
+                          <option>The Sports Foundry (TSF), Bhandup West, Mumbai</option>
                         </optgroup>
                       </select>
                     </div>
@@ -495,7 +480,7 @@ export default function ContactPage() {
 
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-[#F59E0B]/40 text-[#FBBF24] text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-xs">
               <Compass className="size-3.5 text-[#F59E0B]" />
-              <span>Explore 20 Training Centers</span>
+              <span>Explore 7 Training Centers</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
@@ -503,7 +488,7 @@ export default function ContactPage() {
             </h2>
 
             <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
-              View high-definition photos, landmarks, surface types, and Google Maps GPS navigation pins for all 20 academy centers across Thane, Mumbai, and Navi Mumbai.
+              View high-definition photos, landmarks, surface types, and Google Maps GPS navigation pins for all 7 academy centers across Thane and Mumbai.
             </p>
 
             {/* Single CTA Action Button */}
@@ -513,7 +498,7 @@ export default function ContactPage() {
                 data-slot="button"
                 className="w-full sm:w-auto sm:min-w-[280px] max-w-sm inline-flex items-center justify-center gap-2.5 py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] font-serif text-xs sm:text-sm md:text-base font-extrabold uppercase tracking-wider transition-all duration-200 shadow-xl shadow-[#F59E0B]/30 hover:shadow-[#F59E0B]/50 hover:-translate-y-0.5 active:translate-y-0 text-center"
               >
-                <span>View All 20 Training Centers</span>
+                <span>View All 7 Training Centers</span>
                 <ArrowRight className="size-4 sm:size-5 text-[#0A1931] shrink-0" aria-hidden="true" />
               </Link>
             </div>

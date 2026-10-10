@@ -72,7 +72,7 @@ export default function HomePage() {
           <p className="mt-6 max-w-3xl text-base sm:text-lg md:text-xl text-slate-300 font-sans leading-relaxed">
             Under the master mentorship of decorated National and State medalists{" "}
             <strong className="text-white font-semibold">Mr. Rajinder Singh Dehiya</strong> and{" "}
-            <strong className="text-white font-semibold">Mr. Navjeet Singh Dehiya</strong>, D.R.S.A provides premier roller and inline skating training across 6 active centers.
+            <strong className="text-white font-semibold">Mr. Navjeet Singh Dehiya</strong>, D.R.S.A provides premier roller and inline skating training across 7 active centers.
           </p>
 
           {/* Hero CTA Button: Jump to Training Centers */}
@@ -95,7 +95,7 @@ export default function HomePage() {
             </div>
             <div data-index="1" className="p-3.5 rounded-lg bg-white/5 border border-white/10 backdrop-blur-xs flex flex-col">
               <span className="text-xs uppercase tracking-wider text-[#F59E0B] font-mono font-semibold">Centers</span>
-              <span className="text-sm sm:text-base font-bold text-white mt-0.5">6 Active Centers</span>
+              <span className="text-sm sm:text-base font-bold text-white mt-0.5">7 Active Centers</span>
             </div>
             <div data-index="2" className="p-3.5 rounded-lg bg-white/5 border border-white/10 backdrop-blur-xs flex flex-col">
               <span className="text-xs uppercase tracking-wider text-[#F59E0B] font-mono font-semibold">Accolades</span>
@@ -408,7 +408,7 @@ export default function HomePage() {
               <span>Locations &amp; Batches</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight uppercase text-[#0A1931] leading-tight">
-              Our 6 Training Centers in <span className="text-[#D97706]">Thane &amp; Mumbai</span>
+              Our 7 Training Centers in <span className="text-[#D97706]">Thane &amp; Mumbai</span>
             </h2>
             <div className="flex items-center justify-center my-4">
               <div className="h-1 w-14 bg-[#F59E0B] rounded-full shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
@@ -844,15 +844,86 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+
+            {/* Center 7: TMC Mini Stadium / Rink */}
+            <div className="group relative flex flex-col justify-between bg-white border border-slate-200 hover:border-[#F59E0B] transition-all duration-300 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1 md:col-span-2 lg:col-span-1">
+              <div className="h-1.5 w-full bg-slate-200 group-hover:bg-[#F59E0B] transition-colors" />
+              <div className="p-6 sm:p-7 space-y-5 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  {/* DESIGNER SCULPTED ARCH IMAGE PORTAL */}
+                  <div className="relative mx-auto w-full aspect-[4/3] max-h-[240px] overflow-hidden rounded-t-[100px] rounded-b-2xl bg-[#0A1931] border-2 border-[#F59E0B]/50 shadow-inner group-hover:border-[#F59E0B] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-500">
+                    <Image
+                      src="/images/places/tmc-mini-stadium-thane-2-years-till-present.jpg"
+                      alt="TMC Mini Stadium, Thane"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-1 rounded-t-[96px] rounded-b-xl border border-white/25 pointer-events-none" />
+
+                    {/* Center Legacy Badge Floating in Middle */}
+                    <div className="absolute top-3.5 inset-x-0 flex justify-center z-10 pointer-events-none">
+                      <span className="text-[10px] sm:text-xs font-mono font-bold bg-[#0A1931]/95 text-[#FBBF24] border border-[#F59E0B] px-3.5 py-1 rounded-full shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        MUNICIPAL ARENA
+                      </span>
+                    </div>
+
+                    {/* Bottom Tagline on Scrim */}
+                    <div className="absolute bottom-2.5 inset-x-3 text-center pointer-events-none z-10">
+                      <span className="text-[11px] font-mono text-[#FBBF24] font-semibold tracking-wide drop-shadow-md line-clamp-1">
+                        Municipal Championship Speed Track
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Zone Header */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#D97706]">
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3.5 text-[#D97706]" />
+                        TMC Sports Complex
+                      </span>
+                      <span className="text-slate-400 uppercase tracking-wider">Thane</span>
+                    </div>
+                    <h3 className="font-serif text-xl sm:text-2xl font-extrabold uppercase text-[#0A1931] tracking-tight group-hover:text-[#D97706] transition-colors leading-tight">
+                      TMC Mini Stadium / Rink
+                    </h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
+                    Thane Municipal Corporation official speed training banked track &amp; championship arena.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <Link
+                    href="/contact"
+                    className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A1931] hover:text-[#D97706] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Inquire Batch</span>
+                    <ArrowRight className="size-3.5 text-[#D97706]" />
+                  </Link>
+                  <a
+                    href="https://maps.google.com/?q=Thane+Municipal+Corporation+Stadium"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FEF3C7] text-[#0A1931] border border-[#F59E0B]/60 hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold transition-all shadow-xs group/btn"
+                  >
+                    <span>Google Map</span>
+                    <ArrowUpRight className="size-3.5 text-[#D97706] group-hover/btn:text-[#0A1931] group-hover/btn:translate-x-0.5 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Quick jump to see all 20 centers */}
+          {/* Quick jump to see all 7 centers */}
           <div className="mt-10 text-center">
             <Link
               href="/facilities"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A1931] text-[#FBBF24] hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
-              <span>Explore All 20 Training Centers with Maps &amp; Schedules</span>
+              <span>Explore All 7 Active Training Centers with Maps &amp; Schedules</span>
               <ArrowRight className="size-4" />
             </Link>
           </div>
