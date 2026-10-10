@@ -489,15 +489,11 @@ export default function MerchandisePage() {
                         </Link>
                       </div>
 
-                      {/* Coach Navjeet Singh Name & Number below the Inquiry Sizing Button */}
-                      <div className="flex items-center justify-between text-[11px] font-mono pt-1 px-1 border-t border-slate-100">
-                        <span className="font-semibold text-slate-700">Navjeet Singh:</span>
-                        <a
-                          href="tel:8693817112"
-                          className="text-[#D97706] hover:text-[#0A1931] font-bold hover:underline transition-colors"
-                        >
-                          +91 86938 17112
-                        </a>
+                      {/* Coach Navjeet Singh Name in larger font below the Inquiry Sizing Button */}
+                      <div className="pt-1.5 text-center border-t border-slate-100">
+                        <span className="text-xs sm:text-sm font-serif font-bold uppercase tracking-wider text-[#0A1931]">
+                          Navjeet Singh
+                        </span>
                       </div>
                     </div>
 
