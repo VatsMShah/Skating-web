@@ -360,48 +360,8 @@ export default function MerchandisePage() {
           MAIN CATALOGUE SECTION WITH FILTER TABS
           ===================================================================== */}
       <section className="py-8 sm:py-12 md:py-16">
-        <div className="container mx-auto max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-12 space-y-6 sm:space-y-8">
+        <div className="container mx-auto max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-12 space-y-8 sm:space-y-10">
           
-          {/* -----------------------------------------------------------------
-              COACH NAVJEET SINGH SIZING ASSISTANCE STRIP
-              ----------------------------------------------------------------- */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#0A1931] via-[#0E2954] to-[#0A1931] text-white border border-[#F59E0B]/40 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <div className="flex items-center gap-3.5">
-              <div className="size-12 rounded-full border-2 border-[#F59E0B] overflow-hidden bg-white shrink-0 relative shadow-sm">
-                <Image
-                  src="/images/navjeet-singh-dehiya.jpg"
-                  alt="Coach Navjeet Singh Dehiya"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <span className="text-[10px] font-mono uppercase font-bold text-[#FBBF24] tracking-wider px-2 py-0.5 rounded-md bg-[#F59E0B]/20 border border-[#F59E0B]/30">
-                    Sizing &amp; Equipment Coordinator
-                  </span>
-                </div>
-                <h3 className="font-serif text-sm sm:text-base font-bold uppercase text-white tracking-wide mt-1">
-                  Need Help with Skate Sizing? Contact Coach Navjeet Singh
-                </h3>
-                <p className="text-xs text-slate-300">
-                  Custom boot heat-molding, speed quad &amp; inline setups, and uniform fittings for ages 4 to adults.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <a
-                href="https://wa.me/918693817112?text=Hello%20Coach%20Navjeet%20Singh%2C%20I%20would%20like%20to%20inquire%20about%20equipment%20sizing%20and%20orders%20from%20D.R.S.A."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] font-serif text-xs font-extrabold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <Phone className="size-3.5 text-[#0A1931]" />
-                <span>+91 86938 17112</span>
-              </a>
-            </div>
-          </div>
-
           {/* -----------------------------------------------------------------
               FILTER TABS CAPSULE BAR
               ----------------------------------------------------------------- */}
@@ -507,25 +467,38 @@ export default function MerchandisePage() {
                       </div>
                     </div>
 
-                    {/* Card Footer: Action Buttons (Broader & More Prominent) */}
-                    <div className="pt-2 flex items-stretch gap-2">
-                      <a
-                        href={`https://wa.me/918693817112?text=${encodeURIComponent(`Hello Coach Navjeet Singh, I would like to inquire about sizing and availability for the ${product.name} from D.R.S.A.`)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 sm:px-5 rounded-xl bg-[#0A1931] text-white hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs sm:text-sm font-serif font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 text-center group/btn"
-                      >
-                        <Phone className="size-3.5 text-[#FBBF24] group-hover/btn:text-[#0A1931] shrink-0" />
-                        <span className="truncate">Inquire Sizing (Navjeet Singh)</span>
-                      </a>
+                    {/* Card Footer: Action Buttons & Navjeet Singh Direct Info */}
+                    <div className="pt-2 space-y-2">
+                      <div className="flex items-stretch gap-2">
+                        <a
+                          href={`https://wa.me/918693817112?text=${encodeURIComponent(`Hello Coach Navjeet Singh, I would like to inquire about sizing and availability for the ${product.name} from D.R.S.A.`)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-[#0A1931] text-white hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs sm:text-sm font-serif font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 text-center group/btn cursor-pointer"
+                        >
+                          <Phone className="size-3.5 sm:size-4 text-[#FBBF24] group-hover/btn:text-[#0A1931] shrink-0" />
+                          <span>Inquire Sizing</span>
+                        </a>
 
-                      <Link
-                        href="/contact"
-                        aria-label="Order details and inquiries"
-                        className="inline-flex items-center justify-center p-3 rounded-xl bg-slate-100 text-[#0A1931] hover:bg-[#FEF3C7] hover:text-[#0A1931] border border-slate-200 transition-all shadow-xs shrink-0"
-                      >
-                        <ArrowRight className="size-4 text-[#D97706]" />
-                      </Link>
+                        <Link
+                          href="/contact"
+                          aria-label="Order details and inquiries"
+                          className="inline-flex items-center justify-center p-3 rounded-xl bg-slate-100 text-[#0A1931] hover:bg-[#FEF3C7] hover:text-[#0A1931] border border-slate-200 transition-all shadow-xs shrink-0"
+                        >
+                          <ArrowRight className="size-4 text-[#D97706]" />
+                        </Link>
+                      </div>
+
+                      {/* Coach Navjeet Singh Name & Number below the Inquiry Sizing Button */}
+                      <div className="flex items-center justify-between text-[11px] font-mono pt-1 px-1 border-t border-slate-100">
+                        <span className="font-semibold text-slate-700">Navjeet Singh:</span>
+                        <a
+                          href="tel:8693817112"
+                          className="text-[#D97706] hover:text-[#0A1931] font-bold hover:underline transition-colors"
+                        >
+                          +91 86938 17112
+                        </a>
+                      </div>
                     </div>
 
                   </div>
