@@ -160,9 +160,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="mt-3 flex items-center justify-between px-2 text-xs font-mono font-semibold tracking-wider text-slate-500 uppercase">
-                <span>ESTABLISHED 1988 // D.R.S.A</span>
-                <span>THANE &amp; MUMBAI</span>
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 sm:px-2 text-[11px] sm:text-xs font-mono font-semibold tracking-normal sm:tracking-wider text-slate-500 uppercase">
+                <span className="shrink-0">ESTABLISHED 1988 // D.R.S.A</span>
+                <span className="shrink-0">THANE &amp; MUMBAI</span>
               </div>
             </div>
 
