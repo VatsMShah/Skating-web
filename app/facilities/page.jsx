@@ -36,7 +36,10 @@ export const TRAINING_CENTERS = [
     image: "/images/places/amber-international-school-7-years-till-present.jpg",
     badge: "7+ YEARS LEGACY",
     isHero: true,
-    timings: "Morning (6:30 AM – 8:30 AM) & Evening (5:00 PM – 7:30 PM)",
+    timings: [
+      "Batch 1: Wed & Sat (7:00 PM – 8:00 PM)",
+      "Batch 2: Sat (8:00 PM – 9:00 PM) | Sun (9:00 AM – 10:00 AM)",
+    ],
     surface: "Smooth Concrete & Polyurethane Coated Speed Court",
     skillLevels: "Beginner Foundations (Ages 4+) to National Speed Racers",
     mapUrl: "https://maps.app.goo.gl/iPuRK5ZCttr5KGbE7",
@@ -53,7 +56,7 @@ export const TRAINING_CENTERS = [
     image: "/images/places/siddeshwar-garden-complex-thane-20-yrs-till-present.jpg",
     badge: "20+ YEARS RUNNING",
     isHero: true,
-    timings: "Morning (6:00 AM – 8:30 AM) & Evening (5:30 PM – 8:30 PM)",
+    timings: "Sat & Sun (5:00 PM – 6:00 PM)",
     surface: "Elevated Podium Court with Enclosed Perimeter Fencing",
     skillLevels: "All Skill Levels • Quads, Inlines & State Squads",
     mapUrl: "https://maps.app.goo.gl/8Wii7PcMc8Vk2Fgz5",
@@ -70,7 +73,7 @@ export const TRAINING_CENTERS = [
     image: "/images/places/piramal-vaikunth.webp",
     badge: "BALKUM CORRIDOR",
     isHero: false,
-    timings: "Weekend Masterclasses & Evening Batches",
+    timings: "Thu & Fri (8:30 PM – 9:30 PM)",
     surface: "Ultra-Smooth High-Grip Sports Flooring",
     skillLevels: "Kids Starters, Agility & Speed Fundamentals",
     mapUrl: "https://maps.app.goo.gl/ytQovR2huQ4Phpfi7",
@@ -87,7 +90,7 @@ export const TRAINING_CENTERS = [
     image: "/images/places/tmc-mini-stadium-thane-2-years-till-present.jpg",
     badge: "MUNICIPAL ARENA",
     isHero: false,
-    timings: "Morning Speed Sprints & Evening State Squad",
+    timings: "Weekend Batch",
     surface: "Official Standard Banked Roller Skating Track",
     skillLevels: "Competitive Racers, National Squad & Speed Trials",
     mapUrl: "https://maps.google.com/?q=Thane+Municipal+Corporation+Stadium",
@@ -104,7 +107,7 @@ export const TRAINING_CENTERS = [
     image: "/images/places/shreerang-vidyalaya.jpg",
     badge: "CENTRAL THANE HUB",
     isHero: false,
-    timings: "Evening (5:00 PM – 7:30 PM) & Weekend Batches",
+    timings: "Thu & Fri (6:30 PM – 7:30 PM)",
     surface: "Level Sports Ground & Hard-surface Practice Court",
     skillLevels: "Junior Foundations, Kids Beginner & Intermediate",
     mapUrl: "https://maps.app.goo.gl/o8e5RXjS1vwGPw6DA",
@@ -121,7 +124,7 @@ export const TRAINING_CENTERS = [
     image: "/images/places/pratap-sarnaik-school.jpg",
     badge: "GB ROAD HUB",
     isHero: false,
-    timings: "Morning (6:30 AM – 8:00 AM) & Evening (5:00 PM – 7:00 PM)",
+    timings: "Wed & Fri (5:00 PM – 6:00 PM)",
     surface: "Spacious Multi-sport Surface with Banked Track Drills",
     skillLevels: "Beginner (Ages 4+) to Advanced School Competitors",
     mapUrl: "https://maps.app.goo.gl/iem4cdkthKAtbV9r7",
@@ -142,7 +145,10 @@ export const TRAINING_CENTERS = [
     image: "/images/places/tsf.jpg",
     badge: "⚡ OLYMPIC-GRADE FACILITY",
     isHero: true,
-    timings: "Morning (6:00 AM – 9:00 AM) & Evening (4:30 PM – 8:30 PM)",
+    timings: [
+      "Mon (7:00 PM – 8:00 PM)",
+      "Tue (7:30 PM – 8:30 PM)",
+    ],
     surface: "Specialized High-Grip Speed Floor with Plyometrics & Gym Zone",
     skillLevels: "National Speed Squad, Inline Racers & Athletic Conditioning",
     mapUrl: "https://maps.app.goo.gl/brq8GMmmJL3Dvq8F7",
@@ -157,12 +163,14 @@ export default function FacilitiesPage() {
   // Filter centers based on search query and active zone
   const filteredCenters = useMemo(() => {
     return TRAINING_CENTERS.filter((center) => {
+      const timingsStr = Array.isArray(center.timings) ? center.timings.join(" ") : center.timings;
       const matchesSearch =
         searchQuery === "" ||
         center.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         center.zoneLabel.toLowerCase().includes(searchQuery.toLowerCase()) ||
         center.landmark.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        center.tagline.toLowerCase().includes(searchQuery.toLowerCase());
+        center.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        timingsStr.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesZone = activeZone === "all" || center.zone.toLowerCase() === activeZone.toLowerCase();
 
@@ -417,7 +425,7 @@ export default function FacilitiesPage() {
                 </div>
                 <h4 className="font-serif text-base font-bold uppercase text-white">Dedicated Batch Timings</h4>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Morning 6:00 AM – 8:30 AM &amp; Evening 5:00 PM – 8:30 PM segregated by beginner, intermediate, and speed racers.
+                  Structured weekday evening and weekend batches tailored specifically for each center and skill level.
                 </p>
               </div>
 
@@ -589,14 +597,32 @@ function CenterBentoCard({ center }) {
           </p>
 
           {/* Key Specs Breakdown */}
-          <div className="space-y-2 pt-3 border-t border-slate-100 text-xs font-sans">
+          <div className="space-y-2.5 pt-3 border-t border-slate-100 text-xs font-sans">
             <div className="flex items-start gap-2 text-slate-700">
               <Clock className="size-3.5 text-[#D97706] shrink-0 mt-0.5" />
-              <span><strong>Batches:</strong> {center.timings}</span>
+              <div className="flex-1 leading-snug">
+                <strong className="text-slate-900">Days &amp; Timings:</strong>{" "}
+                {Array.isArray(center.timings) ? (
+                  <div className="mt-1 space-y-1">
+                    {center.timings.map((t, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 font-medium mr-1.5 mb-0.5"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 font-medium ml-1">
+                    {center.timings}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="flex items-start gap-2 text-slate-700">
               <Layers className="size-3.5 text-[#D97706] shrink-0 mt-0.5" />
-              <span><strong>Surface:</strong> {center.surface}</span>
+              <span><strong className="text-slate-900">Surface:</strong> {center.surface}</span>
             </div>
           </div>
         </div>

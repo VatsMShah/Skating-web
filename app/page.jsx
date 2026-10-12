@@ -18,6 +18,7 @@ import {
   Sparkles,
   Play,
   ShoppingBag,
+  Clock,
 } from "lucide-react";
 import VideoGallery from "@/components/VideoGallery";
 import PhotoCarousel3D from "@/components/PhotoCarousel3D";
@@ -477,6 +478,17 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
                     Near Highland Park, near TMC Tank West, Dhokali, Thane West 400607.
                   </p>
+
+                  <div className="pt-2.5 border-t border-slate-100 text-xs font-sans text-slate-700 flex items-start gap-1.5">
+                    <Clock className="size-3.5 text-[#D97706] shrink-0 mt-0.5" />
+                    <div className="leading-snug">
+                      <strong className="text-slate-900">Days &amp; Timings:</strong>
+                      <div className="mt-1 flex flex-wrap gap-1">
+                        <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium">Batch 1: Wed &amp; Sat (7:00 PM – 8:00 PM)</span>
+                        <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium">Batch 2: Sat (8:00 PM – 9:00 PM) | Sun (9:00 AM – 10:00 AM)</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -550,6 +562,11 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
                     Podium Court, Siddheshwar Garden, Kolshet Road, Dhokali Naka, Thane West 400607.
                   </p>
+
+                  <div className="pt-2.5 border-t border-slate-100 text-xs font-sans text-slate-700 flex items-center gap-1.5">
+                    <Clock className="size-3.5 text-[#D97706] shrink-0" />
+                    <span><strong className="text-slate-900">Days &amp; Timings:</strong> <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium ml-1">Sat &amp; Sun (5:00 PM – 6:00 PM)</span></span>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -623,6 +640,11 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
                     P.P. Hathyogi Nikam Guruji Marg, Shrirang Society, Thane West 400601.
                   </p>
+
+                  <div className="pt-2.5 border-t border-slate-100 text-xs font-sans text-slate-700 flex items-center gap-1.5">
+                    <Clock className="size-3.5 text-[#D97706] shrink-0" />
+                    <span><strong className="text-slate-900">Days &amp; Timings:</strong> <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium ml-1">Thu &amp; Fri (6:30 PM – 7:30 PM)</span></span>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -696,6 +718,17 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
                     Rolex Metal Industries Compound, Village Road, LBS Marg, Bhandup West 400078.
                   </p>
+
+                  <div className="pt-2.5 border-t border-slate-100 text-xs font-sans text-slate-700 flex items-start gap-1.5">
+                    <Clock className="size-3.5 text-[#D97706] shrink-0 mt-0.5" />
+                    <div className="leading-snug">
+                      <strong className="text-slate-900">Days &amp; Timings:</strong>
+                      <div className="mt-1 flex flex-wrap gap-1">
+                        <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium">Mon (7:00 PM – 8:00 PM)</span>
+                        <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium">Tue (7:30 PM – 8:30 PM)</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -769,6 +802,11 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
                     Plot No. 7/13 &amp; 7/19, near Children Traffic Park, Kasarvadavali 400615.
                   </p>
+
+                  <div className="pt-2.5 border-t border-slate-100 text-xs font-sans text-slate-700 flex items-center gap-1.5">
+                    <Clock className="size-3.5 text-[#D97706] shrink-0" />
+                    <span><strong className="text-slate-900">Days &amp; Timings:</strong> <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium ml-1">Wed &amp; Fri (5:00 PM – 6:00 PM)</span></span>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -842,6 +880,11 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
                     Bayer Near Shivaji Nagar Ram Maruti Nagar, Balkum Naka, Thane West 400607.
                   </p>
+
+                  <div className="pt-2.5 border-t border-slate-100 text-xs font-sans text-slate-700 flex items-center gap-1.5">
+                    <Clock className="size-3.5 text-[#D97706] shrink-0" />
+                    <span><strong className="text-slate-900">Days &amp; Timings:</strong> <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium ml-1">Thu &amp; Fri (8:30 PM – 9:30 PM)</span></span>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -915,6 +958,11 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-2">
                     Thane Municipal Corporation official speed training banked track &amp; championship arena.
                   </p>
+
+                  <div className="pt-2.5 border-t border-slate-100 text-xs font-sans text-slate-700 flex items-center gap-1.5">
+                    <Clock className="size-3.5 text-[#D97706] shrink-0" />
+                    <span><strong className="text-slate-900">Days &amp; Timings:</strong> <span className="inline-block bg-amber-50 text-slate-800 border border-amber-200/80 rounded px-2 py-0.5 text-[11px] font-medium ml-1">Weekend Batch</span></span>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
