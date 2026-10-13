@@ -153,7 +153,7 @@ Direct WhatsApp Link: https://wa.me/91${phone.replace(/\D/g, "")}
     // 1. If RESEND_API_KEY is configured, dispatch directly via Resend HTTPS API (Built for Vercel)
     if (resendApiKey) {
       console.log("Dispatching email via Resend API...");
-      const resendRes = await fetch("https://api.resend.com/emails", {
+      let resendRes = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${resendApiKey}`,
@@ -169,7 +169,37 @@ Direct WhatsApp Link: https://wa.me/91${phone.replace(/\D/g, "")}
         }),
       });
 
-      const resendData = await resendRes.json();
+      let resendData = await resendRes.json();
+
+      // In Resend free onboarding mode without domain, it only allows sending to the account owner email
+      if (
+        !resendRes.ok &&
+        resendData.message &&
+        resendData.message.includes("You can only send testing emails to your own email address")
+      ) {
+        const match = resendData.message.match(/\(([^)]+)\)/);
+        const ownerEmail = match ? match[1].trim() : "vatsalshah892@gmail.com";
+        console.warn(`Resend onboarding mode: routing inquiry to registered account owner (${ownerEmail})`);
+
+        resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "DRSA Academy <onboarding@resend.dev>",
+            to: [ownerEmail],
+            reply_to: email || undefined,
+            subject: `New D.R.S.A Skating Inquiry: ${name} (${center ? center.split(",")[0] : "General"})`,
+            text: plainTextBody,
+            html: htmlBody,
+          }),
+        });
+
+        resendData = await resendRes.json();
+      }
+
       if (!resendRes.ok) {
         console.error("Resend API error:", resendData);
         throw new Error(resendData.message || "Failed to dispatch email via Resend API");
