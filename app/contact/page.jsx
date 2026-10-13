@@ -44,7 +44,7 @@ export default function ContactPage() {
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Coach Rajinder & Navjeet,\n\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nPreferred Center: ${formData.center}\nMessage: ${formData.message || "I would like to inquire about skating training / trial session."}`
+    `Hello Coach Navjeet Singh,\n\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nPreferred Center: ${formData.center}\nMessage: ${formData.message || "I would like to inquire about skating training / trial session."}`
   );
 
   return (
@@ -204,7 +204,7 @@ export default function ContactPage() {
                     <div>
                       <span className="text-[10px] font-mono uppercase font-bold text-[#D97706] tracking-wider block">Head Coach &amp; Speed Specialist</span>
                       <h3 className="font-serif text-lg font-bold uppercase text-[#0A1931]">Mr. Navjeet Singh Dehiya</h3>
-                      <p className="text-xs text-slate-500">National Speed Coach &amp; Choreographer</p>
+                      <p className="text-xs text-slate-500">National Speed Coach</p>
                     </div>
                   </div>
                 </div>
@@ -251,7 +251,7 @@ export default function ContactPage() {
 
               {/* Instant WhatsApp Quick Button */}
               <a
-                href={`https://wa.me/919323861266?text=${whatsappMessage}`}
+                href={`https://wa.me/918693817112?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-serif text-sm font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg"
@@ -293,7 +293,7 @@ export default function ContactPage() {
                     </p>
                     <div className="pt-2">
                       <a
-                        href={`https://wa.me/919323861266?text=${whatsappMessage}`}
+                        href={`https://wa.me/918693817112?text=${whatsappMessage}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A1931] text-[#FBBF24] hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider transition-all"
