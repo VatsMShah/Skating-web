@@ -28,10 +28,14 @@ export async function POST(request) {
       );
     }
 
-    const recipientEmail = (process.env.CONTACT_RECIPIENT_EMAIL || "vatsshah982@gmail.com").trim();
-    const gmailUser = process.env.GMAIL_USER ? process.env.GMAIL_USER.trim() : "";
+    const recipientEmail = (process.env.CONTACT_RECIPIENT_EMAIL || "vatsshah982@gmail.com")
+      .replace(/["']/g, "")
+      .trim();
+    const gmailUser = process.env.GMAIL_USER
+      ? process.env.GMAIL_USER.replace(/["']/g, "").trim()
+      : "";
     const gmailAppPassword = process.env.GMAIL_APP_PASSWORD
-      ? process.env.GMAIL_APP_PASSWORD.replace(/\s+/g, "").trim()
+      ? process.env.GMAIL_APP_PASSWORD.replace(/["'\s]/g, "").trim()
       : "";
 
     console.log("-----------------------------------------");
@@ -64,9 +68,11 @@ export async function POST(request) {
       );
     }
 
-    // Configure Nodemailer transporter for Gmail SMTP
+    // Configure Nodemailer transporter for Gmail SMTP with secure SSL
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: gmailUser,
         pass: gmailAppPassword,
