@@ -48,36 +48,9 @@ export async function POST(request) {
     console.log(`Routing to: ${recipientEmail}`);
     console.log("-----------------------------------------");
 
-    const isPlaceholder =
-      !gmailAppPassword ||
-      gmailAppPassword.includes("your_") ||
-      gmailAppPassword === "your_16_character_app_password";
-
-    if (!gmailUser || isPlaceholder) {
-      console.warn(
-        "Notice: GMAIL_USER and GMAIL_APP_PASSWORD are not yet configured with a valid Google App Password in .env.local. The inquiry details were logged above."
-      );
-      return NextResponse.json(
-        {
-          success: false,
-          error:
-            "Email credentials pending: Please add your 16-character Google App Password in .env.local (GMAIL_APP_PASSWORD). Details have been logged to the server.",
-          submission,
-        },
-        { status: 503 }
-      );
-    }
-
-    // Configure Nodemailer transporter for Gmail SMTP with secure SSL
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: gmailUser,
-        pass: gmailAppPassword,
-      },
-    });
+    const resendApiKey = process.env.RESEND_API_KEY
+      ? process.env.RESEND_API_KEY.replace(/["'\s]/g, "").trim()
+      : "";
 
     const timestamp = new Date().toLocaleString("en-IN", {
       timeZone: "Asia/Kolkata",
@@ -176,6 +149,70 @@ Direct WhatsApp Link: https://wa.me/91${phone.replace(/\D/g, "")}
 </body>
 </html>
 `;
+
+    // 1. If RESEND_API_KEY is configured, dispatch directly via Resend HTTPS API (Built for Vercel)
+    if (resendApiKey) {
+      console.log("Dispatching email via Resend API...");
+      const resendRes = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${resendApiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "DRSA Academy <onboarding@resend.dev>",
+          to: [recipientEmail],
+          reply_to: email || undefined,
+          subject: `New D.R.S.A Skating Inquiry: ${name} (${center ? center.split(",")[0] : "General"})`,
+          text: plainTextBody,
+          html: htmlBody,
+        }),
+      });
+
+      const resendData = await resendRes.json();
+      if (!resendRes.ok) {
+        console.error("Resend API error:", resendData);
+        throw new Error(resendData.message || "Failed to dispatch email via Resend API");
+      }
+
+      console.log("Email successfully sent via Resend:", resendData.id);
+      return NextResponse.json({
+        success: true,
+        message: "Inquiry submitted and emailed successfully.",
+        messageId: resendData.id,
+      });
+    }
+
+    // 2. Otherwise fallback to Nodemailer Gmail SMTP
+    const isPlaceholder =
+      !gmailAppPassword ||
+      gmailAppPassword.includes("your_") ||
+      gmailAppPassword === "your_16_character_app_password";
+
+    if (!gmailUser || isPlaceholder) {
+      console.warn(
+        "Notice: Neither RESEND_API_KEY nor GMAIL_APP_PASSWORD are configured. The inquiry details were logged above."
+      );
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "Email credentials pending: Please add RESEND_API_KEY or GMAIL_APP_PASSWORD to environment variables.",
+          submission,
+        },
+        { status: 503 }
+      );
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: gmailUser,
+        pass: gmailAppPassword,
+      },
+    });
 
     const info = await transporter.sendMail({
       from: `"D.R.S.A Website Inquiries" <${gmailUser}>`,
