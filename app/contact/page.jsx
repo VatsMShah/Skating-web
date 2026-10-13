@@ -22,15 +22,20 @@ import {
   Facebook,
   MessageSquare,
   Compass,
+  Loader2,
+  AlertCircle,
+  RefreshCw,
 } from "lucide-react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    center: "Siddheshwar Garden, Thane West",
+    center: "Amber International School, Dhokali, Thane West",
     message: "",
   });
 
@@ -38,9 +43,45 @@ export default function ContactPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setStatusMessage(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setSubmitted(true);
+        setStatusMessage({
+          type: "success",
+          text: "Inquiry successfully submitted and emailed!",
+        });
+      } else {
+        setStatusMessage({
+          type: "error",
+          text:
+            data.error ||
+            "Unable to send message via email. Please contact Coach Navjeet Singh directly on WhatsApp below.",
+        });
+      }
+    } catch (err) {
+      console.error("Contact submission error:", err);
+      setStatusMessage({
+        type: "error",
+        text: "Network error while submitting. Please message Coach Navjeet Singh directly on WhatsApp below.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const whatsappMessage = encodeURIComponent(
@@ -278,7 +319,7 @@ export default function ContactPage() {
                     Book Your Session or Send an Inquiry
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Fill out the form below. Head Coach Rajinder Singh Dehiya will review your student details and confirm your trial session time slot within 2 hours.
+                    Fill out the form below. Coach Navjeet Singh and our academy coaches will review your student details and confirm your trial session time slot.
                   </p>
                 </div>
 
@@ -287,25 +328,64 @@ export default function ContactPage() {
                     <div className="size-16 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto shadow-lg">
                       <CheckCircle2 className="size-8" />
                     </div>
-                    <h3 className="font-serif text-2xl font-bold uppercase text-emerald-900">Message Sent Successfully!</h3>
+                    <h3 className="font-serif text-2xl font-bold uppercase text-emerald-900">Inquiry Dispatched!</h3>
                     <p className="text-sm text-emerald-700 max-w-md mx-auto">
-                      Thank you, <strong>{formData.name || "there"}</strong>. We have received your inquiry for <strong>{formData.center}</strong>. Coach Rajinder Singh Dehiya will contact you shortly on <strong>{formData.phone}</strong>.
+                      Thank you, <strong>{formData.name || "there"}</strong>! Your inquiry details for <strong>{formData.center}</strong> have been recorded and emailed directly to our team. Coach Navjeet Singh will contact you shortly on <strong>{formData.phone}</strong>.
                     </p>
-                    <div className="pt-2">
+                    <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
                       <a
                         href={`https://wa.me/918693817112?text=${whatsappMessage}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A1931] text-[#FBBF24] hover:bg-[#F59E0B] hover:text-[#0A1931] text-xs font-mono font-bold uppercase tracking-wider transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md"
                       >
+                        <MessageSquare className="size-4" />
                         <span>Chat on WhatsApp Directly</span>
-                        <ArrowRight className="size-4" />
                       </a>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSubmitted(false);
+                          setStatusMessage(null);
+                          setFormData({
+                            name: "",
+                            phone: "",
+                            email: "",
+                            center: "Amber International School, Dhokali, Thane West",
+                            message: "",
+                          });
+                        }}
+                        className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer"
+                      >
+                        <RefreshCw className="size-3.5" />
+                        <span>Send Another Inquiry</span>
+                      </button>
                     </div>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                     
+                    {/* Error / Alert banner if email fails or credentials missing */}
+                    {statusMessage && statusMessage.type === "error" && (
+                      <div className="p-4 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs leading-relaxed flex items-start gap-3 animate-in fade-in">
+                        <AlertCircle className="size-5 text-amber-600 shrink-0 mt-0.5" />
+                        <div className="space-y-1.5 flex-1">
+                          <p className="font-bold text-amber-950">Notice</p>
+                          <p>{statusMessage.text}</p>
+                          <p className="pt-0.5">
+                            <a
+                              href={`https://wa.me/918693817112?text=${whatsappMessage}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-bold underline text-amber-950 hover:text-black inline-flex items-center gap-1"
+                            >
+                              Click here to chat directly with Coach Navjeet Singh on WhatsApp <ArrowRight className="size-3" />
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Full Name Input */}
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono font-bold uppercase text-slate-700 tracking-wider block">
@@ -366,15 +446,15 @@ export default function ContactPage() {
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#0A1931] text-sm focus:outline-none focus:border-[#F59E0B] focus:ring-2 focus:ring-[#F59E0B]/30 transition-all"
                       >
                         <optgroup label="Thane Centers (6)">
-                          <option>Amber International School, Dhokali, Thane West</option>
-                          <option>Siddheshwar Garden, Kolshet Road, Thane West</option>
-                          <option>Piramal Vaikunth, Balkum Naka, Thane West</option>
-                          <option>TMC Mini Stadium, Thane Central</option>
-                          <option>Shreerang Vidyalaya, Shrirang Society, Thane West</option>
-                          <option>Pratap Sarnaik International School, Kasarvadavali, Thane</option>
+                          <option value="Amber International School, Dhokali, Thane West">Amber International School, Dhokali, Thane West</option>
+                          <option value="Siddheshwar Garden, Kolshet Road, Thane West">Siddheshwar Garden, Kolshet Road, Thane West</option>
+                          <option value="Piramal Vaikunth, Balkum Naka, Thane West">Piramal Vaikunth, Balkum Naka, Thane West</option>
+                          <option value="TMC Mini Stadium, Thane Central">TMC Mini Stadium, Thane Central</option>
+                          <option value="Shreerang Vidyalaya, Shrirang Society, Thane West">Shreerang Vidyalaya, Shrirang Society, Thane West</option>
+                          <option value="Pratap Sarnaik International School, Kasarvadavali, Thane">Pratap Sarnaik International School, Kasarvadavali, Thane</option>
                         </optgroup>
                         <optgroup label="Mumbai Center (1)">
-                          <option>The Sports Foundry (TSF), Bhandup West, Mumbai</option>
+                          <option value="The Sports Foundry (TSF), Bhandup West, Mumbai">The Sports Foundry (TSF), Bhandup West, Mumbai</option>
                         </optgroup>
                       </select>
                     </div>
@@ -397,10 +477,20 @@ export default function ContactPage() {
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] font-serif text-sm sm:text-base font-extrabold uppercase tracking-wider transition-all shadow-lg shadow-[#F59E0B]/30 hover:shadow-[#F59E0B]/50 hover:-translate-y-0.5 cursor-pointer"
+                      disabled={isSubmitting}
+                      className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-[#F59E0B] text-[#0A1931] hover:bg-[#FBBF24] disabled:opacity-75 disabled:cursor-not-allowed font-serif text-sm sm:text-base font-extrabold uppercase tracking-wider transition-all shadow-lg shadow-[#F59E0B]/30 hover:shadow-[#F59E0B]/50 hover:-translate-y-0.5 cursor-pointer"
                     >
-                      <Send className="size-4" />
-                      <span>Send Message</span>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="size-4 animate-spin text-[#0A1931]" />
+                          <span>Sending Inquiry Email...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="size-4" />
+                          <span>Send Message</span>
+                        </>
+                      )}
                     </button>
 
                   </form>
