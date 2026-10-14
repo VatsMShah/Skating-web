@@ -107,42 +107,86 @@ export default function VideoGallery() {
     setActivePlayingKey(null);
   }, []);
 
-  // Smooth slide navigation - stops active video so sound doesn't trail off
+  // Smooth slide navigation - self-normalizes so index can NEVER run away or slide off-screen
   const handleNext = useCallback(() => {
     stopAllVideos();
     setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
+    setCurrentIndex((prev) => {
+      // If prev is already at or beyond 15 (e.g. background tab or rapid clicks),
+      // normalize it back to base range [10..14] before advancing!
+      const safeBase = prev >= 15 ? 10 + (prev % 5) : prev;
+      return safeBase + 1;
+    });
   }, [stopAllVideos]);
 
   const handlePrev = useCallback(() => {
     stopAllVideos();
     setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
+    setCurrentIndex((prev) => {
+      // If prev is already below 10, normalize it back before decrementing
+      const safeBase = prev < 10 ? 10 + (prev % 5) : prev;
+      return safeBase - 1;
+    });
   }, [stopAllVideos]);
 
   // Jump to specific slide relative to current set
   const jumpToSlide = (originalIndex) => {
     stopAllVideos();
     setIsTransitioning(true);
-    setCurrentIndex(10 + originalIndex);
+    setCurrentIndex(10 + (originalIndex % 5));
   };
 
   // Seamless boundary normalization on transition end
-  const handleTransitionEnd = () => {
+  const handleTransitionEnd = useCallback(() => {
     if (currentIndex >= 15) {
       setIsTransitioning(false);
-      setCurrentIndex((prev) => prev - 5);
+      setCurrentIndex(10 + (currentIndex % 5));
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
     } else if (currentIndex < 10) {
       setIsTransitioning(false);
-      setCurrentIndex((prev) => prev + 5);
+      setCurrentIndex(10 + (currentIndex % 5));
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
     }
-  };
+  }, [currentIndex]);
 
-  // Automatic slide interval - STRICTLY PAUSED while user is watching a video inline or hovering
+  // Ironclad self-healing guard: if currentIndex ever escapes [5..19], restore immediately
+  useEffect(() => {
+    if (currentIndex >= 20 || currentIndex < 5) {
+      setIsTransitioning(false);
+      setCurrentIndex(10 + (((currentIndex % 5) + 5) % 5));
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
+    }
+  }, [currentIndex]);
+
+  // Pause carousel auto-slide immediately when tab is in the background or hidden
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAllVideos();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [stopAllVideos]);
+
+  // Automatic slide interval - STRICTLY PAUSED while user is watching a video inline, hovering, or tab is hidden
   useEffect(() => {
     if (activePlayingKey !== null || isHovered) return;
 
     const interval = setInterval(() => {
+      if (typeof document !== "undefined" && document.hidden) return;
       handleNext();
     }, 4500);
 
