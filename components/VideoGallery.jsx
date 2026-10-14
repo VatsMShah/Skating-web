@@ -7,10 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Play,
-  X,
-  Sparkles,
-  MessageSquare,
-  Film,
+  Maximize2,
 } from "lucide-react";
 
 export const ACADEMY_VIDEOS = [
@@ -72,12 +69,12 @@ export default function VideoGallery() {
   const [visibleCards, setVisibleCards] = useState(3);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Modal Player State (stores original index: 0 - 4, or null if closed)
-  const [modalVideoIndex, setModalVideoIndex] = useState(null);
+  // Key of the video currently playing inline (e.g. "champion-10")
+  const [activePlayingKey, setActivePlayingKey] = useState(null);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-  const modalVideoRef = useRef(null);
+  const videoRefs = useRef({});
 
   // Responsive visible cards count
   useEffect(() => {
@@ -97,19 +94,35 @@ export default function VideoGallery() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Smooth slide navigation
-  const handleNext = useCallback(() => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
+  // Stop & reset all video audio instantly (prevents overlapping music/audio completely)
+  const stopAllVideos = useCallback(() => {
+    Object.values(videoRefs.current).forEach((videoEl) => {
+      if (videoEl) {
+        try {
+          videoEl.pause();
+          videoEl.currentTime = 0;
+        } catch (_) {}
+      }
+    });
+    setActivePlayingKey(null);
   }, []);
 
+  // Smooth slide navigation - stops active video so sound doesn't trail off
+  const handleNext = useCallback(() => {
+    stopAllVideos();
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  }, [stopAllVideos]);
+
   const handlePrev = useCallback(() => {
+    stopAllVideos();
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev - 1);
-  }, []);
+  }, [stopAllVideos]);
 
   // Jump to specific slide relative to current set
   const jumpToSlide = (originalIndex) => {
+    stopAllVideos();
     setIsTransitioning(true);
     setCurrentIndex(10 + originalIndex);
   };
@@ -125,18 +138,18 @@ export default function VideoGallery() {
     }
   };
 
-  // Automatic slide interval - STRICTLY PAUSED when user is hovering or watching in the modal
+  // Automatic slide interval - STRICTLY PAUSED while user is watching a video inline or hovering
   useEffect(() => {
-    if (modalVideoIndex !== null || isHovered) return;
+    if (activePlayingKey !== null || isHovered) return;
 
     const interval = setInterval(() => {
       handleNext();
     }, 4500);
 
     return () => clearInterval(interval);
-  }, [modalVideoIndex, isHovered, handleNext]);
+  }, [activePlayingKey, isHovered, handleNext]);
 
-  // Touch Swipe Handlers for Mobile Carousel
+  // Touch Swipe Handlers for Mobile
   const handleTouchStart = (e) => {
     touchStartX.current = e.targetTouches[0].clientX;
   };
@@ -154,73 +167,66 @@ export default function VideoGallery() {
     }
   };
 
-  // Open Video Theater Modal (Pauses any playing audio and locks body scroll)
-  const openVideoModal = (originalIndex) => {
-    // Immediately stop and reset any previous video audio
-    if (modalVideoRef.current) {
-      try {
-        modalVideoRef.current.pause();
-        modalVideoRef.current.currentTime = 0;
-      } catch (_) {}
-    }
-    setModalVideoIndex(originalIndex);
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "hidden";
-    }
-  };
-
-  // Close Video Theater Modal (Cuts audio immediately and restores body scroll)
-  const closeVideoModal = () => {
-    if (modalVideoRef.current) {
-      try {
-        modalVideoRef.current.pause();
-        modalVideoRef.current.currentTime = 0;
-      } catch (_) {}
-    }
-    setModalVideoIndex(null);
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "";
-    }
-  };
-
-  // Modal Next / Previous Switcher (Cleanly cuts audio from previous video before opening next)
-  const switchModalVideo = (newIndex) => {
-    if (modalVideoRef.current) {
-      try {
-        modalVideoRef.current.pause();
-        modalVideoRef.current.currentTime = 0;
-      } catch (_) {}
-    }
-    const safeIndex = (newIndex + ACADEMY_VIDEOS.length) % ACADEMY_VIDEOS.length;
-    setModalVideoIndex(safeIndex);
-  };
-
-  // Keyboard Navigation & Escape Listener for Video Modal
-  useEffect(() => {
-    if (modalVideoIndex === null) return;
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        closeVideoModal();
-      } else if (e.key === "ArrowRight") {
-        switchModalVideo(modalVideoIndex + 1);
-      } else if (e.key === "ArrowLeft") {
-        switchModalVideo(modalVideoIndex - 1);
+  // Start inline video playback right in the card (cuts all other audio)
+  const startPlayingInline = (uniqueKey) => {
+    // 1. Pause and reset all other videos first
+    Object.entries(videoRefs.current).forEach(([k, el]) => {
+      if (k !== uniqueKey && el) {
+        try {
+          el.pause();
+          el.currentTime = 0;
+        } catch (_) {}
       }
-    };
+    });
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [modalVideoIndex]);
+    // 2. Set this card active
+    setActivePlayingKey(uniqueKey);
 
-  // Clean up body overflow if component unmounts while modal is open
-  useEffect(() => {
-    return () => {
-      if (typeof document !== "undefined") {
-        document.body.style.overflow = "";
+    // 3. Play the video immediately
+    setTimeout(() => {
+      const videoEl = videoRefs.current[uniqueKey];
+      if (videoEl) {
+        videoEl.play().catch(() => {});
       }
-    };
-  }, []);
+    }, 30);
+  };
+
+  // Fullscreen trigger helper
+  const triggerFullscreen = (videoEl) => {
+    if (!videoEl) return;
+    try {
+      if (videoEl.requestFullscreen) {
+        videoEl.requestFullscreen();
+      } else if (videoEl.webkitEnterFullscreen) {
+        // iOS Safari native player
+        videoEl.webkitEnterFullscreen();
+      } else if (videoEl.webkitRequestFullscreen) {
+        videoEl.webkitRequestFullscreen();
+      } else if (videoEl.msRequestFullscreen) {
+        videoEl.msRequestFullscreen();
+      }
+    } catch (err) {
+      console.warn("Fullscreen request error:", err);
+    }
+  };
+
+  // Handle Expand button click
+  const handleExpand = (e, uniqueKey) => {
+    e.stopPropagation();
+    const videoEl = videoRefs.current[uniqueKey];
+
+    if (!videoEl) {
+      // If video element is not yet active, start playing and then expand
+      startPlayingInline(uniqueKey);
+      setTimeout(() => {
+        const el = videoRefs.current[uniqueKey];
+        if (el) triggerFullscreen(el);
+      }, 80);
+      return;
+    }
+
+    triggerFullscreen(videoEl);
+  };
 
   // Active original video index (0-4)
   const activeOriginalIndex = ((currentIndex % 5) + 5) % 5;
@@ -234,9 +240,6 @@ export default function VideoGallery() {
 
   const cardWidthPercent = getCardWidthPercent();
   const mobileCenterOffset = visibleCards === 1 ? (100 - cardWidthPercent) / 2 : 0;
-
-  const currentModalVideo =
-    modalVideoIndex !== null ? ACADEMY_VIDEOS[modalVideoIndex] : null;
 
   return (
     <section
@@ -314,12 +317,12 @@ export default function VideoGallery() {
               onTransitionEnd={handleTransitionEnd}
             >
               {EXTENDED_VIDEOS.map((video, idx) => {
-                const originalIdx = idx % ACADEMY_VIDEOS.length;
                 const uniqueKey = `${video.id}-${idx}`;
                 const isCenterInView =
                   visibleCards === 1
                     ? idx === currentIndex
                     : idx === currentIndex + Math.floor(visibleCards / 2);
+                const isCurrentlyPlaying = activePlayingKey === uniqueKey;
 
                 return (
                   <div
@@ -331,8 +334,7 @@ export default function VideoGallery() {
                     className="px-2.5 sm:px-3.5 box-border"
                   >
                     <div
-                      onClick={() => openVideoModal(originalIdx)}
-                      className={`group relative w-full aspect-[9/16] max-h-[580px] bg-black rounded-2xl border-2 overflow-hidden transition-all duration-300 shadow-xl cursor-pointer ${
+                      className={`group relative w-full aspect-[9/16] max-h-[580px] bg-black rounded-2xl border-2 overflow-hidden transition-all duration-300 shadow-xl ${
                         isCenterInView
                           ? "border-[#F59E0B] shadow-[0_0_30px_rgba(245,158,11,0.5)] ring-1 ring-[#FBBF24]/60 scale-[1.01]"
                           : "border-slate-800/90 hover:border-[#F59E0B]/80 hover:shadow-[0_0_20px_rgba(245,158,11,0.25)]"
@@ -342,41 +344,84 @@ export default function VideoGallery() {
                       <span className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#FBBF24] z-20 pointer-events-none" />
                       <span className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#FBBF24] z-20 pointer-events-none" />
 
-                      {/* High-res Video Poster */}
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={video.poster}
-                          alt={video.title}
-                          fill
-                          sizes="(max-width: 640px) 84vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90"
-                          loading="lazy"
-                        />
-                      </div>
-
-                      {/* Top Floating Badge */}
-                      <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10 pointer-events-none">
+                      {/* Top Badge */}
+                      <div className="absolute top-3.5 left-3.5 z-20 pointer-events-none">
                         <span className="bg-[#0A1931]/95 backdrop-blur-md text-[#FBBF24] border border-[#F59E0B]/80 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-lg">
                           {video.badge}
                         </span>
                       </div>
 
-                      {/* Central Glowing Play Button Overlay */}
-                      <div className="absolute inset-0 z-15 flex items-center justify-center bg-black/30 group-hover:bg-black/15 transition-colors">
-                        <div className="size-16 sm:size-18 rounded-full bg-[#0A1931]/95 border-2 border-[#F59E0B] text-[#FBBF24] flex items-center justify-center shadow-[0_0_25px_rgba(245,158,11,0.7)] group-hover:scale-110 group-hover:bg-[#F59E0B] group-hover:text-[#0A1931] group-hover:shadow-[0_0_35px_rgba(245,158,11,0.9)] transition-all">
-                          <Play className="size-7 sm:size-8 fill-current translate-x-0.5" />
-                        </div>
-                      </div>
+                      {/* Expand Button (Top Right) */}
+                      <button
+                        onClick={(e) => handleExpand(e, uniqueKey)}
+                        className="absolute top-3.5 right-3.5 z-25 flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#0A1931]/95 backdrop-blur-md border border-[#F59E0B]/80 text-[#FBBF24] hover:bg-[#F59E0B] hover:text-[#0A1931] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider shadow-lg transition-all cursor-pointer"
+                        title="Expand to Fullscreen"
+                        aria-label={`Expand ${video.title} to full screen`}
+                      >
+                        <Maximize2 className="size-3.5" />
+                        <span>Expand</span>
+                      </button>
 
-                      {/* Bottom Gradient Scrim with Highlighted Big Heading */}
-                      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/98 via-[#0A1931]/85 to-transparent pt-20 pb-5 px-4 sm:px-5 z-10 pointer-events-none">
-                        <h3 className="font-serif text-base sm:text-lg md:text-xl font-extrabold uppercase text-white tracking-wide leading-snug drop-shadow-lg text-balance group-hover:text-[#FBBF24] transition-colors">
-                          {video.title}
-                        </h3>
-                        <p className="mt-1.5 text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed font-sans">
-                          {video.description}
-                        </p>
-                      </div>
+                      {/* Inline Video Player OR High-res Poster */}
+                      {isCurrentlyPlaying ? (
+                        <video
+                          ref={(el) => {
+                            videoRefs.current[uniqueKey] = el;
+                          }}
+                          controls
+                          autoPlay
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-full object-cover bg-black"
+                          src={video.src}
+                          onPlay={() => setActivePlayingKey(uniqueKey)}
+                          onPause={() => {
+                            // Only reset if this exact video was active
+                            if (activePlayingKey === uniqueKey) {
+                              // keep paused without auto-scrolling away immediately
+                            }
+                          }}
+                          onEnded={() => {
+                            setActivePlayingKey(null);
+                          }}
+                        />
+                      ) : (
+                        <div
+                          className="relative w-full h-full cursor-pointer"
+                          onClick={() => startPlayingInline(uniqueKey)}
+                        >
+                          <Image
+                            src={video.poster}
+                            alt={video.title}
+                            fill
+                            sizes="(max-width: 640px) 84vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90"
+                            loading="lazy"
+                          />
+
+                          {/* Central Glowing Play Button */}
+                          <div className="absolute inset-0 z-15 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                            <div className="size-16 sm:size-18 rounded-full bg-[#0A1931]/95 border-2 border-[#F59E0B] text-[#FBBF24] flex items-center justify-center shadow-[0_0_25px_rgba(245,158,11,0.7)] group-hover:scale-110 group-hover:bg-[#F59E0B] group-hover:text-[#0A1931] group-hover:shadow-[0_0_35px_rgba(245,158,11,0.9)] transition-all">
+                              <Play className="size-7 sm:size-8 fill-current translate-x-0.5" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Bottom Details Scrim - Only shown when NOT playing so controls are never covered */}
+                      {!isCurrentlyPlaying && (
+                        <div
+                          className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A1931]/98 via-[#0A1931]/85 to-transparent pt-20 pb-5 px-4 sm:px-5 z-10 cursor-pointer pointer-events-auto"
+                          onClick={() => startPlayingInline(uniqueKey)}
+                        >
+                          <h3 className="font-serif text-base sm:text-lg md:text-xl font-extrabold uppercase text-white tracking-wide leading-snug drop-shadow-lg text-balance group-hover:text-[#FBBF24] transition-colors">
+                            {video.title}
+                          </h3>
+                          <p className="mt-1.5 text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed font-sans">
+                            {video.description}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -406,116 +451,6 @@ export default function VideoGallery() {
         </div>
 
       </div>
-
-      {/* =====================================================================
-          PREMIUM D.R.S.A THEATER MODAL (LIGHTBOX)
-          - Single isolated video player eliminates GPU crashes & blackouts
-          - Explicit pause & reset prevents overlapping music/audio
-          - Carousel auto-scrolling is completely frozen while viewing
-          ===================================================================== */}
-      {currentModalVideo && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={currentModalVideo.title}
-          className="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              closeVideoModal();
-            }
-          }}
-        >
-          {/* Main Modal Card */}
-          <div className="relative w-full max-w-4xl max-h-[92vh] bg-[#0A1931] border border-[#F59E0B]/60 rounded-2xl sm:rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col">
-            
-            {/* Top Modal Header */}
-            <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-[#0A1931] border-b border-slate-800 text-white shrink-0">
-              <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
-                <span className="bg-[#FEF3C7]/15 text-[#FBBF24] border border-[#F59E0B]/70 text-[10px] sm:text-xs font-mono font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shrink-0">
-                  {currentModalVideo.badge}
-                </span>
-                <span className="text-xs sm:text-sm font-serif font-bold text-slate-300 truncate">
-                  {currentModalVideo.title}
-                </span>
-              </div>
-
-              {/* Close Button */}
-              <button
-                onClick={closeVideoModal}
-                className="size-9 sm:size-10 rounded-full bg-slate-800/80 hover:bg-[#F59E0B] text-white hover:text-[#0A1931] flex items-center justify-center transition-all cursor-pointer shrink-0 ml-2"
-                aria-label="Close Video Player (Esc)"
-                title="Close (Esc)"
-              >
-                <X className="size-5" />
-              </button>
-            </div>
-
-            {/* Video Player Display Container */}
-            <div className="relative flex-1 bg-black flex items-center justify-center min-h-[300px] sm:min-h-[460px] max-h-[68vh] overflow-hidden">
-              
-              {/* Left Arrow Button in Modal */}
-              <button
-                onClick={() => switchModalVideo(modalVideoIndex - 1)}
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 size-10 sm:size-12 rounded-full bg-[#0A1931]/80 backdrop-blur-md border border-[#F59E0B]/70 text-white hover:bg-[#F59E0B] hover:text-[#0A1931] flex items-center justify-center shadow-lg transition-all cursor-pointer"
-                aria-label="Previous Video"
-                title="Previous Video (Left Arrow)"
-              >
-                <ChevronLeft className="size-6" />
-              </button>
-
-              {/* Right Arrow Button in Modal */}
-              <button
-                onClick={() => switchModalVideo(modalVideoIndex + 1)}
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 size-10 sm:size-12 rounded-full bg-[#0A1931]/80 backdrop-blur-md border border-[#F59E0B]/70 text-white hover:bg-[#F59E0B] hover:text-[#0A1931] flex items-center justify-center shadow-lg transition-all cursor-pointer"
-                aria-label="Next Video"
-                title="Next Video (Right Arrow)"
-              >
-                <ChevronRight className="size-6" />
-              </button>
-
-              {/* The Dedicated Video Element */}
-              <video
-                key={currentModalVideo.src}
-                ref={modalVideoRef}
-                src={currentModalVideo.src}
-                controls
-                autoPlay
-                playsInline
-                preload="auto"
-                className="w-full h-full max-h-[68vh] object-contain"
-                onEnded={() => switchModalVideo(modalVideoIndex + 1)}
-              />
-            </div>
-
-            {/* Bottom Modal Footer with Details & WhatsApp Call-To-Action */}
-            <div className="px-4 sm:px-6 py-3.5 sm:py-4 bg-[#0A1931] border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shrink-0">
-              <div className="space-y-1 max-w-xl">
-                <h4 className="font-serif text-sm sm:text-base font-bold uppercase text-white">
-                  {currentModalVideo.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-300 line-clamp-2">
-                  {currentModalVideo.description}
-                </p>
-              </div>
-
-              {/* Quick WhatsApp Action Button */}
-              <a
-                href={`https://wa.me/918693817112?text=${encodeURIComponent(
-                  `Hello Coach Navjeet Singh, I was watching the video "${currentModalVideo.title}" on your website and would like to inquire about enrolling in this training program.`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md shrink-0"
-              >
-                <MessageSquare className="size-3.5" />
-                <span>Inquire on WhatsApp</span>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      )}
-
     </section>
   );
 }
