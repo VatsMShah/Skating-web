@@ -1,8 +1,63 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// In-memory sliding window rate limiter
+// IP -> Array of submission timestamps
+const ipSubmissionTracker = new Map();
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const MAX_SUBMISSIONS_PER_WINDOW = 3; // Max 3 submissions per IP per 10 minutes
+
+function checkRateLimit(ip) {
+  if (!ip || ip === "unknown") return true;
+
+  const now = Date.now();
+  const timestamps = ipSubmissionTracker.get(ip) || [];
+
+  // Filter out timestamps older than the window
+  const recentTimestamps = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+
+  if (recentTimestamps.length >= MAX_SUBMISSIONS_PER_WINDOW) {
+    ipSubmissionTracker.set(ip, recentTimestamps);
+    return false; // Rate limit exceeded
+  }
+
+  recentTimestamps.push(now);
+  ipSubmissionTracker.set(ip, recentTimestamps);
+
+  // Periodically clean up entries older than the window to prevent memory leaks
+  if (ipSubmissionTracker.size > 1000) {
+    for (const [key, times] of ipSubmissionTracker.entries()) {
+      const valid = times.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+      if (valid.length === 0) {
+        ipSubmissionTracker.delete(key);
+      } else {
+        ipSubmissionTracker.set(key, valid);
+      }
+    }
+  }
+
+  return true;
+}
+
 export async function POST(request) {
   try {
+    // 1. IP Rate Limiting Guard (Layer 3)
+    const clientIp =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
+    if (!checkRateLimit(clientIp)) {
+      console.warn(`[Security] Rate limit exceeded for IP: ${clientIp}`);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Too many submissions from your network. Please wait 10 minutes before submitting another inquiry.",
+        },
+        { status: 429 }
+      );
+    }
+
     let submission = {};
     const contentType = request.headers.get("content-type") || "";
 
@@ -16,27 +71,63 @@ export async function POST(request) {
         email: formData.get("email"),
         center: formData.get("center"),
         message: formData.get("message"),
+        website_hp: formData.get("website_hp"),
+        formLoadedAt: formData.get("formLoadedAt"),
       };
     }
 
-    const { name, phone, email, center, message } = submission;
+    const { name, phone, email, center, message, website_hp, formLoadedAt } = submission;
 
-    if (!name || !phone) {
+    // 2. Honeypot Anti-Bot Guard (Layer 1)
+    if (website_hp && typeof website_hp === "string" && website_hp.trim() !== "") {
+      console.warn("[Security] Bot trapped by honeypot field. Discarding submission.");
+      // Return fake success to prevent bot adaptation
+      return NextResponse.json({
+        success: true,
+        message: "Inquiry received.",
+      });
+    }
+
+    // 3. Time-Elapsed Speed Trap Guard (Layer 2)
+    if (formLoadedAt) {
+      const elapsed = Date.now() - Number(formLoadedAt);
+      if (!isNaN(elapsed) && elapsed < 2500) {
+        console.warn(`[Security] Bot trapped by speed trap: submitted in ${elapsed}ms.`);
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Submission was too fast. Please take a few moments to review your details.",
+          },
+          { status: 400 }
+        );
+      }
+    }
+
+    // 4. Mandatory Fields Validation: Name, Phone, and Email are ALL mandatory
+    if (!name || !phone || !email) {
       return NextResponse.json(
-        { success: false, error: "Name and phone number are required." },
+        { success: false, error: "Name, phone number, and email address are all required." },
         { status: 400 }
       );
     }
 
-    const recipientEmail = (process.env.CONTACT_RECIPIENT_EMAIL || "vatsshah982@gmail.com")
-      .replace(/["']/g, "")
-      .trim();
-    const gmailUser = process.env.GMAIL_USER
-      ? process.env.GMAIL_USER.replace(/["']/g, "").trim()
-      : "";
-    const gmailAppPassword = process.env.GMAIL_APP_PASSWORD
-      ? process.env.GMAIL_APP_PASSWORD.replace(/["'\s]/g, "").trim()
-      : "";
+    // 5. Strict Email Format Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      return NextResponse.json(
+        { success: false, error: "Please provide a valid email address." },
+        { status: 400 }
+      );
+    }
+
+    // 6. Strict Phone Format Validation (must have at least 10 digits)
+    const cleanPhone = phone.replace(/\D/g, "");
+    if (cleanPhone.length < 10) {
+      return NextResponse.json(
+        { success: false, error: "Please enter a valid 10-digit phone number." },
+        { status: 400 }
+      );
+    }
 
     console.log("-----------------------------------------");
     console.log("New D.R.S.A Contact Form Submission:");

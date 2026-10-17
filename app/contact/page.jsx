@@ -31,12 +31,14 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
+  const [formLoadedAt] = useState(() => Date.now());
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     center: "Amber International School, Dhokali, Thane West",
     message: "",
+    website_hp: "", // Honeypot trap (must remain blank)
   });
 
   const handleChange = (e) => {
@@ -48,13 +50,36 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setStatusMessage(null);
 
+    // Client-side instant validation
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.email.trim()) {
+      setStatusMessage({
+        type: "error",
+        text: "Please fill in all required fields (Name, Phone number, and Email address).",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    const cleanPhone = formData.phone.replace(/\D/g, "");
+    if (cleanPhone.length < 10) {
+      setStatusMessage({
+        type: "error",
+        text: "Please enter a valid 10-digit mobile number.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          formLoadedAt,
+        }),
       });
 
       const data = await res.json();
@@ -353,6 +378,7 @@ export default function ContactPage() {
                             email: "",
                             center: "Amber International School, Dhokali, Thane West",
                             message: "",
+                            website_hp: "",
                           });
                         }}
                         className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer"
@@ -365,6 +391,20 @@ export default function ContactPage() {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                     
+                    {/* Honeypot Anti-Bot Field (Hidden from humans, filled by spam bots) */}
+                    <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
+                      <label htmlFor="website_hp">Do not fill this</label>
+                      <input
+                        id="website_hp"
+                        type="text"
+                        name="website_hp"
+                        value={formData.website_hp}
+                        onChange={handleChange}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
+
                     {/* Error / Alert banner if email fails or credentials missing */}
                     {statusMessage && statusMessage.type === "error" && (
                       <div className="p-4 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs leading-relaxed flex items-start gap-3 animate-in fade-in">
@@ -421,11 +461,12 @@ export default function ContactPage() {
 
                       <div className="space-y-1.5">
                         <label className="text-xs font-mono font-bold uppercase text-slate-700 tracking-wider block">
-                          Email Address
+                          Email Address *
                         </label>
                         <input
                           type="email"
                           name="email"
+                          required
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="e.g. name@example.com"
